@@ -41,7 +41,7 @@ class Inventarios extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'productos_id' => 'Productos ID',
+            'productos_id' => 'Producto',
             'cantidad' => 'Cantidad',
         ];
     }
