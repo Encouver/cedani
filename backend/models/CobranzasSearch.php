@@ -18,7 +18,7 @@ class CobranzasSearch extends Cobranzas
     public function rules()
     {
         return [
-            [['id', 'facturas_id'], 'integer'],
+            [['id', 'factura_id'], 'integer'],
             [['fecha', 'forma_pago', 'detalle_forma_pago', 'status_pago'], 'safe'],
         ];
     }
@@ -57,7 +57,7 @@ class CobranzasSearch extends Cobranzas
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'facturas_id' => $this->facturas_id,
+            'factura_id' => $this->factura_id,
             'fecha' => $this->fecha,
         ]);
 

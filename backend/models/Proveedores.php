@@ -80,6 +80,6 @@ class Proveedores extends \yii\db\ActiveRecord
      */
     public function getProductosProveedores()
     {
-        return $this->hasMany(ProductosProveedores::className(), ['proveedores_id' => 'id']);
+        return $this->hasMany(ProductosProveedores::className(), ['proveedore_id' => 'id']);
     }
 }

@@ -18,7 +18,7 @@ class NotasDeCreditoSearch extends NotasDeCredito
     public function rules()
     {
         return [
-            [['id', 'facturas_id', 'compras_id'], 'integer'],
+            [['id', 'factura_id', 'compra_id'], 'integer'],
             [['fecha'], 'safe'],
         ];
     }
@@ -57,9 +57,9 @@ class NotasDeCreditoSearch extends NotasDeCredito
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'facturas_id' => $this->facturas_id,
+            'factura_id' => $this->factura_id,
             'fecha' => $this->fecha,
-            'compras_id' => $this->compras_id,
+            'compra_id' => $this->compra_id,
         ]);
 
         return $dataProvider;

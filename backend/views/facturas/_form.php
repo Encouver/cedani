@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use app\models\Clientes;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Facturas */
@@ -10,9 +12,12 @@ use yii\widgets\ActiveForm;
 
 <div class="facturas-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(); 
+    $clientes = ArrayHelper::map(Clientes::find()->all(), 'id', 'nombre_razonsocial');
+    ?>
 
-    <?= $form->field($model, 'clientes_id')->textInput() ?>
+  <!--   <?= $form->field($model, 'cliente_id')->textInput() ?> -->
+      <?= $form->field($model, 'cliente_id')->dropDownList($clientes,['prompt'=>'Seleccionar cliente']) ?>
 
     <?= $form->field($model, 'numero_factura')->textInput() ?>
 

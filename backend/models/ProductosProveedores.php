@@ -8,10 +8,12 @@ use Yii;
  * This is the model class for table "productos_proveedores".
  *
  * @property integer $id
- * @property integer $proveedores_id
+ * @property integer $proveedor_id
+ * @property integer $producto_id
  *
  * @property Productos[] $productos
- * @property Proveedores $proveedores
+ * @property Productos $producto
+ * @property Proveedores $proveedor
  */
 class ProductosProveedores extends \yii\db\ActiveRecord
 {
@@ -29,8 +31,8 @@ class ProductosProveedores extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['proveedores_id'], 'required'],
-            [['proveedores_id'], 'integer']
+            [['proveedor_id', 'producto_id'], 'required'],
+            [['proveedor_id', 'producto_id'], 'integer']
         ];
     }
 
@@ -41,7 +43,8 @@ class ProductosProveedores extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'proveedores_id' => 'Proveedores ID',
+            'proveedor_id' => 'Proveedor ID',
+            'producto_id' => 'Producto ID',
         ];
     }
 
@@ -50,14 +53,22 @@ class ProductosProveedores extends \yii\db\ActiveRecord
      */
     public function getProductos()
     {
-        return $this->hasMany(Productos::className(), ['productos_proveedores_id' => 'id', 'productos_proveedores_proveedores_id' => 'proveedores_id']);
+        return $this->hasMany(Productos::className(), ['producto_proveedor_id' => 'id', 'producto_proveedor_proveedor_id' => 'proveedor_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProveedores()
+    public function getProducto()
     {
-        return $this->hasOne(Proveedores::className(), ['id' => 'proveedores_id']);
+        return $this->hasOne(Productos::className(), ['id' => 'producto_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProveedor()
+    {
+        return $this->hasOne(Proveedores::className(), ['id' => 'proveedor_id']);
     }
 }

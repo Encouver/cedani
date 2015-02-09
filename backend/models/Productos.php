@@ -17,8 +17,8 @@ use Yii;
  * @property string $precio_venta
  * @property string $precio_costo
  * @property integer $excento_de_iva
- * @property integer $productos_proveedores_id
- * @property integer $productos_proveedores_proveedores_id
+ * @property integer $producto_proveedor_id
+ * @property integer $producto_proveedor_proveedor_id
  *
  * @property Compras[] $compras
  * @property HistoricoPrecios[] $historicoPrecios
@@ -41,8 +41,8 @@ class Productos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'marca', 'formato', 'formato2', 'kilo', 'precio_venta', 'precio_costo', 'excento_de_iva', 'productos_proveedores_id', 'productos_proveedores_proveedores_id'], 'required'],
-            [['formato', 'formato2', 'kilo', 'excento_de_iva', 'productos_proveedores_id', 'productos_proveedores_proveedores_id'], 'integer'],
+            [['nombre', 'marca', 'formato', 'formato2', 'kilo', 'precio_venta', 'precio_costo', 'excento_de_iva', 'producto_proveedor_id', 'producto_proveedor_proveedor_id'], 'required'],
+            [['formato', 'formato2', 'kilo', 'excento_de_iva', 'producto_proveedor_id', 'producto_proveedor_proveedor_id'], 'integer'],
             [['precio_venta', 'precio_costo'], 'number'],
             [['nombre', 'descripcion', 'marca'], 'string', 'max' => 255]
         ];
@@ -64,8 +64,8 @@ class Productos extends \yii\db\ActiveRecord
             'precio_venta' => 'Precio Venta',
             'precio_costo' => 'Precio Costo',
             'excento_de_iva' => 'Excento De Iva',
-            'productos_proveedores_id' => 'Productos Proveedores ID',
-            'productos_proveedores_proveedores_id' => 'Productos Proveedores Proveedores ID',
+            'producto_proveedor_id' => 'Producto Proveedor ID',
+            'producto_proveedor_proveedor_id' => 'Producto Proveedor Proveedor ID',
         ];
     }
 
@@ -74,7 +74,7 @@ class Productos extends \yii\db\ActiveRecord
      */
     public function getCompras()
     {
-        return $this->hasMany(Compras::className(), ['productos_id' => 'id']);
+        return $this->hasMany(Compras::className(), ['producto_id' => 'id']);
     }
 
     /**
@@ -90,7 +90,7 @@ class Productos extends \yii\db\ActiveRecord
      */
     public function getInventarios()
     {
-        return $this->hasMany(Inventarios::className(), ['productos_id' => 'id']);
+        return $this->hasMany(Inventarios::className(), ['producto_id' => 'id']);
     }
 
     /**
@@ -98,6 +98,6 @@ class Productos extends \yii\db\ActiveRecord
      */
     public function getProductosProveedores()
     {
-        return $this->hasOne(ProductosProveedores::className(), ['id' => 'productos_proveedores_id', 'proveedores_id' => 'productos_proveedores_proveedores_id']);
+        return $this->hasOne(ProductosProveedores::className(), ['id' => 'producto_proveedor_id', 'proveedor_id' => 'producto_proveedor_proveedor_id']);
     }
 }

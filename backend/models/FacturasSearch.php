@@ -18,7 +18,7 @@ class FacturasSearch extends Facturas
     public function rules()
     {
         return [
-            [['id', 'clientes_id', 'numero_factura', 'numero_control', 'descuento_financiero'], 'integer'],
+            [['id', 'cliente_id', 'numero_factura', 'numero_control', 'descuento_financiero'], 'integer'],
             [['fecha', 'status_pago', 'status_entrega', 'condiciones_pago'], 'safe'],
             [['iva'], 'number'],
         ];
@@ -58,7 +58,7 @@ class FacturasSearch extends Facturas
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'clientes_id' => $this->clientes_id,
+            'cliente_id' => $this->cliente_id,
             'numero_factura' => $this->numero_factura,
             'numero_control' => $this->numero_control,
             'fecha' => $this->fecha,

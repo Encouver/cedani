@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : mysql
-Source Server Version : 50621
+Source Server         : localhost
+Source Server Version : 50617
 Source Host           : localhost:3306
 Source Database       : cedani
 
 Target Server Type    : MYSQL
-Target Server Version : 50621
+Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2015-02-01 16:39:24
+Date: 2015-02-08 21:44:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,14 +40,14 @@ CREATE TABLE `clientes` (
 DROP TABLE IF EXISTS `cobranzas`;
 CREATE TABLE `cobranzas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `facturas_id` int(11) NOT NULL,
+  `factura_id` int(11) NOT NULL,
   `fecha` datetime NOT NULL,
   `forma_pago` varchar(255) DEFAULT NULL,
   `detalle_forma_pago` varchar(255) DEFAULT NULL,
   `status_pago` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`,`facturas_id`),
-  KEY `fk_cobranzas_facturas1_idx` (`facturas_id`),
-  CONSTRAINT `fk_cobranzas_facturas1` FOREIGN KEY (`facturas_id`) REFERENCES `facturas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`id`,`factura_id`),
+  KEY `fk_cobranzas_facturas1_idx` (`factura_id`),
+  CONSTRAINT `fk_cobranzas_facturas1` FOREIGN KEY (`factura_id`) REFERENCES `facturas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -56,17 +56,17 @@ CREATE TABLE `cobranzas` (
 DROP TABLE IF EXISTS `compras`;
 CREATE TABLE `compras` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `facturas_id` int(11) NOT NULL,
-  `productos_id` int(11) NOT NULL,
+  `factura_id` int(11) NOT NULL,
+  `producto_id` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `fraccion` int(11) DEFAULT NULL,
   `precio_unitario` decimal(20,2) NOT NULL,
   `descuento` int(11) DEFAULT '0',
-  PRIMARY KEY (`id`,`facturas_id`,`productos_id`),
-  KEY `fk_compras_facturas1_idx` (`facturas_id`),
-  KEY `fk_compras_productos1_idx` (`productos_id`),
-  CONSTRAINT `fk_compras_facturas1` FOREIGN KEY (`facturas_id`) REFERENCES `facturas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_compras_productos1` FOREIGN KEY (`productos_id`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`id`,`factura_id`,`producto_id`),
+  KEY `fk_compras_facturas1_idx` (`factura_id`),
+  KEY `fk_compras_productos1_idx` (`producto_id`),
+  CONSTRAINT `fk_compras_facturas1` FOREIGN KEY (`factura_id`) REFERENCES `facturas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_compras_productos1` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -102,14 +102,14 @@ CREATE TABLE `empleados` (
 DROP TABLE IF EXISTS `entregas`;
 CREATE TABLE `entregas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `facturas_id` int(11) NOT NULL,
+  `factura_id` int(11) NOT NULL,
   `nombre` varchar(255) DEFAULT NULL,
   `direccion` varchar(255) DEFAULT NULL,
   `telefono` varchar(255) DEFAULT NULL,
   `nota` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`,`facturas_id`),
-  KEY `fk_entregas_facturas1_idx` (`facturas_id`),
-  CONSTRAINT `fk_entregas_facturas1` FOREIGN KEY (`facturas_id`) REFERENCES `facturas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`id`,`factura_id`),
+  KEY `fk_entregas_facturas1_idx` (`factura_id`),
+  CONSTRAINT `fk_entregas_facturas1` FOREIGN KEY (`factura_id`) REFERENCES `facturas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -118,7 +118,7 @@ CREATE TABLE `entregas` (
 DROP TABLE IF EXISTS `facturas`;
 CREATE TABLE `facturas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `clientes_id` int(11) NOT NULL,
+  `cliente_id` int(11) NOT NULL,
   `numero_factura` int(11) NOT NULL,
   `numero_control` int(11) NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -127,10 +127,10 @@ CREATE TABLE `facturas` (
   `condiciones_pago` varchar(255) DEFAULT NULL,
   `descuento_financiero` int(11) DEFAULT '0',
   `iva` decimal(20,2) NOT NULL,
-  PRIMARY KEY (`id`,`clientes_id`),
-  KEY `fk_facturas_clientes1_idx` (`clientes_id`),
+  PRIMARY KEY (`id`,`cliente_id`),
+  KEY `fk_facturas_clientes1_idx` (`cliente_id`),
   KEY `id` (`id`),
-  CONSTRAINT `fk_facturas_clientes1` FOREIGN KEY (`clientes_id`) REFERENCES `clientes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_facturas_clientes1` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -153,11 +153,11 @@ CREATE TABLE `historico_precios` (
 DROP TABLE IF EXISTS `inventarios`;
 CREATE TABLE `inventarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `productos_id` int(11) NOT NULL,
+  `producto_id` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`productos_id`),
-  KEY `fk_inventarios_productos1_idx` (`productos_id`),
-  CONSTRAINT `fk_inventarios_productos1` FOREIGN KEY (`productos_id`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`id`,`producto_id`),
+  KEY `fk_inventarios_productos1_idx` (`producto_id`),
+  CONSTRAINT `fk_inventarios_productos1` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -176,14 +176,14 @@ CREATE TABLE `migration` (
 DROP TABLE IF EXISTS `notas_de_credito`;
 CREATE TABLE `notas_de_credito` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `facturas_id` int(11) NOT NULL,
+  `factura_id` int(11) NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `compras_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`facturas_id`,`compras_id`),
-  KEY `fk_notas_de_credito_facturas1_idx` (`facturas_id`),
-  KEY `fk_notas_de_credito_compras1_idx` (`compras_id`),
-  CONSTRAINT `fk_notas_de_credito_compras1` FOREIGN KEY (`compras_id`) REFERENCES `compras` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_notas_de_credito_facturas1` FOREIGN KEY (`facturas_id`) REFERENCES `facturas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `compra_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`,`factura_id`,`compra_id`),
+  KEY `fk_notas_de_credito_facturas1_idx` (`factura_id`),
+  KEY `fk_notas_de_credito_compras1_idx` (`compra_id`),
+  CONSTRAINT `fk_notas_de_credito_compras1` FOREIGN KEY (`compra_id`) REFERENCES `compras` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_notas_de_credito_facturas1` FOREIGN KEY (`factura_id`) REFERENCES `facturas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -201,12 +201,13 @@ CREATE TABLE `productos` (
   `precio_venta` decimal(20,2) NOT NULL,
   `precio_costo` decimal(20,2) NOT NULL,
   `excento_de_iva` tinyint(1) NOT NULL,
-  `productos_proveedores_id` int(11) NOT NULL,
-  `productos_proveedores_proveedores_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`productos_proveedores_id`,`productos_proveedores_proveedores_id`),
-  KEY `fk_productos_productos_proveedores1_idx` (`productos_proveedores_id`,`productos_proveedores_proveedores_id`),
-  CONSTRAINT `fk_productos_productos_proveedores1` FOREIGN KEY (`productos_proveedores_id`, `productos_proveedores_proveedores_id`) REFERENCES `productos_proveedores` (`id`, `proveedores_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `producto_proveedor_id` int(11) NOT NULL,
+  `producto_proveedor_proveedor_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`,`producto_proveedor_id`,`producto_proveedor_proveedor_id`),
+  KEY `fk_productos_productos_proveedores1_idx` (`producto_proveedor_id`,`producto_proveedor_proveedor_id`),
+  KEY `id` (`id`),
+  CONSTRAINT `fk_productos_productos_proveedores1` FOREIGN KEY (`producto_proveedor_id`, `producto_proveedor_proveedor_id`) REFERENCES `productos_proveedores` (`id`, `proveedor_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for productos_proveedores
@@ -214,10 +215,13 @@ CREATE TABLE `productos` (
 DROP TABLE IF EXISTS `productos_proveedores`;
 CREATE TABLE `productos_proveedores` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `proveedores_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`proveedores_id`),
-  KEY `fk_productos_proveedores_proveedores1_idx` (`proveedores_id`),
-  CONSTRAINT `fk_productos_proveedores_proveedores1` FOREIGN KEY (`proveedores_id`) REFERENCES `proveedores` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `proveedor_id` int(11) NOT NULL,
+  `producto_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`,`proveedor_id`),
+  KEY `fk_productos_proveedores_proveedores1_idx` (`proveedor_id`),
+  KEY `producto_id` (`producto_id`),
+  CONSTRAINT `productos_proveedores_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_productos_proveedores_proveedores1` FOREIGN KEY (`proveedor_id`) REFERENCES `proveedores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------

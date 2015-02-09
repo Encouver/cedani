@@ -67,6 +67,6 @@ class Clientes extends \yii\db\ActiveRecord
      */
     public function getFacturas()
     {
-        return $this->hasMany(Facturas::className(), ['clientes_id' => 'id']);
+        return $this->hasMany(Facturas::className(), ['cliente_id' => 'id']);
     }
 }

@@ -8,9 +8,9 @@ use Yii;
  * This is the model class for table "notas_de_credito".
  *
  * @property integer $id
- * @property integer $facturas_id
+ * @property integer $factura_id
  * @property string $fecha
- * @property integer $compras_id
+ * @property integer $compra_id
  *
  * @property Compras $compras
  * @property Facturas $facturas
@@ -31,8 +31,8 @@ class NotasDeCredito extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['facturas_id', 'compras_id'], 'required'],
-            [['facturas_id', 'compras_id'], 'integer'],
+            [['factura_id', 'compra_id'], 'required'],
+            [['factura_id', 'compra_id'], 'integer'],
             [['fecha'], 'safe']
         ];
     }
@@ -44,9 +44,9 @@ class NotasDeCredito extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'facturas_id' => 'Facturas ID',
+            'factura_id' => 'Facturas ID',
             'fecha' => 'Fecha',
-            'compras_id' => 'Compras ID',
+            'compra_id' => 'Compras ID',
         ];
     }
 
@@ -55,7 +55,7 @@ class NotasDeCredito extends \yii\db\ActiveRecord
      */
     public function getCompras()
     {
-        return $this->hasOne(Compras::className(), ['id' => 'compras_id']);
+        return $this->hasOne(Compras::className(), ['id' => 'compra_id']);
     }
 
     /**
@@ -63,6 +63,6 @@ class NotasDeCredito extends \yii\db\ActiveRecord
      */
     public function getFacturas()
     {
-        return $this->hasOne(Facturas::className(), ['id' => 'facturas_id']);
+        return $this->hasOne(Facturas::className(), ['id' => 'factura_id']);
     }
 }

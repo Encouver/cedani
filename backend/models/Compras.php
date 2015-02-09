@@ -8,8 +8,8 @@ use Yii;
  * This is the model class for table "compras".
  *
  * @property integer $id
- * @property integer $facturas_id
- * @property integer $productos_id
+ * @property integer $factura_id
+ * @property integer $producto_id
  * @property integer $cantidad
  * @property integer $fraccion
  * @property string $precio_unitario
@@ -35,8 +35,8 @@ class Compras extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['facturas_id', 'productos_id', 'cantidad', 'precio_unitario'], 'required'],
-            [['facturas_id', 'productos_id', 'cantidad', 'fraccion', 'descuento'], 'integer'],
+            [['factura_id', 'producto_id', 'cantidad', 'precio_unitario'], 'required'],
+            [['factura_id', 'producto_id', 'cantidad', 'fraccion', 'descuento'], 'integer'],
             [['precio_unitario'], 'number']
         ];
     }
@@ -48,8 +48,8 @@ class Compras extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'facturas_id' => 'Facturas ID',
-            'productos_id' => 'Productos ID',
+            'factura_id' => 'Facturas ID',
+            'producto_id' => 'Productos ID',
             'cantidad' => 'Cantidad',
             'fraccion' => 'Fraccion',
             'precio_unitario' => 'Precio Unitario',
@@ -60,17 +60,17 @@ class Compras extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getFacturas()
+    public function getFactura()
     {
-        return $this->hasOne(Facturas::className(), ['id' => 'facturas_id']);
+        return $this->hasOne(Facturas::className(), ['id' => 'factura_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProductos()
+    public function getProducto()
     {
-        return $this->hasOne(Productos::className(), ['id' => 'productos_id']);
+        return $this->hasOne(Productos::className(), ['id' => 'producto_id']);
     }
 
     /**
@@ -78,6 +78,6 @@ class Compras extends \yii\db\ActiveRecord
      */
     public function getNotasDeCreditos()
     {
-        return $this->hasMany(NotasDeCredito::className(), ['compras_id' => 'id']);
+        return $this->hasMany(NotasDeCredito::className(), ['compra_id' => 'id']);
     }
 }

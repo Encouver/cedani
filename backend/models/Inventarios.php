@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "inventarios".
  *
  * @property integer $id
- * @property integer $productos_id
+ * @property integer $producto_id
  * @property integer $cantidad
  *
  * @property Productos $productos
@@ -29,8 +29,8 @@ class Inventarios extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['productos_id', 'cantidad'], 'required'],
-            [['productos_id', 'cantidad'], 'integer']
+            [['producto_id', 'cantidad'], 'required'],
+            [['producto_id', 'cantidad'], 'integer']
         ];
     }
 
@@ -41,7 +41,7 @@ class Inventarios extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'productos_id' => 'Producto',
+            'producto_id' => 'Producto',
             'cantidad' => 'Cantidad',
         ];
     }
@@ -51,6 +51,6 @@ class Inventarios extends \yii\db\ActiveRecord
      */
     public function getProductos()
     {
-        return $this->hasOne(Productos::className(), ['id' => 'productos_id']);
+        return $this->hasOne(Productos::className(), ['id' => 'producto_id']);
     }
 }

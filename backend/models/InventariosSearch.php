@@ -18,7 +18,7 @@ class InventariosSearch extends Inventarios
     public function rules()
     {
         return [
-            [['id', 'productos_id', 'cantidad'], 'integer'],
+            [['id', 'producto_id', 'cantidad'], 'integer'],
         ];
     }
 
@@ -56,7 +56,7 @@ class InventariosSearch extends Inventarios
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'productos_id' => $this->productos_id,
+            'producto_id' => $this->producto_id,
             'cantidad' => $this->cantidad,
         ]);
 

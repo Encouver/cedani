@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "facturas".
  *
  * @property integer $id
- * @property integer $clientes_id
+ * @property integer $cliente_id
  * @property integer $numero_factura
  * @property integer $numero_control
  * @property string $fecha
@@ -40,8 +40,8 @@ class Facturas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['clientes_id', 'numero_factura', 'numero_control', 'iva'], 'required'],
-            [['clientes_id', 'numero_factura', 'numero_control', 'descuento_financiero'], 'integer'],
+            [['cliente_id', 'numero_factura', 'numero_control', 'iva'], 'required'],
+            [['cliente_id', 'numero_factura', 'numero_control', 'descuento_financiero'], 'integer'],
             [['fecha'], 'safe'],
             [['iva'], 'number'],
             [['status_pago', 'status_entrega', 'condiciones_pago'], 'string', 'max' => 255]
@@ -55,7 +55,7 @@ class Facturas extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'clientes_id' => 'Clientes ID',
+            'cliente_id' => 'Clientes ID',
             'numero_factura' => 'Numero Factura',
             'numero_control' => 'Numero Control',
             'fecha' => 'Fecha',
@@ -72,7 +72,7 @@ class Facturas extends \yii\db\ActiveRecord
      */
     public function getCobranzas()
     {
-        return $this->hasMany(Cobranzas::className(), ['facturas_id' => 'id']);
+        return $this->hasMany(Cobranzas::className(), ['factura_id' => 'id']);
     }
 
     /**
@@ -80,7 +80,7 @@ class Facturas extends \yii\db\ActiveRecord
      */
     public function getCompras()
     {
-        return $this->hasMany(Compras::className(), ['facturas_id' => 'id']);
+        return $this->hasMany(Compras::className(), ['factura_id' => 'id']);
     }
 
     /**
@@ -88,7 +88,7 @@ class Facturas extends \yii\db\ActiveRecord
      */
     public function getEntregas()
     {
-        return $this->hasMany(Entregas::className(), ['facturas_id' => 'id']);
+        return $this->hasMany(Entregas::className(), ['factura_id' => 'id']);
     }
 
     /**
@@ -96,7 +96,7 @@ class Facturas extends \yii\db\ActiveRecord
      */
     public function getClientes()
     {
-        return $this->hasOne(Clientes::className(), ['id' => 'clientes_id']);
+        return $this->hasOne(Clientes::className(), ['id' => 'cliente_id']);
     }
 
     /**
@@ -104,6 +104,6 @@ class Facturas extends \yii\db\ActiveRecord
      */
     public function getNotasDeCreditos()
     {
-        return $this->hasMany(NotasDeCredito::className(), ['facturas_id' => 'id']);
+        return $this->hasMany(NotasDeCredito::className(), ['factura_id' => 'id']);
     }
 }

@@ -30,9 +30,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'excento_de_iva')->textInput() ?>
 
-    <?= $form->field($model, 'productos_proveedores_id')->textInput() ?>
+    <?= $form->field($model, 'producto_proveedor_id')->textInput() ?>
 
-    <?= $form->field($model, 'productos_proveedores_proveedores_id')->textInput() ?>
+    <?= $form->field($model, 'producto_proveedor_proveedor_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

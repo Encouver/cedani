@@ -18,7 +18,7 @@ class EntregasSearch extends Entregas
     public function rules()
     {
         return [
-            [['id', 'facturas_id'], 'integer'],
+            [['id', 'factura_id'], 'integer'],
             [['nombre', 'direccion', 'telefono', 'nota'], 'safe'],
         ];
     }
@@ -57,7 +57,7 @@ class EntregasSearch extends Entregas
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'facturas_id' => $this->facturas_id,
+            'factura_id' => $this->factura_id,
         ]);
 
         $query->andFilterWhere(['like', 'nombre', $this->nombre])

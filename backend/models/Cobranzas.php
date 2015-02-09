@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "cobranzas".
  *
  * @property integer $id
- * @property integer $facturas_id
+ * @property integer $factura_id
  * @property string $fecha
  * @property string $forma_pago
  * @property string $detalle_forma_pago
@@ -32,8 +32,8 @@ class Cobranzas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['facturas_id', 'fecha'], 'required'],
-            [['facturas_id'], 'integer'],
+            [['factura_id', 'fecha'], 'required'],
+            [['factura_id'], 'integer'],
             [['fecha'], 'safe'],
             [['forma_pago', 'detalle_forma_pago', 'status_pago'], 'string', 'max' => 255]
         ];
@@ -46,7 +46,7 @@ class Cobranzas extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'facturas_id' => 'Facturas ID',
+            'factura_id' => 'Factura ID',
             'fecha' => 'Fecha',
             'forma_pago' => 'Forma Pago',
             'detalle_forma_pago' => 'Detalle Forma Pago',
@@ -59,6 +59,6 @@ class Cobranzas extends \yii\db\ActiveRecord
      */
     public function getFacturas()
     {
-        return $this->hasOne(Facturas::className(), ['id' => 'facturas_id']);
+        return $this->hasOne(Facturas::className(), ['id' => 'factura_id']);
     }
 }

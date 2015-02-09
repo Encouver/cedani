@@ -18,7 +18,7 @@ class ComprasSearch extends Compras
     public function rules()
     {
         return [
-            [['id', 'facturas_id', 'productos_id', 'cantidad', 'fraccion', 'descuento'], 'integer'],
+            [['id', 'factura_id', 'producto_id', 'cantidad', 'fraccion', 'descuento'], 'integer'],
             [['precio_unitario'], 'number'],
         ];
     }
@@ -57,8 +57,8 @@ class ComprasSearch extends Compras
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'facturas_id' => $this->facturas_id,
-            'productos_id' => $this->productos_id,
+            'factura_id' => $this->factura_id,
+            'producto_id' => $this->producto_id,
             'cantidad' => $this->cantidad,
             'fraccion' => $this->fraccion,
             'precio_unitario' => $this->precio_unitario,

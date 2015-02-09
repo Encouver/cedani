@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "entregas".
  *
  * @property integer $id
- * @property integer $facturas_id
+ * @property integer $factura_id
  * @property string $nombre
  * @property string $direccion
  * @property string $telefono
@@ -32,8 +32,8 @@ class Entregas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['facturas_id'], 'required'],
-            [['facturas_id'], 'integer'],
+            [['factura_id'], 'required'],
+            [['factura_id'], 'integer'],
             [['nombre', 'direccion', 'telefono', 'nota'], 'string', 'max' => 255]
         ];
     }
@@ -45,7 +45,7 @@ class Entregas extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'facturas_id' => 'Facturas ID',
+            'factura_id' => 'Facturas ID',
             'nombre' => 'Nombre',
             'direccion' => 'Direccion',
             'telefono' => 'Telefono',
@@ -58,6 +58,6 @@ class Entregas extends \yii\db\ActiveRecord
      */
     public function getFacturas()
     {
-        return $this->hasOne(Facturas::className(), ['id' => 'facturas_id']);
+        return $this->hasOne(Facturas::className(), ['id' => 'factura_id']);
     }
 }

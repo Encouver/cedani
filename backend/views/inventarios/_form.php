@@ -9,17 +9,17 @@ use app\models\Productos;
 /* @var $model app\models\Inventarios */
 /* @var $form yii\widgets\ActiveForm */
 
-$items = ArrayHelper::map(Productos::find()->all(), 'id', 'nombres');
-
 ?>
 
 <div class="inventarios-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin();
+     $productos = ArrayHelper::map(Productos::find()->all(), 'id', 'nombres');
+     ?>
 
 
 
-    <?= $form->field($model, 'productos_id')->dropDownList($items,['prompt'=>'Seleccionar producto']) ?>
+    <?= $form->field($model, 'producto_id')->dropDownList($productos,['prompt'=>'Seleccionar producto']) ?>
 
     <?= $form->field($model, 'cantidad')->textInput() ?>
 

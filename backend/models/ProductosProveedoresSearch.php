@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
 use yii\base\Model;
@@ -18,7 +18,7 @@ class ProductosProveedoresSearch extends ProductosProveedores
     public function rules()
     {
         return [
-            [['id', 'proveedores_id'], 'integer'],
+            [['id', 'proveedor_id', 'producto_id'], 'integer'],
         ];
     }
 
@@ -56,7 +56,8 @@ class ProductosProveedoresSearch extends ProductosProveedores
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'proveedores_id' => $this->proveedores_id,
+            'proveedor_id' => $this->proveedor_id,
+            'producto_id' => $this->producto_id,
         ]);
 
         return $dataProvider;
