@@ -16,6 +16,9 @@ $this->title = 'Administración CEDANI';
         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
 
     </div>
+
+
+
     <?php 
         NavBar::begin(['brandLabel' => '']);
         echo Nav::widget([
