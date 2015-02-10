@@ -20,7 +20,7 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="skin-black">
+<body class="skin-blue">
     <?php $this->beginBody() ?>
     <div class="wraper">
     <div class="header">
@@ -482,7 +482,7 @@ AppAsset::register($this);
                 <!--<span class="label label-primary pull-right">3</span>-->
               </a>
             </li>
-
+            </ul>
 <?
 /*
         NavBar::begin(['brandLabel' => '']);
