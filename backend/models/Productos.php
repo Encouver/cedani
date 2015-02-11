@@ -17,13 +17,11 @@ use Yii;
  * @property string $precio_venta
  * @property string $precio_costo
  * @property integer $excento_de_iva
- * @property integer $producto_proveedor_id
- * @property integer $producto_proveedor_proveedor_id
  *
  * @property Compras[] $compras
  * @property HistoricoPrecios[] $historicoPrecios
  * @property Inventarios[] $inventarios
- * @property ProductosProveedores $productosProveedores
+ * @property ProductosProveedores[] $productosProveedores
  */
 class Productos extends \yii\db\ActiveRecord
 {
@@ -41,8 +39,8 @@ class Productos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'marca', 'formato', 'formato2', 'kilo', 'precio_venta', 'precio_costo', 'excento_de_iva', 'producto_proveedor_id', 'producto_proveedor_proveedor_id'], 'required'],
-            [['formato', 'formato2', 'kilo', 'excento_de_iva', 'producto_proveedor_id', 'producto_proveedor_proveedor_id'], 'integer'],
+            [['nombre', 'marca', 'formato', 'formato2', 'kilo', 'precio_venta', 'precio_costo', 'excento_de_iva'], 'required'],
+            [['formato', 'formato2', 'kilo', 'excento_de_iva'], 'integer'],
             [['precio_venta', 'precio_costo'], 'number'],
             [['nombre', 'descripcion', 'marca'], 'string', 'max' => 255]
         ];
@@ -64,8 +62,6 @@ class Productos extends \yii\db\ActiveRecord
             'precio_venta' => 'Precio Venta',
             'precio_costo' => 'Precio Costo',
             'excento_de_iva' => 'Excento De Iva',
-            'producto_proveedor_id' => 'Producto Proveedor ID',
-            'producto_proveedor_proveedor_id' => 'Producto Proveedor Proveedor ID',
         ];
     }
 
@@ -98,6 +94,6 @@ class Productos extends \yii\db\ActiveRecord
      */
     public function getProductosProveedores()
     {
-        return $this->hasOne(ProductosProveedores::className(), ['id' => 'producto_proveedor_id', 'proveedor_id' => 'producto_proveedor_proveedor_id']);
+        return $this->hasMany(ProductosProveedores::className(), ['producto_id' => 'id']);
     }
 }

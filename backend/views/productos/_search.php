@@ -35,10 +35,6 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'excento_de_iva') ?>
 
-    <?php // echo $form->field($model, 'producto_proveedor_id') ?>
-
-    <?php // echo $form->field($model, 'producto_proveedor_proveedor_id') ?>
-
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>

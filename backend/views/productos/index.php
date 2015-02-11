@@ -35,8 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'precio_venta',
             // 'precio_costo',
             // 'excento_de_iva',
-            // 'producto_proveedor_id',
-            // 'producto_proveedor_proveedor_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

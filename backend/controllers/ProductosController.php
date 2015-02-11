@@ -44,14 +44,12 @@ class ProductosController extends Controller
     /**
      * Displays a single Productos model.
      * @param integer $id
-     * @param integer $productos_proveedores_id
-     * @param integer $productos_proveedores_proveedores_id
      * @return mixed
      */
-    public function actionView($id, $productos_proveedores_id, $productos_proveedores_proveedores_id)
+    public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id, $productos_proveedores_id, $productos_proveedores_proveedores_id),
+            'model' => $this->findModel($id),
         ]);
     }
 
@@ -65,7 +63,7 @@ class ProductosController extends Controller
         $model = new Productos();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'productos_proveedores_id' => $model->productos_proveedores_id, 'productos_proveedores_proveedores_id' => $model->productos_proveedores_proveedores_id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -77,16 +75,14 @@ class ProductosController extends Controller
      * Updates an existing Productos model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
-     * @param integer $productos_proveedores_id
-     * @param integer $productos_proveedores_proveedores_id
      * @return mixed
      */
-    public function actionUpdate($id, $productos_proveedores_id, $productos_proveedores_proveedores_id)
+    public function actionUpdate($id)
     {
-        $model = $this->findModel($id, $productos_proveedores_id, $productos_proveedores_proveedores_id);
+        $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'productos_proveedores_id' => $model->productos_proveedores_id, 'productos_proveedores_proveedores_id' => $model->productos_proveedores_proveedores_id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -98,13 +94,11 @@ class ProductosController extends Controller
      * Deletes an existing Productos model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
-     * @param integer $productos_proveedores_id
-     * @param integer $productos_proveedores_proveedores_id
      * @return mixed
      */
-    public function actionDelete($id, $productos_proveedores_id, $productos_proveedores_proveedores_id)
+    public function actionDelete($id)
     {
-        $this->findModel($id, $productos_proveedores_id, $productos_proveedores_proveedores_id)->delete();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
@@ -113,14 +107,12 @@ class ProductosController extends Controller
      * Finds the Productos model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @param integer $productos_proveedores_id
-     * @param integer $productos_proveedores_proveedores_id
      * @return Productos the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id, $productos_proveedores_id, $productos_proveedores_proveedores_id)
+    protected function findModel($id)
     {
-        if (($model = Productos::findOne(['id' => $id, 'productos_proveedores_id' => $productos_proveedores_id, 'productos_proveedores_proveedores_id' => $productos_proveedores_proveedores_id])) !== null) {
+        if (($model = Productos::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
