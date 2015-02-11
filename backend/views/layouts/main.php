@@ -65,7 +65,7 @@ AppAsset::register($this);
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
-<?/*
+<?php/*
               <li class="dropdown messages-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-envelope-o"></i>
@@ -307,7 +307,7 @@ AppAsset::register($this);
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- Sidebar user panel -->
-<?/*
+<?php/*
           <div class="user-panel">
             <div class="pull-left image">
               <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
@@ -483,7 +483,7 @@ AppAsset::register($this);
               </a>
             </li>
             </ul>
-<?
+<?php
 /*
         NavBar::begin(['brandLabel' => '']);
         echo Nav::widget([
