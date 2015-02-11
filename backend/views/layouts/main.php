@@ -497,7 +497,7 @@ AppAsset::register($this);
                 ['label' => 'Productos Proveedores', 'url' => ['/productos-proveedores/index']],
                 ['label' => 'Inventarios', 'url' => ['/inventarios/index']],
                 ['label' => 'Histórico de precios', 'url' => ['/historico-precios/index']],
-                ['label' => 'Nótas de Crédito', 'url' => ['/notas-de-credito/index']],
+                ['label' => 'Notas de Crédito', 'url' => ['/notas-de-credito/index']],
                 ['label' => 'Cobranzas', 'url' => ['/cobranzas/index']],
                 ['label' => 'Entregas', 'url' => ['/entregas/index']],
                 ['label' => 'Facturas', 'url' => ['/facturas/index']],

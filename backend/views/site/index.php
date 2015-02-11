@@ -9,12 +9,13 @@ $this->title = 'Administración CEDANI';
 <div class="site-index">
 
     <div class="jumbotron">
+    <!--
         <h1>Congratulations!</h1>
 
         <p class="lead">You have successfully created your Yii-powered application.</p>
 
         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-
+    -->
     </div>
 
 
@@ -36,6 +37,8 @@ $this->title = 'Administración CEDANI';
                 ['label' => 'Entregas', 'url' => ['/entregas/index']],
                 ['label' => 'Facturas', 'url' => ['/facturas/index']],
                 ['label' => 'Compras', 'url' => ['/compras/index']],
+                ['label' => 'Proveedores', 'url' => ['/proveedores/index']],
+
             ],
         ]);
         NavBar::end();
