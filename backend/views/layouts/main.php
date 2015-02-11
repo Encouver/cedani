@@ -24,7 +24,7 @@ AppAsset::register($this);
     <?php $this->beginBody() ?>
     <div class="wraper">
     <div class="header">
-      
+      fvsdfvsdvsd
         <?php
       /*
             NavBar::begin([
@@ -55,7 +55,7 @@ AppAsset::register($this);
         ?>
       <header class="main-header">
         <!-- Logo -->
-        <a href="" class="logo">Distribuidora<b></b>Cedani</a>
+        <a href="" class="logo">Distribuidora<b></b> Cedani</a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
