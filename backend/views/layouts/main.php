@@ -24,7 +24,7 @@ AppAsset::register($this);
     <?php $this->beginBody() ?>
     <div class="wraper">
     <div class="header">
-      fvsdfvsdvsd
+      
         <?php
       /*
             NavBar::begin([
@@ -65,7 +65,8 @@ AppAsset::register($this);
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
-<?php/*
+<?php 
+/*
               <li class="dropdown messages-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-envelope-o"></i>
@@ -307,7 +308,8 @@ AppAsset::register($this);
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- Sidebar user panel -->
-<?php/*
+<?php
+/*
           <div class="user-panel">
             <div class="pull-left image">
               <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
@@ -462,7 +464,8 @@ AppAsset::register($this);
             <li><a href="#"><i class="fa fa-circle-o text-warning"></i> Warning</a></li>
             <li><a href="#"><i class="fa fa-circle-o text-info"></i> Information</a></li>
           </ul>
-*/?>          
+*/
+          ?>          
             <ul class="sidebar-menu">
             <li class="treeview">
               <a href="">
