@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/almasaeed2010/AdminLTE.git",
-                "reference": "3c0552ab73d2efe43452db7c5a0e57720a36f64c"
+                "reference": "5fb6d42a2bcdc032c4f77e20459da9dac7299955"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/3c0552ab73d2efe43452db7c5a0e57720a36f64c",
-                "reference": "3c0552ab73d2efe43452db7c5a0e57720a36f64c",
+                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/5fb6d42a2bcdc032c4f77e20459da9dac7299955",
+                "reference": "5fb6d42a2bcdc032c4f77e20459da9dac7299955",
                 "shasum": ""
             },
             "type": "bower-asset-library"
@@ -326,8 +326,7 @@
                 {
                     "name": "Edward Z. Yang",
                     "email": "admin@htmlpurifier.org",
-                    "homepage": "http://ezyang.com",
-                    "role": "Developer"
+                    "homepage": "http://ezyang.com"
                 }
             ],
             "description": "Standards compliant HTML filter written in PHP",
@@ -395,12 +394,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "b6f3d57b1be3c71e7464f3120dcef6af6eb666b2"
+                "reference": "588d8070c86cc37386a0908f2872c48e1e2259bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/b6f3d57b1be3c71e7464f3120dcef6af6eb666b2",
-                "reference": "b6f3d57b1be3c71e7464f3120dcef6af6eb666b2",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/588d8070c86cc37386a0908f2872c48e1e2259bc",
+                "reference": "588d8070c86cc37386a0908f2872c48e1e2259bc",
                 "shasum": ""
             },
             "require": {
@@ -476,7 +475,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-02-10 18:36:05"
+            "time": "2015-02-08 17:02:31"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
