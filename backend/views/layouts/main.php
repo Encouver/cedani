@@ -16,15 +16,15 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
 <body class="skin-blue">
     <?php $this->beginBody() ?>
-    <div class="wraper">
-    <div class="header">
-      fvsdfvsdvsd
         <?php
       /*
             NavBar::begin([
@@ -53,15 +53,18 @@ AppAsset::register($this);
             NavBar::end();
 */
         ?>
+    <div class="wrapper">
       <header class="main-header">
         <!-- Logo -->
-        <a href="" class="logo">Distribuidora<b></b> Cedani</a>
+        <a href="<? echo Yii::getAlias('@web')?>" class="logo">Distribuidora<b></b> Cedani</a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
+
           </a>
+
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
@@ -295,17 +298,17 @@ AppAsset::register($this);
 
               */
               ?>
-
             </ul>
           </div>
         </nav>
+
+
+
+
       </header>
-
-        </div>
-
       <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
+        <section class="sidebar" id="scrollspy">
+
           <!-- Sidebar user panel -->
 <?php /*
           <div class="user-panel">
@@ -483,76 +486,61 @@ AppAsset::register($this);
               </a>
             </li>
             </ul>
-<?php
-/*
-        NavBar::begin(['brandLabel' => '']);
-        echo Nav::widget([
-            'options' => ['class' => 'sidebar-menu'],
-            'items' => [
-                ['label' => 'Clientes', 'url' => ['/clientes/index'], 'class'=>'treeview'],
-                ['label' => 'Productos', 'url' => ['/productos/index']],
-                ['label' => 'Tareas', 'url' => ['/tareas/index']],
-                ['label' => 'Empleados', 'url' => ['/empleados/index']],
-                ['label' => 'Configuraciones', 'url' => ['/coniguraciones/index']],
-                ['label' => 'Productos Proveedores', 'url' => ['/productos-proveedores/index']],
-                ['label' => 'Inventarios', 'url' => ['/inventarios/index']],
-                ['label' => 'Histórico de precios', 'url' => ['/historico-precios/index']],
-                ['label' => 'Notas de Crédito', 'url' => ['/notas-de-credito/index']],
-                ['label' => 'Cobranzas', 'url' => ['/cobranzas/index']],
-                ['label' => 'Entregas', 'url' => ['/entregas/index']],
-                ['label' => 'Facturas', 'url' => ['/facturas/index']],
-                ['label' => 'Compras', 'url' => ['/compras/index']],
-            ],
-        ]);
-        NavBar::end();
-*/
-?>
-
-
+            <?php
+            /*
+                    NavBar::begin(['brandLabel' => '']);
+                    echo Nav::widget([
+                        'options' => ['class' => 'sidebar-menu'],
+                        'items' => [
+                            ['label' => 'Clientes', 'url' => ['/clientes/index'], 'class'=>'treeview'],
+                            ['label' => 'Productos', 'url' => ['/productos/index']],
+                            ['label' => 'Tareas', 'url' => ['/tareas/index']],
+                            ['label' => 'Empleados', 'url' => ['/empleados/index']],
+                            ['label' => 'Configuraciones', 'url' => ['/coniguraciones/index']],
+                            ['label' => 'Productos Proveedores', 'url' => ['/productos-proveedores/index']],
+                            ['label' => 'Inventarios', 'url' => ['/inventarios/index']],
+                            ['label' => 'Histórico de precios', 'url' => ['/historico-precios/index']],
+                            ['label' => 'Notas de Crédito', 'url' => ['/notas-de-credito/index']],
+                            ['label' => 'Cobranzas', 'url' => ['/cobranzas/index']],
+                            ['label' => 'Entregas', 'url' => ['/entregas/index']],
+                            ['label' => 'Facturas', 'url' => ['/facturas/index']],
+                            ['label' => 'Compras', 'url' => ['/compras/index']],
+                        ],
+                    ]);
+                    NavBar::end();
+            */
+            ?>
         </section>
-        <!-- /.sidebar -->
       </aside>
-
-      <!-- Right side column. Contains the navbar and content of the page -->
       <div class="content-wrapper">
+        <div class="content-header">
 
-        <section class="content-header">
-          <h1>
-            Dashboard
-            <small>Control panel</small>
-          </h1>
           <ol class="breadcrumb">
-
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-
-        </section>
-
-        <!-- Main content -->
-        <section class="content">
+            <?= Breadcrumbs::widget([
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            ]) ?>
+          </ol>
 
 
-
-
-        
-
-        <?= $content ?>
-        </section>
-
-
-
-    
+        </div>
+        <div class="content body">
+                <?= $content ?>
+        </div><!-- /.content -->
+      </div><!-- /.content-wrapper -->
 
       <footer class="main-footer">
-        <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <div class="pull-right hidden-xs">
+          <b>Version</b> 1.0
         </div>
-    </footer>
-    </div>
+        <strong>Copyright &copy; Distribuidaora Cedani <?= date('Y') ?></strong> All rights reserved.
+      </footer>
+
+    </div><!-- ./wrapper -->
+
 
     <?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>
+
+
