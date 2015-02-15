@@ -3,6 +3,8 @@
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Menu;
+use yii\helpers\Url;
+use yii\helpers\Html;
 
 $this->title = 'Administración CEDANI';
 ?>
@@ -15,7 +17,8 @@ $this->title = 'Administración CEDANI';
             <hr>
         <div class="row">
           <div class="col-xs-6 col-md-4">
-              <h4><i class="ion ion-document-text"></i>&nbsp;&nbsp;Facturación</h4>
+              <h4><i class="ion ion-document-text"></i>
+              <?= Html::a("&nbsp;&nbsp;Facturación", Url::toRoute('facturas/index')); ?></h4>
               <h4><i class="ion ion-cash"></i>&nbsp;&nbsp;Cobranza</h4>
               <h4><i class="ion ion-android-clipboard"></i>&nbsp;&nbsp;Inventario</h4>
               <h4><i class="ion ion-stats-bars"></i>&nbsp;&nbsp;Ventas</h4>
