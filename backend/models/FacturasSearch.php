@@ -12,14 +12,16 @@ use app\models\Facturas;
  */
 class FacturasSearch extends Facturas
 {
+    public $clienteNombre;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'cliente_id', 'numero_factura', 'numero_control', 'descuento_financiero'], 'integer'],
-            [['fecha', 'status_pago', 'status_entrega', 'condiciones_pago'], 'safe'],
+            [['id', 'numero_factura', 'numero_control', 'descuento_financiero'], 'integer'],
+            [['fecha', 'status_pago', 'status_entrega', 'condiciones_pago', 'clienteNombre', 'cliente_id'], 'safe'],
             [['iva'], 'number'],
         ];
     }
@@ -48,6 +50,7 @@ class FacturasSearch extends Facturas
             'query' => $query,
         ]);
 
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -56,9 +59,13 @@ class FacturasSearch extends Facturas
             return $dataProvider;
         }
 
+
+        $query->joinWith('cliente');
+
         $query->andFilterWhere([
             'id' => $this->id,
-            'cliente_id' => $this->cliente_id,
+            //'cliente_id' => $this->cliente_id,
+            //'clienteNombre' => $this->clienteNombre,
             'numero_factura' => $this->numero_factura,
             'numero_control' => $this->numero_control,
             'fecha' => $this->fecha,
@@ -68,7 +75,8 @@ class FacturasSearch extends Facturas
 
         $query->andFilterWhere(['like', 'status_pago', $this->status_pago])
             ->andFilterWhere(['like', 'status_entrega', $this->status_entrega])
-            ->andFilterWhere(['like', 'condiciones_pago', $this->condiciones_pago]);
+            ->andFilterWhere(['like', 'condiciones_pago', $this->condiciones_pago])
+            ->andFilterWhere(['like', 'clientes.nombre_razonsocial', $this->cliente_id]);
 
         return $dataProvider;
     }

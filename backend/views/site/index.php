@@ -12,13 +12,13 @@ $this->title = 'Administración CEDANI';
     <div class="panel panel-default">
       <div class="panel-body">
             <p>
-            <img src="<? echo Yii::getAlias('@web').'/img/logo.png'?>" class="logo" width="200px"/>
+            <img src="<?= Yii::getAlias('@web').'/img/logo.png'?>" class="logo" width="200px"/>
             </p>
             <hr>
         <div class="row">
           <div class="col-xs-6 col-md-4">
               <h4><i class="ion ion-document-text"></i>
-              <?= Html::a("&nbsp;&nbsp;Facturación", Url::toRoute('facturas/index')); ?></h4>
+              <?= Html::a("Administrar &nbsp;&nbsp;Facturación", Url::toRoute('facturas/index')); ?></h4>
               <h4><i class="ion ion-cash"></i>&nbsp;&nbsp;Cobranza</h4>
               <h4><i class="ion ion-android-clipboard"></i>&nbsp;&nbsp;Inventario</h4>
               <h4><i class="ion ion-stats-bars"></i>&nbsp;&nbsp;Ventas</h4>

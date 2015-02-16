@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Facturas */
 
-$this->title = $model->id;
+$this->title = 'Factura: '.$model->numero_factura.'Cliente: '.$model->cliente->nombre_razonsocial;
 $this->params['breadcrumbs'][] = ['label' => 'Facturas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,14 +15,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id, 'cliente_id' => $model->cliente_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id, 'cliente_id' => $model->cliente_id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
+<!--         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+<?= Html::a('Delete', ['delete', 'id' => $model->id], [
+    'class' => 'btn btn-danger',
+    'data' => [
+        'confirm' => 'Are you sure you want to delete this item?',
+        'method' => 'post',
+    ],
+]) ?> -->
+    <?= Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> Imprimir', ['imprimir', 'id' => $model->id], ['class' => 'btn btn-primary','target'=>'_blank', 
+    'data-toggle'=>'tooltip', 
+    'title'=>'Will open the generated PDF file in a new window']) ?>
     </p>
 
     <?= DetailView::widget([

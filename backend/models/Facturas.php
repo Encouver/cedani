@@ -55,7 +55,7 @@ class Facturas extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'cliente_id' => 'Clientes ID',
+            'cliente_id' => 'Cliente',
             'numero_factura' => 'Numero Factura',
             'numero_control' => 'Numero Control',
             'fecha' => 'Fecha',
@@ -64,6 +64,7 @@ class Facturas extends \yii\db\ActiveRecord
             'condiciones_pago' => 'Condiciones Pago',
             'descuento_financiero' => 'Descuento Financiero',
             'iva' => 'Iva',
+            'clienteNombre' => 'Razon Social',
         ];
     }
 
@@ -94,9 +95,17 @@ class Facturas extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getClientes()
+    public function getCliente()
     {
         return $this->hasOne(Clientes::className(), ['id' => 'cliente_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClienteNombre()
+    {
+        return $this->cliente->nombre_razonsocial;
     }
 
     /**

@@ -4,6 +4,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Clientes;
+use kartik\datetime\DateTimePicker;
+//use dosamigos\datetimepicker\DateTimePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Facturas */
@@ -23,7 +25,34 @@ use app\models\Clientes;
 
     <?= $form->field($model, 'numero_control')->textInput() ?>
 
-    <?= $form->field($model, 'fecha')->textInput() ?>
+    <!-- <?= $form->field($model, 'fecha')->textInput() ?> -->
+
+    <?php   
+            echo '<label>Fecha Factura</label>';
+            echo DateTimePicker::widget([
+                'model' => $model,
+                'attribute' => 'fecha',
+                'name' => 'datetime_10',
+                'options' => ['placeholder' => 'Selecciona fecha ...'],
+                'convertFormat' => true,
+                'pluginOptions' => [
+                    'format' => 'd-M-yyyy H:i ',
+                    'startDate' => '01-Mar-2014 12:00 AM',
+                    'todayHighlight' => true
+                ]
+            ]);
+   /*         echo DateTimePicker::widget([
+                'model' => $model,
+                'attribute' => 'fecha',
+                'language' => 'es',
+                'size' => 'ms',
+                'clientOptions' => [
+                    'autoclose' => true,
+                    'format' => 'dd MM yyyy - HH:ii P',
+                    'todayBtn' => true
+                ]
+            ]);*/
+        ?>
 
     <?= $form->field($model, 'status_pago')->textInput(['maxlength' => 255]) ?>
 
