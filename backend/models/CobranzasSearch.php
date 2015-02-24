@@ -18,8 +18,8 @@ class CobranzasSearch extends Cobranzas
     public function rules()
     {
         return [
-            [['id', 'factura_id'], 'integer'],
-            [['fecha', 'forma_pago', 'detalle_forma_pago', 'status_pago'], 'safe'],
+            [['id', ], 'integer'],
+            [['fecha', 'forma_pago', 'detalle_forma_pago', 'status_pago', 'factura_id'], 'safe'],
         ];
     }
 
@@ -55,15 +55,19 @@ class CobranzasSearch extends Cobranzas
             return $dataProvider;
         }
 
+        $query->joinWith('facturas');
+
         $query->andFilterWhere([
             'id' => $this->id,
-            'factura_id' => $this->factura_id,
             'fecha' => $this->fecha,
         ]);
 
         $query->andFilterWhere(['like', 'forma_pago', $this->forma_pago])
             ->andFilterWhere(['like', 'detalle_forma_pago', $this->detalle_forma_pago])
-            ->andFilterWhere(['like', 'status_pago', $this->status_pago]);
+            ->andFilterWhere(['like', 'cobranzas.status_pago', $this->status_pago])
+            ->andFilterWhere(['like', 'facturas.nombre_razonsocial', $this->factura_id]);
+
+
 
         return $dataProvider;
     }

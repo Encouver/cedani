@@ -44,13 +44,13 @@ class CobranzasController extends Controller
     /**
      * Displays a single Cobranzas model.
      * @param integer $id
-     * @param integer $facturas_id
+     * @param integer $factura_id
      * @return mixed
      */
-    public function actionView($id, $facturas_id)
+    public function actionView($id, $factura_id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id, $facturas_id),
+            'model' => $this->findModel($id, $factura_id),
         ]);
     }
 
@@ -64,7 +64,7 @@ class CobranzasController extends Controller
         $model = new Cobranzas();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'facturas_id' => $model->facturas_id]);
+            return $this->redirect(['view', 'id' => $model->id, 'factura_id' => $model->factura_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -76,15 +76,15 @@ class CobranzasController extends Controller
      * Updates an existing Cobranzas model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
-     * @param integer $facturas_id
+     * @param integer $factura_id
      * @return mixed
      */
-    public function actionUpdate($id, $facturas_id)
+    public function actionUpdate($id, $factura_id)
     {
-        $model = $this->findModel($id, $facturas_id);
+        $model = $this->findModel($id, $factura_id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'facturas_id' => $model->facturas_id]);
+            return $this->redirect(['view', 'id' => $model->id, 'factura_id' => $model->factura_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -96,12 +96,12 @@ class CobranzasController extends Controller
      * Deletes an existing Cobranzas model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
-     * @param integer $facturas_id
+     * @param integer $factura_id
      * @return mixed
      */
-    public function actionDelete($id, $facturas_id)
+    public function actionDelete($id, $factura_id)
     {
-        $this->findModel($id, $facturas_id)->delete();
+        $this->findModel($id, $factura_id)->delete();
 
         return $this->redirect(['index']);
     }
@@ -110,13 +110,13 @@ class CobranzasController extends Controller
      * Finds the Cobranzas model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @param integer $facturas_id
+     * @param integer $factura_id
      * @return Cobranzas the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id, $facturas_id)
+    protected function findModel($id, $factura_id)
     {
-        if (($model = Cobranzas::findOne(['id' => $id, 'facturas_id' => $facturas_id])) !== null) {
+        if (($model = Cobranzas::findOne(['id' => $id, 'factura_id' => $factura_id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
