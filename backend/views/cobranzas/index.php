@@ -29,10 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
            // 'factura_id',
             'fecha',
             [ 
-                'attribute'=>'factura_id',
-                'value' =>'facturas.clienteNombre'
+                'attribute'=>'nombre_razonsocial',
+                'value' =>'facturas.cliente.nombre_razonsocial'
             ],
-
+            [ 
+               'attribute'=>'numero_control',
+               //'label'=>'Numero de Control',
+               'value' =>'facturas.numero_control'
+           ],
             'forma_pago',
             'detalle_forma_pago',
 

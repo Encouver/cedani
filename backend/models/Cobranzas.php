@@ -51,6 +51,8 @@ class Cobranzas extends \yii\db\ActiveRecord
             'forma_pago' => 'Forma Pago',
             'detalle_forma_pago' => 'Detalle Forma Pago',
             'status_pago' => 'Status Pago',
+            'nombre_razonsocial' => 'Razón Social',
+            'numero_control' => 'Número de Control',
         ];
     }
 
