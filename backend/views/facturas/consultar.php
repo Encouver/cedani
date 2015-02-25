@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
               },
             ],
             'numero_control',
-            'fecha',
+            ['attribute'=>'fecha', 'format'=>['date', 'php:d-m-Y']],
             //'status_pago',
             [
               'attribute'=>'status_pago',

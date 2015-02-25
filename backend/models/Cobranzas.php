@@ -14,7 +14,7 @@ use Yii;
  * @property string $detalle_forma_pago
  * @property string $status_pago
  *
- * @property Facturas $facturas
+ * @property Facturas $factura
  */
 class Cobranzas extends \yii\db\ActiveRecord
 {
@@ -46,11 +46,13 @@ class Cobranzas extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'factura_id' => 'Factura ID',
+            'factura_id' => 'Razón Social',
             'fecha' => 'Fecha',
             'forma_pago' => 'Forma Pago',
             'detalle_forma_pago' => 'Detalle Forma Pago',
             'status_pago' => 'Status Pago',
+            'nombre_razonsocial' => 'Razón Social',
+            'numero_control' => 'Número de Control',
         ];
     }
 

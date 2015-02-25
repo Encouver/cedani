@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Cobranzas', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Nueva cobranza', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -24,11 +24,24 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'factura_id',
+
+           // 'id',
+           // 'factura_id',
             'fecha',
+            [ 
+                'attribute'=>'nombre_razonsocial',
+                'value' =>'facturas.cliente.nombre_razonsocial'
+            ],
+            [ 
+               'attribute'=>'numero_control',
+               //'label'=>'Numero de Control',
+               'value' =>'facturas.numero_control'
+           ],
             'forma_pago',
             'detalle_forma_pago',
-            // 'status_pago',
+
+
+            'status_pago',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

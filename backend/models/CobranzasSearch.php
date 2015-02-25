@@ -11,15 +11,18 @@ use app\models\Cobranzas;
  * CobranzasSearch represents the model behind the search form about `app\models\Cobranzas`.
  */
 class CobranzasSearch extends Cobranzas
-{
+{   
+    public $numero_control;
+    public $nombre_razonsocial;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'factura_id'], 'integer'],
-            [['fecha', 'forma_pago', 'detalle_forma_pago', 'status_pago'], 'safe'],
+            [['id', ], 'integer'],
+            [['fecha', 'forma_pago', 'detalle_forma_pago', 'status_pago', 'factura_id', 'numero_control', 'nombre_razonsocial'], 'safe'],
         ];
     }
 
@@ -55,15 +58,21 @@ class CobranzasSearch extends Cobranzas
             return $dataProvider;
         }
 
+        $query->joinWith(['facturas','facturas.cliente']);
+        //$query->joinWith('facturas.cliente');
+
         $query->andFilterWhere([
             'id' => $this->id,
-            'factura_id' => $this->factura_id,
             'fecha' => $this->fecha,
         ]);
 
         $query->andFilterWhere(['like', 'forma_pago', $this->forma_pago])
             ->andFilterWhere(['like', 'detalle_forma_pago', $this->detalle_forma_pago])
-            ->andFilterWhere(['like', 'status_pago', $this->status_pago]);
+            ->andFilterWhere(['like', 'cobranzas.status_pago', $this->status_pago])
+            ->andFilterWhere(['like', 'clientes.nombre_razonsocial', $this->nombre_razonsocial])
+            ->andFilterWhere(['like', 'facturas.numero_control', $this->numero_control]);
+
+
 
         return $dataProvider;
     }

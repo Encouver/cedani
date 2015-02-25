@@ -55,12 +55,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/almasaeed2010/AdminLTE.git",
+<<<<<<< HEAD
                 "reference": "3c0552ab73d2efe43452db7c5a0e57720a36f64c"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/3c0552ab73d2efe43452db7c5a0e57720a36f64c",
                 "reference": "3c0552ab73d2efe43452db7c5a0e57720a36f64c",
+=======
+                "reference": "5fb6d42a2bcdc032c4f77e20459da9dac7299955"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/5fb6d42a2bcdc032c4f77e20459da9dac7299955",
+                "reference": "5fb6d42a2bcdc032c4f77e20459da9dac7299955",
+>>>>>>> origin/master
                 "shasum": ""
             },
             "type": "bower-asset-library"
@@ -369,8 +378,7 @@
                 {
                     "name": "Edward Z. Yang",
                     "email": "admin@htmlpurifier.org",
-                    "homepage": "http://ezyang.com",
-                    "role": "Developer"
+                    "homepage": "http://ezyang.com"
                 }
             ],
             "description": "Standards compliant HTML filter written in PHP",
@@ -623,12 +631,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
+<<<<<<< HEAD
                 "reference": "52c5167d14da208d22522362069bc90e2b9e24af"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/52c5167d14da208d22522362069bc90e2b9e24af",
                 "reference": "52c5167d14da208d22522362069bc90e2b9e24af",
+=======
+                "reference": "3845f262337eba3be2470c74cff6e4db3b271a42"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/3845f262337eba3be2470c74cff6e4db3b271a42",
+                "reference": "3845f262337eba3be2470c74cff6e4db3b271a42",
+>>>>>>> origin/master
                 "shasum": ""
             },
             "require": {
@@ -704,7 +721,11 @@
                 "framework",
                 "yii2"
             ],
+<<<<<<< HEAD
             "time": "2015-02-16 03:26:33"
+=======
+            "time": "2015-02-17 10:01:06"
+>>>>>>> origin/master
         },
         {
             "name": "yiisoft/yii2-bootstrap",
