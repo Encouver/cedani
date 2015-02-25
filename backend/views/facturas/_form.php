@@ -36,8 +36,8 @@ use kartik\datetime\DateTimePicker;
                 'options' => ['placeholder' => 'Selecciona fecha ...'],
                 'convertFormat' => true,
                 'pluginOptions' => [
-                    'format' => 'd-M-yyyy H:i ',
-                    'startDate' => '01-Mar-2014 12:00 AM',
+                    'format' => 'd-M-yyyy h:i P',
+                    'startDate' => date('d-m-Y h:i A'),//'01-Mar-2014 12:00 AM',
                     'todayHighlight' => true
                 ]
             ]);
@@ -54,9 +54,9 @@ use kartik\datetime\DateTimePicker;
             ]);*/
         ?>
 
-    <?= $form->field($model, 'status_pago')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'status_pago')->dropDownList(['0'=>'No Pagado', '1'=>'Pagado'],['prompt'=>'Seleccionar']) ?>
 
-    <?= $form->field($model, 'status_entrega')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'status_entrega')->dropDownList(['0'=>'No Entregado', '1'=>'Entregado'],['prompt'=>'Seleccionar']) ?>
 
     <?= $form->field($model, 'condiciones_pago')->textInput(['maxlength' => 255]) ?>
 

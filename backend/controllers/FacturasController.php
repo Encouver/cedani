@@ -136,7 +136,9 @@ class FacturasController extends Controller
     {
         $model = new Facturas();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->fecha = date_format(date_create($model->fecha), 'Y-m-d H:i:s');
+            if($model->save())
             return $this->redirect(['imprimir', 'id' => $model->id]);
         } else {
             return $this->render('create', [

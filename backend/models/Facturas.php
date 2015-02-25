@@ -43,6 +43,7 @@ class Facturas extends \yii\db\ActiveRecord
             [['cliente_id', 'numero_factura', 'numero_control', 'iva'], 'required'],
             [['cliente_id', 'numero_factura', 'numero_control', 'descuento_financiero'], 'integer'],
             [['fecha'], 'safe'],
+            [['fecha'], 'date', 'format' => 'php: Y-m-d H:i:s'/*'php: Y-m-d H:i:s'*/, 'message' => 'Formato de fecha incorrecto.'],
             [['iva'], 'number'],
             [['status_pago', 'status_entrega', 'condiciones_pago'], 'string', 'max' => 255]
         ];
