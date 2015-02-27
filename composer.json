@@ -21,7 +21,8 @@
         "bower-asset/admin-lte": "*",
         "kartik-v/yii2-widget-datetimepicker": "*",
         "2amigos/yii2-date-time-picker-widget" : "*",
-        "kartik-v/yii2-mpdf": "*"
+        "kartik-v/yii2-mpdf": "*",
+        "kartik-v/yii2-widget-select2": "*"
 
     },
     "require-dev": {

@@ -46,7 +46,7 @@ class Cobranzas extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'factura_id' => 'Razón Social',
+            'factura_id' => 'Factura',
             'fecha' => 'Fecha',
             'forma_pago' => 'Forma Pago',
             'detalle_forma_pago' => 'Detalle Forma Pago',
@@ -63,4 +63,8 @@ class Cobranzas extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Facturas::className(), ['id' => 'factura_id']);
     }
+
+
+
+
 }

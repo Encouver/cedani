@@ -72,7 +72,23 @@ class CobranzasSearch extends Cobranzas
             ->andFilterWhere(['like', 'clientes.nombre_razonsocial', $this->nombre_razonsocial])
             ->andFilterWhere(['like', 'facturas.numero_control', $this->numero_control]);
 
+     $dataProvider->setSort([
+        'attributes'=>[
+            'fecha',
+            'numero_control'=>[
+                'asc'=>['facturas.numero_control'=>SORT_ASC],
+                'desc'=>['facturas.numero_control'=>SORT_DESC]
+            ],
 
+            'forma_pago',
+            'detalle_forma_pago',
+            'status_pago',            
+            'nombre_razonsocial'=>[
+                'asc'=>['clientes.nombre_razonsocial'=>SORT_ASC],
+                'desc'=>['clientes.nombre_razonsocial'=>SORT_DESC]
+            ]
+        ]
+    ]);
 
         return $dataProvider;
     }

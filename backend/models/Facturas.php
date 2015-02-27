@@ -109,6 +109,12 @@ class Facturas extends \yii\db\ActiveRecord
         return $this->cliente->nombre_razonsocial;
     }
 
+    public function getFacturasNumeroFacturasNumeroControl()
+    {
+        return $this->numero_factura.' - '.$this->numero_control.' - '.$this->clienteNombre;
+
+    }
+    
     /**
      * @return \yii\db\ActiveQuery
      */
