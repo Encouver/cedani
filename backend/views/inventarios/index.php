@@ -14,23 +14,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+<!-- 
     <p>
         <?= Html::a('Create Inventarios', ['create'], ['class' => 'btn btn-success']) ?>
+    </p> -->
+    <p>
+        <?= Html::a('Agregar Inventario', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+    <p>
+        <?= Html::a('Consultar Inventario', ['consultar'], ['class' => 'btn btn-success']) ?>
+    </p>
 
-            'id',
-            'producto_id',
-            'cantidad',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
 
 </div>

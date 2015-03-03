@@ -74,7 +74,7 @@ class FacturasController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionImprimir($id)
+    public function actionDescargar($id)
     {
         $model = $this->findModel($id);
 
@@ -139,7 +139,7 @@ class FacturasController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->fecha = date_format(date_create($model->fecha), 'Y-m-d H:i:s');
             if($model->save())
-            return $this->redirect(['imprimir', 'id' => $model->id]);
+            return $this->redirect(['descarga', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,

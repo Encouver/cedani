@@ -15,11 +15,11 @@ use kartik\datetime\DateTimePicker;
 <div class="cobranzas-form">
 
     <?php $form = ActiveForm::begin(); ?>
-  
+ <!--  
     <?//= $form->field($model, 'factura_id')->dropDownList(ArrayHelper::map(Facturas::find()->where(['status_pago'=> '1'])->all(), 'id', 'FacturasNumeroFacturasNumeroControl'), ['prompt'=>'Seleccionar factura'])  ?>
 
-
-    <?
+ -->
+    <?php
     $clientes = ArrayHelper::map(Facturas::find()->where(['status_pago'=> '1'])->all(), 'id', 'FacturasNumeroFacturasNumeroControl');
 
 

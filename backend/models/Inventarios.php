@@ -49,7 +49,7 @@ class Inventarios extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProductos()
+    public function getProducto()
     {
         return $this->hasOne(Productos::className(), ['id' => 'producto_id']);
     }

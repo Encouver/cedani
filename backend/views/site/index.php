@@ -21,7 +21,8 @@ $this->title = 'Administración CEDANI';
               <?= Html::a("&nbsp;&nbsp;Facturación", Url::toRoute('facturas/index')); ?></h4>
               <h4><i class="ion ion-cash"></i>
               <?= Html::a("&nbsp;&nbsp;Cobranza", Url::toRoute('cobranzas/index')); ?></h4>
-              <h4><i class="ion ion-android-clipboard"></i>&nbsp;&nbsp;Inventario</h4>
+              <h4><i class="ion ion-android-clipboard"></i>
+              <?= Html::a("&nbsp;&nbsp;Inventario", Url::toRoute('inventarios/index')); ?></h4>
               <h4><i class="ion ion-stats-bars"></i>&nbsp;&nbsp;Ventas</h4>
 
           </div>

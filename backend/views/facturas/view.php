@@ -11,37 +11,86 @@ $this->params['breadcrumbs'][] = ['label' => 'Facturas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="facturas-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-<!--         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-<?= Html::a('Delete', ['delete', 'id' => $model->id], [
-    'class' => 'btn btn-danger',
-    'data' => [
-        'confirm' => 'Are you sure you want to delete this item?',
-        'method' => 'post',
-    ],
-]) ?> -->
-    <?= Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> Imprimir', ['imprimir', 'id' => $model->id], ['class' => 'btn btn-primary','target'=>'_blank', 
+  
+    <?= Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> Imprimir', '#', ['onClick'=>'printContent("printable_section")','class' => 'btn btn-primary', 
     'data-toggle'=>'tooltip', 
-    'title'=>'Will open the generated PDF file in a new window']) ?>
-    </p>
+    'title'=>'Abrirá una ventana para imprimir la factura']) ?>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'cliente_id',
-            'numero_factura',
-            'numero_control',
-            'fecha',
-            'status_pago',
-            'status_entrega',
-            'condiciones_pago',
-            'descuento_financiero',
-            'iva',
+    <?= Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> Descargar PDF', ['descargarss', 'id' => $model->id], ['class' => 'btn btn-primary','target'=>'_blank', 
+    'data-toggle'=>'tooltip', 
+    'title'=>'Descargar el archivo PDF de la factura.']) ?>
+
+    <div id="printable_section"> 
+        <h1><?= Html::encode($this->title) ?></h1>
+
+        <p>
+    <!--         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+    <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        'class' => 'btn btn-danger',
+        'data' => [
+            'confirm' => 'Are you sure you want to delete this item?',
+            'method' => 'post',
         ],
-    ]) ?>
+    ]) ?> -->
 
+        </p>
+
+        <?= DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                //'id',
+                [
+                  'attribute'=>'cliente_id',
+                  'format' => 'html',
+                  'value' => '<div>'.$model->cliente->nombre_razonsocial.'</div>',    
+                ],
+                'numero_factura',
+                'numero_control',
+                'fecha',
+                 [
+                  'attribute'=>'status_pago',
+                  'format' => 'html',
+                  'value' => '<div>'.$model->status_pago?'Pagado':'No Pagado'.'</div>',
+                ],
+                [
+                  'attribute'=>'status_entrega',
+                  'format' => 'html',
+                  'value' => '<div>'.$model->status_entrega?'Entregado':'No Entregado'.'</div>',
+                ],
+                'condiciones_pago',
+                'descuento_financiero',
+                'iva',
+            ],
+        ]) ?>
+    </div>
 </div>
+<script type="text/javascript">
+        <!--
+        function printContent(id){
+        str=$("#"+id+"").html();
+        newwin=window.open('','printwin','left=100,top=100,width=400,height=400')
+        newwin.document.write('<HTML>\n<HEAD>\n')
+        newwin.document.write('<TITLE>Print Page</TITLE>\n')
+        newwin.document.write('<script>\n')
+        newwin.document.write('function chkstate(){\n')
+        newwin.document.write('if(document.readyState=="complete"){\n')
+        newwin.document.write('window.close()\n')
+        newwin.document.write('}\n')
+        newwin.document.write('else{\n')
+        newwin.document.write('setTimeout("chkstate()",2000)\n')
+        newwin.document.write('}\n')
+        newwin.document.write('}\n')
+        newwin.document.write('function print_win(){\n')
+        newwin.document.write('window.print();\n')
+        newwin.document.write('chkstate();\n')
+        newwin.document.write('}\n')
+        newwin.document.write('<\/script>\n')
+        newwin.document.write('</HEAD>\n')
+        newwin.document.write('<BODY onload="print_win()">\n')
+        newwin.document.write(str)
+        newwin.document.write('</BODY>\n')
+        newwin.document.write('</HTML>\n')
+        newwin.document.close()
+        }
+        //-->
+</script>

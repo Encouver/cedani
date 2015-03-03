@@ -14,7 +14,7 @@ use app\models\Productos;
 <div class="inventarios-form">
 
     <?php $form = ActiveForm::begin();
-     $productos = ArrayHelper::map(Productos::find()->all(), 'id', 'nombres');
+     $productos = ArrayHelper::map(Productos::find()->all(), 'id', 'nombre');
      ?>
 
 

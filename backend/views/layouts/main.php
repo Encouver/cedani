@@ -56,7 +56,7 @@ AppAsset::register($this);
     <div class="wrapper">
       <header class="main-header">
         <!-- Logo -->
-        <a href="<? echo Yii::getAlias('@web')?>" class="logo">Distribuidora<b></b> Cedani</a>
+        <a href="<?= Yii::getAlias('@web')?>" class="logo">Distribuidora<b></b> Cedani</a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
