@@ -7,7 +7,8 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\FacturasSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Consultar Facturas';
+$this->title = 'Consultar Inventario';
+$this->params['breadcrumbs'][] = ['label' => 'Inventario', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="inventarios-consultar">
@@ -26,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
               'attribute'=>'producto_id',
               'format' => 'html',
               'value' => function ($model) {  
-                    return '<div>'.$model->producto->marca.'</div>';
+                    return '<div>'.$model->producto->nombre.' - '.$model->producto->marca.'</div>';
               },
             ],
             

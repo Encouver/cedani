@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Clientes;
 use kartik\datetime\DateTimePicker;
+use kartik\select2\Select2;
 //use dosamigos\datetimepicker\DateTimePicker;
 
 /* @var $this yii\web\View */
@@ -19,7 +20,15 @@ use kartik\datetime\DateTimePicker;
     ?>
 
   <!--   <?= $form->field($model, 'cliente_id')->textInput() ?> -->
-      <?= $form->field($model, 'cliente_id')->dropDownList($clientes,['prompt'=>'Seleccionar cliente']) ?>
+
+      <?=         $form->field($model, 'cliente_id')->widget(Select2::classname(), [
+                'data' => $clientes,
+                'options' => ['placeholder' => 'Seleccionar cliente'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ])
+        ?>
 
     <?= $form->field($model, 'numero_factura')->textInput() ?>
 

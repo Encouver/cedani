@@ -18,7 +18,8 @@ class InventariosSearch extends Inventarios
     public function rules()
     {
         return [
-            [['id', 'producto_id', 'cantidad'], 'integer'],
+            [['id', 'cantidad'], 'integer'],
+            [['producto_id'], 'string'],
         ];
     }
 
@@ -54,11 +55,16 @@ class InventariosSearch extends Inventarios
             return $dataProvider;
         }
 
+        $query->joinWith('producto');
+
         $query->andFilterWhere([
             'id' => $this->id,
-            'producto_id' => $this->producto_id,
+            //'producto_id' => $this->producto_id,
             'cantidad' => $this->cantidad,
         ]);
+
+        $query->andFilterWhere(['like', 'productos.nombre', $this->producto_id])
+        ->andFilterWhere(['like', 'productos.marca', $this->producto_id]);
 
         return $dataProvider;
     }

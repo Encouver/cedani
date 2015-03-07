@@ -30,7 +30,8 @@ class Inventarios extends \yii\db\ActiveRecord
     {
         return [
             [['producto_id', 'cantidad'], 'required'],
-            [['producto_id', 'cantidad'], 'integer']
+            [['producto_id', 'cantidad'], 'integer'],
+            [['producto_id', 'cantidad'], 'safe'],
         ];
     }
 

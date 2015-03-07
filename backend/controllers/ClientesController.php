@@ -27,6 +27,21 @@ class ClientesController extends Controller
     }
 
     /**
+     * Displays a single Facturas model.
+     * @return mixed
+     */
+    public function actionConsultar()
+    {
+        $searchModel = new ClientesSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('consultar', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
      * Lists all Clientes models.
      * @return mixed
      */
