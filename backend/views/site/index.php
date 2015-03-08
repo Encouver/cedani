@@ -29,8 +29,8 @@ $this->title = 'Administración CEDANI';
           <div class="col-xs-6 col-md-4">
               <h4><i class="ion ion-person"></i><?= Html::a("&nbsp;&nbsp;Clientes", Url::toRoute('clientes/index')); ?></h4>
               <h4><i class="ion ion-cube"></i><?= Html::a("&nbsp;&nbsp;Productos", Url::toRoute('productos/index')); ?></h4>
-              <h4><i class="ion ion-bag"></i>&nbsp;&nbsp;Proveedores</h4>
-              <h4><i class="ion-person-stalker"></i>&nbsp;&nbsp;Empleados</h4>
+              <h4><i class="ion ion-bag"></i><?= Html::a("&nbsp;&nbsp;Proveedores", Url::toRoute('proveedores/index')); ?></h4>
+              <h4><i class="ion-person-stalker"></i><?= Html::a("&nbsp;&nbsp;Empleados", Url::toRoute('empleados/index')); ?></h4>
           </div>
           <div class="col-xs-6 col-md-4">
               <h4><i class="ion ion-compose"></i>&nbsp;&nbsp;Agenda</h4>

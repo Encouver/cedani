@@ -30,6 +30,21 @@ class ProductosController extends Controller
      * Lists all Productos models.
      * @return mixed
      */
+    public function actionConsultar()
+    {
+        $searchModel = new ProductosSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('consultar', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Lists all Productos models.
+     * @return mixed
+     */
     public function actionIndex()
     {
         $searchModel = new ProductosSearch();
