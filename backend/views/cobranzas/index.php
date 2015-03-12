@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Nueva cobranza', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -27,20 +28,45 @@ $this->params['breadcrumbs'][] = $this->title;
 
            // 'id',
            // 'factura_id',
-            'fecha',
-            [ 
-                'attribute'=>'nombre_razonsocial',
-                'value' =>'facturas.cliente.nombre_razonsocial'
+
+            [
+                'attribute'=>'fecha', 
+                'format'=>['date', 'php:d-m-Y']
             ],
+
+            [ 
+               'attribute'=>'numero_factura',
+               //'label'=>'Numero de Control',
+               'value' =>'facturas.numero_factura'
+           ],
+
             [ 
                'attribute'=>'numero_control',
                //'label'=>'Numero de Control',
                'value' =>'facturas.numero_control'
            ],
+            [ 
+                'attribute'=>'nombre_razonsocial',
+                'value' =>'facturas.cliente.nombre_razonsocial'
+            ],
             'forma_pago',
             'detalle_forma_pago',
+/*            [ 
+                'attribute'=>'precio_venta',
+                'value' =>'facturas.compras'
+            ],
 
-
+/*
+[
+    'value' => function ($data) {
+        $str = '';
+        foreach($data->compras as $request) {
+            $str .= $request->precio_venta.',';
+        }
+        return $str;
+    },
+],
+*/
             'status_pago',
 
             ['class' => 'yii\grid\ActionColumn'],

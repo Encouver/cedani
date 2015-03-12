@@ -53,6 +53,7 @@ class Cobranzas extends \yii\db\ActiveRecord
             'status_pago' => 'Status Pago',
             'nombre_razonsocial' => 'Razón Social',
             'numero_control' => 'Número de Control',
+            'numero_factura_control_razon' => '# Factura - # Control - Razón social'
         ];
     }
 

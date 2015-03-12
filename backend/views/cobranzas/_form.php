@@ -47,9 +47,7 @@ use kartik\datetime\DateTimePicker;
                     'startDate' => date('d-M-yyy h:i P'),//'01-Mar-2014 12:00 AM',
                     'todayHighlight' => true,
                     'autoclose' => true,
-                    'todayBtn' => true,
-                    'language' => 'es'
-
+                    'todayBtn' => true
                 ]
             ]);
    /*         echo DateTimePicker::widget([

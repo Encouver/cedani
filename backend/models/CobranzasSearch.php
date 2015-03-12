@@ -14,6 +14,7 @@ class CobranzasSearch extends Cobranzas
 {   
     public $numero_control;
     public $nombre_razonsocial;
+    public $numero_factura;
 
     /**
      * @inheritdoc
@@ -22,7 +23,7 @@ class CobranzasSearch extends Cobranzas
     {
         return [
             [['id', ], 'integer'],
-            [['fecha', 'forma_pago', 'detalle_forma_pago', 'status_pago', 'factura_id', 'numero_control', 'nombre_razonsocial'], 'safe'],
+            [['fecha', 'forma_pago', 'detalle_forma_pago', 'status_pago', 'factura_id', 'numero_control','numero_factura', 'nombre_razonsocial'], 'safe'],
         ];
     }
 
@@ -70,7 +71,8 @@ class CobranzasSearch extends Cobranzas
             ->andFilterWhere(['like', 'detalle_forma_pago', $this->detalle_forma_pago])
             ->andFilterWhere(['like', 'cobranzas.status_pago', $this->status_pago])
             ->andFilterWhere(['like', 'clientes.nombre_razonsocial', $this->nombre_razonsocial])
-            ->andFilterWhere(['like', 'facturas.numero_control', $this->numero_control]);
+            ->andFilterWhere(['like', 'facturas.numero_control', $this->numero_control])
+            ->andFilterWhere(['like', 'facturas.numero_factura', $this->numero_factura]);
 
      $dataProvider->setSort([
         'attributes'=>[
@@ -78,6 +80,10 @@ class CobranzasSearch extends Cobranzas
             'numero_control'=>[
                 'asc'=>['facturas.numero_control'=>SORT_ASC],
                 'desc'=>['facturas.numero_control'=>SORT_DESC]
+            ],
+            'numero_factura'=>[
+                'asc'=>['facturas.numero_factura'=>SORT_ASC],
+                'desc'=>['facturas.numero_factura'=>SORT_DESC]
             ],
 
             'forma_pago',
