@@ -51,11 +51,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'forma_pago',
             'detalle_forma_pago',
-/*            [ 
+            [ 
                 'attribute'=>'precio_venta',
-                'value' =>'facturas.compras'
+                'value' =>'facturas.comprasSUM'
             ],
-
 /*
 [
     'value' => function ($data) {

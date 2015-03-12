@@ -77,6 +77,19 @@ class Facturas extends \yii\db\ActiveRecord
         return $this->hasMany(Cobranzas::className(), ['factura_id' => 'id']);
     }
 
+    public function getComprasSUM()
+    {
+        $x = $this->numero_factura;
+        $command = Yii::$app->db->createCommand("SELECT sum(precio_unitario*cantidad) FROM compras WHERE factura_id = :x")
+                   ->bindValue(':x', $this->id);
+
+        $sum = $command->queryScalar();
+        return $sum;
+    }
+
+    
+
+
     /**
      * @return \yii\db\ActiveQuery
      */
