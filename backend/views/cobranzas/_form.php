@@ -42,6 +42,7 @@ use kartik\datetime\DateTimePicker;
                 'type' => DateTimePicker::TYPE_INPUT,
                 'name' => 'datetime_10',
                 'options' => ['placeholder' => 'Selecciona fecha ...'],
+                'readonly' => true,
                 'pluginOptions' => [
                     'format' => 'd-M-yyyy h:i P',
                     'startDate' => date('d-M-yyy h:i P'),//'01-Mar-2014 12:00 AM',
@@ -67,10 +68,10 @@ use kartik\datetime\DateTimePicker;
 
     <?= $form->field($model, 'detalle_forma_pago')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'status_pago')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'status_pago')->dropDownList(['No verificado'=>'No verificado', 'Verificado'=>'Verificado'],['prompt'=>'Seleccionar']) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

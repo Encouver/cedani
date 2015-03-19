@@ -15,7 +15,7 @@ class CobranzasSearch extends Cobranzas
     public $numero_control;
     public $nombre_razonsocial;
     public $numero_factura;
-
+    public $subtotal;
     /**
      * @inheritdoc
      */
@@ -43,32 +43,38 @@ class CobranzasSearch extends Cobranzas
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $xx)
     {
+        if ($xx == '0'){
         $query = Cobranzas::find();
+
+        }else{
+            $xx = "No verificado";
+        $query = Cobranzas::find()
+        ->where('cobranzas.status_pago = :xx', [':xx'=>$xx]);
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
-        $this->load($params);
 
-        if (!$this->validate()) {
+    if (!($this->load($params) && $this->validate())) {
             // uncomment the following line if you do not want to any records when validation fails
             // $query->where('0=1');
-            return $dataProvider;
-        }
-
+     
+        return $dataProvider;
+    }
         $query->joinWith(['facturas','facturas.cliente']);
         //$query->joinWith('facturas.cliente');
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'fecha' => $this->fecha,
         ]);
 
         $query->andFilterWhere(['like', 'forma_pago', $this->forma_pago])
             ->andFilterWhere(['like', 'detalle_forma_pago', $this->detalle_forma_pago])
+            ->andFilterWhere(['like', 'cobranzas.fecha', $this->fecha])
             ->andFilterWhere(['like', 'cobranzas.status_pago', $this->status_pago])
             ->andFilterWhere(['like', 'clientes.nombre_razonsocial', $this->nombre_razonsocial])
             ->andFilterWhere(['like', 'facturas.numero_control', $this->numero_control])
@@ -92,7 +98,8 @@ class CobranzasSearch extends Cobranzas
             'nombre_razonsocial'=>[
                 'asc'=>['clientes.nombre_razonsocial'=>SORT_ASC],
                 'desc'=>['clientes.nombre_razonsocial'=>SORT_DESC]
-            ]
+            ],
+
         ]
     ]);
 

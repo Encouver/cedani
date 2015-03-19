@@ -32,10 +32,10 @@ class Cobranzas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['factura_id', 'fecha'], 'required'],
+            [['factura_id', 'fecha', 'status_pago'], 'required'],
             [['factura_id'], 'integer'],
             [['fecha'], 'safe'],
-            [['forma_pago', 'detalle_forma_pago', 'status_pago'], 'string', 'max' => 255]
+            [['forma_pago', 'detalle_forma_pago'], 'string', 'max' => 255]
         ];
     }
 

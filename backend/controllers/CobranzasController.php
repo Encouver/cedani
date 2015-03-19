@@ -32,12 +32,24 @@ class CobranzasController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new CobranzasSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+
+        ]);
+    }
+    public function actionConsultar($x)
+    {
+        //$xx = "No verificado";
+
+        $xx = $x;
+
+        $searchModel = new CobranzasSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $xx);
+
+        return $this->render('consultar', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+
         ]);
     }
 
