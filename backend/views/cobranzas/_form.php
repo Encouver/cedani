@@ -7,12 +7,16 @@ use yii\helpers\ArrayHelper;
 use app\models\Facturas;
 use kartik\datetime\DateTimePicker;
 
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Cobranzas */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="cobranzas-form">
+
+
+
 
     <?php $form = ActiveForm::begin(); ?>
  <!--  

@@ -2,8 +2,13 @@
 
 use yii\helpers\Html;
 //use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
+use yii\widgets\ActiveForm;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
+use kartik\daterange\DateRangePicker;
+
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\CobranzasSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -17,6 +22,44 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <br>
+    <div class="col-md-4">
+            <h5 style="font-weight:600">Ver cobranzas del mes: </h5>
+
+<div class="cobranzas-form">
+
+<?php
+echo '<label class="control-label">Date Range</label>';
+echo '<div class="input-group drp-container">';
+echo DateRangePicker::widget([
+    'name'=>'date_range_1',
+    'value'=>'01-Jan-14 to 20-Feb-14',
+    'convertFormat'=>true,
+    'useWithAddon'=>true,
+    'pluginOptions'=>[
+        'format'=>'d-M-y',
+        'separator'=>' to ',
+        'opens'=>'right'
+    ],
+    'options'=>['class'=>'drp-container form-group']
+
+]);
+echo '</div>';
+
+?>
+
+    <div class="form-group">
+            <?= Html::a('Consultar', ['consultarfecha'], ['class' => 'h4', 'style'=> 'font-weight:600']) ?>
+    </div>
+
+
+</div>
+
+</div>
+
+
+    <div class="col-md-12">
+<br><br>
+
 
     <?php Pjax::begin(); ?>
     <?= GridView::widget([
@@ -95,4 +138,5 @@ $this->params['breadcrumbs'][] = $this->title;
     
     ?>
     <?php Pjax::end(); ?>
+    </div>
 </div>

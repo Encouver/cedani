@@ -84,6 +84,11 @@ class CobranzasController extends Controller
         }
     }
 
+    public function actionConsultarfecha($fecha){
+        return $this->render('index', [
+
+        ]);
+    }
     /**
      * Updates an existing Cobranzas model.
      * If update is successful, the browser will be redirected to the 'view' page.
