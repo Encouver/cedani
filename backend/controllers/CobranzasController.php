@@ -37,11 +37,11 @@ class CobranzasController extends Controller
 
         ]);
     }
-    public function actionConsultar($x)
+    public function actionConsultar($status)
     {
         //$xx = "No verificado";
 
-        $xx = $x;
+        $xx = $status;
 
         $searchModel = new CobranzasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $xx);
@@ -84,10 +84,21 @@ class CobranzasController extends Controller
         }
     }
 
-    public function actionConsultarfecha($fecha){
-        return $this->render('index', [
+    public function actionConsultarfecha(){
 
-        ]);
+        if(($_POST['date_range_1']) != null){
+            
+            $fecha = $_POST['date_range_1'];
+            $fecha_inicial = substr($fecha, 0, 10);
+            $fecha_final = substr($fecha, 14, 24);
+
+      //      $this->redirect('consultar', ['status' => 0]);
+
+        }else{
+
+            return $this->redirect(Yii::$app->request->referrer);            
+        }
+
     }
     /**
      * Updates an existing Cobranzas model.
