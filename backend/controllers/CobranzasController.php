@@ -43,14 +43,40 @@ class CobranzasController extends Controller
 
         $xx = $status;
 
+
+        if(isset($_POST['date_range_1'])){
+            
+            $fecha = $_POST['date_range_1'];
+            $inicial = substr($fecha, 0, 10);
+            $final = substr($fecha, 14, 24);
+            
+            $fechai = date("Y-m-d", strtotime($inicial));
+            $fechaf = date("Y-m-d", strtotime($final));
+
+            $status= '0';
         $searchModel = new CobranzasSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $xx);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $status, $fechai, $fechaf);
 
         return $this->render('consultar', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
 
         ]);
+
+        }
+
+        $fechai = '0';
+        $fechaf = '0';
+
+        $searchModel = new CobranzasSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $status, $fechai, $fechaf);
+
+        return $this->render('consultar', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+
+        ]);
+
     }
 
     /**
@@ -86,13 +112,28 @@ class CobranzasController extends Controller
 
     public function actionConsultarfecha(){
 
-        if(($_POST['date_range_1']) != null){
+        if(isset($_POST['date_range_1'])){
             
             $fecha = $_POST['date_range_1'];
-            $fecha_inicial = substr($fecha, 0, 10);
-            $fecha_final = substr($fecha, 14, 24);
+            $inicial = substr($fecha, 0, 10);
+            $final = substr($fecha, 14, 24);
+            
+            $fecha_inicial = date("Y-m-d", strtotime($inicial));
+            $fecha_final = date("Y-m-d", strtotime($final));
 
-      //      $this->redirect('consultar', ['status' => 0]);
+            $status= '0';
+
+        $searchModel = new CobranzasSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $status, $fecha_inicial, $fecha_final);
+
+        return $this->render('consultar', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+
+        ]);
+
+
+
 
         }else{
 

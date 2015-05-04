@@ -13,8 +13,13 @@ use kartik\daterange\DateRangePicker;
 /* @var $searchModel app\models\CobranzasSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+if (isset($_GET['status'])){
+    $status = $_GET['status'];
+}else{
+    $status = '0';
+}
 
-if ($_GET['status'] == 0){
+if ($status == 0){
 
     $this->title = 'Consultar histórico de cobranzas';
 }else{
@@ -30,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <br>
 <?php
-if ($_GET['status'] == 0){
+if ($status == 0){
 
 ?>
     <div class="col-md-6">
@@ -40,7 +45,7 @@ if ($_GET['status'] == 0){
                 <div class="cobranzas-form">
                     <?php $form = ActiveForm::begin([
                         'method' => 'post',
-                        'action' => ['consultarfecha'],
+                        'action' => ['consultar?status=0'],
                     ]); ?>
 
                         <?php
@@ -63,7 +68,7 @@ if ($_GET['status'] == 0){
                         ?>
 
                         <div class="form-group">
-                            <?= Html::submitButton('Consultar', ['consultarfecha'], ['class' => 'h4', 'style'=> 'font-weight:600']) ?>
+                            <?= Html::submitButton('Consultar', ['consultar?status=0'], ['class' => 'h4', 'style'=> 'font-weight:600']) ?>
                         </div>
 
                     <?php ActiveForm::end(); ?>

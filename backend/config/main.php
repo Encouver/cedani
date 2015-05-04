@@ -42,6 +42,7 @@ return [
         'urlManager' => [
     'enablePrettyUrl' => true,
 
+
 ],
     ],
     'params' => $params,

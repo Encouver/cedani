@@ -43,21 +43,31 @@ class CobranzasSearch extends Cobranzas
      *
      * @return ActiveDataProvider
      */
-    public function search($params, $xx)
+    public function search($params, $xx, $fecha_inicial, $fecha_final)
     {
-        if ($xx == '0'){
-        $query = Cobranzas::find();
+
+        
+        if ($fecha_inicial == '0' and $fecha_final == '0'){
+
+            if ($xx == '0'){
+            $query = Cobranzas::find();
+
+            }else{
+                $xx = "No verificado";
+            $query = Cobranzas::find()
+            ->where('cobranzas.status_pago = :xx', [':xx'=>$xx]);
+            }
 
         }else{
-            $xx = "No verificado";
-        $query = Cobranzas::find()
-        ->where('cobranzas.status_pago = :xx', [':xx'=>$xx]);
+        $query = Cobranzas::find()->where(['between','fecha', $fecha_inicial, $fecha_final]);    
+
+
         }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
+        
 
     if (!($this->load($params) && $this->validate())) {
             // uncomment the following line if you do not want to any records when validation fails
