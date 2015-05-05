@@ -12,6 +12,9 @@ use app\models\Inventarios;
  */
 class InventariosSearch extends Inventarios
 {
+    public $marca;
+    public $formato;
+    public $producto;
     /**
      * @inheritdoc
      */
@@ -19,7 +22,7 @@ class InventariosSearch extends Inventarios
     {
         return [
             [['id', 'cantidad'], 'integer'],
-            [['producto_id'], 'string'],
+            [['producto_id', 'marca', 'formato', 'producto'], 'string'],
         ];
     }
 
@@ -61,10 +64,28 @@ class InventariosSearch extends Inventarios
             'id' => $this->id,
             //'producto_id' => $this->producto_id,
             'cantidad' => $this->cantidad,
+
         ]);
 
-        $query->andFilterWhere(['like', 'productos.nombre', $this->producto_id])
-        ->andFilterWhere(['like', 'productos.marca', $this->producto_id]);
+        $query->andFilterWhere(['like', 'productos.nombre', $this->producto])
+        ->andFilterWhere(['like', 'productos.marca', $this->marca]);
+
+
+    $dataProvider->setSort([
+        'attributes'=>[
+            'producto'=>[
+                'asc'=>['productos.nombre'=>SORT_ASC],
+                'desc'=>['productos.nombre'=>SORT_DESC]
+            ],
+            'cantidad',
+            'marca'=>[
+                'asc'=>['productos.marca'=>SORT_ASC],
+                'desc'=>['productos.marca'=>SORT_DESC]
+            ],
+    ]
+    ]);
+
+
 
         return $dataProvider;
     }

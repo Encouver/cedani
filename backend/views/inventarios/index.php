@@ -14,17 +14,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-<!-- 
-    <p>
-        <?= Html::a('Create Inventarios', ['create'], ['class' => 'btn btn-success']) ?>
-    </p> -->
-    <p>
-        <?= Html::a('Agregar Inventario', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
-    <p>
-        <?= Html::a('Consultar Inventario', ['consultar'], ['class' => 'btn btn-success']) ?>
-    </p>
-
+    <br>
+    <div class="col-lg-6">
+            <?= Html::a('Agregar inventario', ['create'], ['class' => 'h4', 'style'=> 'font-weight:600']) ?>
+            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+            <br>
+            <?= Html::a('Consultar inventario', ['consultar'], ['class' => 'h4', 'style'=> 'font-weight:600']) ?>
+            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+    </div>
 
 </div>

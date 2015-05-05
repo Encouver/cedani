@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="col-lg-8">
 
      <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,18 +25,39 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             [
-              'attribute'=>'producto_id',
+              'attribute'=>'marca',
               'format' => 'html',
               'value' => function ($model) {  
-                    return '<div>'.$model->producto->nombre.' - '.$model->producto->marca.'</div>';
+                    return '<div>'.$model->producto->marca.'</div>';
               },
             ],
-            
+
+            [
+              'attribute'=>'producto',
+              'format' => 'html',
+              'value' => function ($model) {  
+                    return '<div>'.$model->producto->nombre.'</div>';
+              },
+            ],
+
+
+            [
+              'attribute'=>'formato',
+              'format' => 'html',
+              'value' => function ($model) {  
+                    return '<div>'.$model->producto->formato.' x '.$model->producto->formato2.'</div>';
+
+              },
+            ],
+
+
+
+
             'cantidad',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
+  </div>
 
 </div>
