@@ -21,6 +21,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'cantidad') ?>
 
+    <?= $form->field($model, 'fecha') ?>
+
+    <?= $form->field($model, 'proveedor_id') ?>
+
+    <?php // echo $form->field($model, 'precio_costo') ?>
+
+    <?php // echo $form->field($model, 'observaciones') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>

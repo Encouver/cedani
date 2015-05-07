@@ -12,17 +12,15 @@ use app\models\Inventarios;
  */
 class InventariosSearch extends Inventarios
 {
-    public $marca;
-    public $formato;
-    public $producto;
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'cantidad'], 'integer'],
-            [['producto_id', 'marca', 'formato', 'producto'], 'string'],
+            [['id', 'producto_id', 'cantidad', 'proveedor_id'], 'integer'],
+            [['fecha', 'observaciones'], 'safe'],
+            [['precio_costo'], 'number'],
         ];
     }
 
@@ -53,39 +51,21 @@ class InventariosSearch extends Inventarios
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to any records when validation fails
+            // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
         }
 
-        $query->joinWith('producto');
-
         $query->andFilterWhere([
             'id' => $this->id,
-            //'producto_id' => $this->producto_id,
+            'producto_id' => $this->producto_id,
             'cantidad' => $this->cantidad,
-
+            'fecha' => $this->fecha,
+            'proveedor_id' => $this->proveedor_id,
+            'precio_costo' => $this->precio_costo,
         ]);
 
-        $query->andFilterWhere(['like', 'productos.nombre', $this->producto])
-        ->andFilterWhere(['like', 'productos.marca', $this->marca]);
-
-
-    $dataProvider->setSort([
-        'attributes'=>[
-            'producto'=>[
-                'asc'=>['productos.nombre'=>SORT_ASC],
-                'desc'=>['productos.nombre'=>SORT_DESC]
-            ],
-            'cantidad',
-            'marca'=>[
-                'asc'=>['productos.marca'=>SORT_ASC],
-                'desc'=>['productos.marca'=>SORT_DESC]
-            ],
-    ]
-    ]);
-
-
+        $query->andFilterWhere(['like', 'observaciones', $this->observaciones]);
 
         return $dataProvider;
     }

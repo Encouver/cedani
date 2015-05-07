@@ -4,6 +4,8 @@ namespace backend\controllers;
 
 use Yii;
 use app\models\Productos;
+use app\models\Inventarios;
+use app\models\InventariosActual;
 use app\models\ProductosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -76,8 +78,17 @@ class ProductosController extends Controller
     public function actionCreate()
     {
         $model = new Productos();
-
+        $inventario = new Inventarios();
+        $inventario_actual = new InventariosActual();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $inventario->producto_id = $model->id;
+            $inventario->cantidad = 0;
+            $inventario->fecha = new \yii\db\Expression('NOW()');
+            $inventario->insert();
+            $inventario_actual->producto_id = $model->id;
+            $inventario_actual->cantidad = 0;
+            $inventario_actual->insert();
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

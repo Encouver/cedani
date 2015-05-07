@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\FacturasSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Consultar Inventario';
+$this->title = 'Consultar el inventario - Histórico';
 $this->params['breadcrumbs'][] = ['label' => 'Inventario', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -5,6 +5,8 @@ namespace backend\controllers;
 use Yii;
 use app\models\Inventarios;
 use app\models\InventariosSearch;
+use app\models\InventariosActual;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -24,21 +26,6 @@ class InventariosController extends Controller
                 ],
             ],
         ];
-    }
-
-    /**
-     * Displays a single Facturas model.
-     * @return mixed
-     */
-    public function actionConsultar()
-    {
-        $searchModel = new InventariosSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('consultar', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
     }
 
     /**
@@ -62,6 +49,20 @@ class InventariosController extends Controller
      * @param integer $producto_id
      * @return mixed
      */
+
+    public function actionConsultar()
+    {
+        $searchModel = new InventariosSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('consultar', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+
+
     public function actionView($id, $producto_id)
     {
         return $this->render('view', [
@@ -77,9 +78,18 @@ class InventariosController extends Controller
     public function actionCreate()
     {
         $model = new Inventarios();
-
+        $model->fecha = new \yii\db\Expression('NOW()');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'producto_id' => $model->producto_id]);
+
+
+            $inventarioactual = InventariosActual::find()->where(['producto_id' => $model->producto_id])->one();
+//            print_r ($inventarioactual->id);
+           $inventarioactual->cantidad += $model->cantidad;
+            $inventarioactual->update();
+
+
+
+           return $this->redirect(['view', 'id' => $model->id, 'producto_id' => $model->producto_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
