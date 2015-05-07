@@ -52,7 +52,7 @@ class Inventarios extends \yii\db\ActiveRecord
             'id' => 'ID',
             'producto_id' => 'Producto',
             'cantidad' => 'Cantidad',
-            'fecha' => 'Fecha',
+            'fecha' => 'Agregado al inventario',
             'proveedor_id' => 'Proveedor',
             'precio_costo' => 'Precio de costo',
             'observaciones' => 'Observaciones',

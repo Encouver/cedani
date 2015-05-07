@@ -14,7 +14,6 @@ use kartik\money\MaskMoney;
 ?>
 
 <div class="inventarios-form">
-    <div class="col-md-6">
 
         <?php $form = ActiveForm::begin(); 
 
@@ -67,5 +66,4 @@ $form->field($model, 'precio_costo')->widget(MaskMoney::classname(), [
         </div>
 
         <?php ActiveForm::end(); ?>
-    </div>
 </div>

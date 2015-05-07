@@ -8,6 +8,7 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Consultar Inventario Actual';
+$this->params['breadcrumbs'][] = ['label' => 'Inventarios', 'url' => ['inventarios/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="inventarios-actual-index">

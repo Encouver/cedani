@@ -42,8 +42,9 @@ class InventariosSearch extends Inventarios
      */
     public function search($params)
     {
-        $query = Inventarios::find();
-
+        $query = Inventarios::find() 
+            ->where('cantidad != 0');
+            
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
