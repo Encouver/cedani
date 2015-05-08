@@ -12,13 +12,22 @@ use app\models\InventariosActual;
  */
 class InventariosActualSearch extends InventariosActual
 {
+
+    public $nombre;
+    public $marca;
+    public $formatoFull;
+    public $formato;
+    public $formato2;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'producto_id', 'cantidad'], 'integer'],
+            [['id', 'cantidad'], 'integer'],
+            [['nombre','marca','formatoFull'], 'safe'],
+
         ];
     }
 
@@ -53,12 +62,42 @@ class InventariosActualSearch extends InventariosActual
             // $query->where('0=1');
             return $dataProvider;
         }
+        $query->joinWith(['productos']);
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'producto_id' => $this->producto_id,
+           // 'id' => $this->id,
+           // 'producto_id' => $this->producto_id,
             'cantidad' => $this->cantidad,
-        ]);
+
+        ])
+            ->andFilterWhere(['like', 'productos.nombre', $this->nombre])
+            ->andFilterWhere(['like', 'productos.marca', $this->marca])
+            ->andFilterWhere(['like', 'productos.formato', $this->formato])
+            ->andFilterWhere(['like', 'productos.formato2', $this->formato2]);
+    
+
+        $query->andWhere('concat_ws (" x ", productos.formato, productos.formato2) LIKE "%' . $this->formatoFull. '%"');
+
+     $dataProvider->setSort([
+        'attributes'=>[
+            'cantidad',
+            'nombre'=>[
+                'asc'=>['productos.nombre'=>SORT_ASC],
+                'desc'=>['productos.nombre'=>SORT_DESC]
+            ],
+            'marca'=>[
+                'asc'=>['productos.marca'=>SORT_ASC],
+                'desc'=>['productos.marca'=>SORT_DESC]
+            ],
+            'formatoFull'=>[
+                'asc'=>['productos.formato'=>SORT_ASC, 'productos.formato2'=>SORT_ASC],
+                'desc'=>['productos.formato'=>SORT_DESC, 'productos.formato2'=>SORT_DESC],
+                'label'=>'Formato',
+                'default'=>SORT_ASC
+            ],
+        ]
+    ]);
+
 
         return $dataProvider;
     }

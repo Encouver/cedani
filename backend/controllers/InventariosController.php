@@ -89,7 +89,7 @@ class InventariosController extends Controller
 
 
 
-           return $this->redirect(['view', 'id' => $model->id, 'producto_id' => $model->producto_id]);
+           return $this->redirect(array('inventarios-actual/index'));
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -126,9 +126,16 @@ class InventariosController extends Controller
      */
     public function actionDelete($id, $producto_id)
     {
-        $this->findModel($id, $producto_id)->delete();
+        $model = $this->findModel($id, $producto_id);
 
-        return $this->redirect(['index']);
+        $inventarioactual = InventariosActual::find()->where(['producto_id' => $model->producto_id])->one();
+        $inventarioactual->cantidad -= $model->cantidad;
+        $inventarioactual->update();
+
+        $model->delete();
+
+
+        return $this->redirect(['consultar']);
     }
 
     /**

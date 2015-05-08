@@ -96,4 +96,15 @@ class Productos extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ProductosProveedores::className(), ['producto_id' => 'id']);
     }
+
+    public function getProductosFormato()
+    {
+        return $this->nombre.' - '.$this->formato.' x '.$this->formato2;
+
+    }    
+    public function getFormatoFull()
+    {
+        return $this->formato.' x '.$this->formato2;
+
+    } 
 }

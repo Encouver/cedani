@@ -7,7 +7,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model app\models\Inventarios */
 
-$this->title = 'Agregar productos al inventarios';
+$this->title = 'Agregar productos al inventario';
 $this->params['breadcrumbs'][] = ['label' => 'Inventarios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -25,5 +25,6 @@ debe crearlo primero.
 
 <?= Html::a('Crear producto', Url::toRoute(['productos/create']), ['style'=> 'font-weight:600']) ?>
 </p>
+
 </div>
 </div>

@@ -12,6 +12,12 @@ use app\models\Inventarios;
  */
 class InventariosSearch extends Inventarios
 {
+
+    public $nombre;
+    public $marca;
+    public $formatoFull;
+    public $formato;
+    public $formato2;
     /**
      * @inheritdoc
      */
@@ -19,7 +25,7 @@ class InventariosSearch extends Inventarios
     {
         return [
             [['id', 'producto_id', 'cantidad', 'proveedor_id'], 'integer'],
-            [['fecha', 'observaciones'], 'safe'],
+            [['fecha', 'observaciones','marca','nombre', 'formatoFull'], 'safe'],
             [['precio_costo'], 'number'],
         ];
     }
@@ -56,17 +62,44 @@ class InventariosSearch extends Inventarios
             // $query->where('0=1');
             return $dataProvider;
         }
+        $query->joinWith(['productos']);
 
         $query->andFilterWhere([
             'id' => $this->id,
             'producto_id' => $this->producto_id,
             'cantidad' => $this->cantidad,
-            'fecha' => $this->fecha,
             'proveedor_id' => $this->proveedor_id,
             'precio_costo' => $this->precio_costo,
-        ]);
+        ])
+            ->andFilterWhere(['like', 'productos.nombre', $this->nombre])
+            ->andFilterWhere(['like', 'productos.marca', $this->marca])
+            ->andFilterWhere(['like', 'productos.formato', $this->formato])
+            ->andFilterWhere(['like', 'productos.formato2', $this->formato2])
+            ->andFilterWhere(['like', 'observaciones', $this->observaciones]);
+        $query->andWhere('concat_ws (" x ", productos.formato, productos.formato2) LIKE "%' . $this->formatoFull. '%"')
+            ->andWhere('date(fecha) LIKE "%'.$this->fecha.'%"');
 
-        $query->andFilterWhere(['like', 'observaciones', $this->observaciones]);
+     $dataProvider->setSort([
+        'attributes'=>[
+            'cantidad',
+            'fecha',
+            'nombre'=>[
+                'asc'=>['productos.nombre'=>SORT_ASC],
+                'desc'=>['productos.nombre'=>SORT_DESC]
+            ],
+            'marca'=>[
+                'asc'=>['productos.marca'=>SORT_ASC],
+                'desc'=>['productos.marca'=>SORT_DESC]
+            ],
+            'formatoFull'=>[
+                'asc'=>['productos.formato'=>SORT_ASC, 'productos.formato2'=>SORT_ASC],
+                'desc'=>['productos.formato'=>SORT_DESC, 'productos.formato2'=>SORT_DESC],
+                'label'=>'Formato',
+                'default'=>SORT_ASC
+            ],
+        ]
+    ]);
+
 
         return $dataProvider;
     }

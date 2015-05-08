@@ -17,7 +17,7 @@ use kartik\money\MaskMoney;
 
         <?php $form = ActiveForm::begin(); 
 
-         $productos = ArrayHelper::map(Productos::find()->all(), 'id', 'nombre');
+         $productos = ArrayHelper::map(Productos::find()->all(), 'id', 'ProductosFormato');
         ?>
 
         <?= //$form->field($model, 'producto_id')->dropDownList($productos,['prompt'=>'Seleccionar producto']) 

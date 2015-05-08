@@ -56,13 +56,16 @@ class Inventarios extends \yii\db\ActiveRecord
             'proveedor_id' => 'Proveedor',
             'precio_costo' => 'Precio de costo',
             'observaciones' => 'Observaciones',
+            'nombre'=>'Producto',
+            'formatoFull'=>'Formato',
+
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProducto()
+    public function getProductos()
     {
         return $this->hasOne(Productos::className(), ['id' => 'producto_id']);
     }

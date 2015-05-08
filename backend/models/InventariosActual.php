@@ -39,8 +39,22 @@ class InventariosActual extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'producto_id' => 'Producto ID',
+            'producto_id' => 'Producto',
             'cantidad' => 'Cantidad',
+            'nombre'=>'Producto',
+            'formatoFull'=>'Formato',
         ];
     }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProductos()
+    {
+        return $this->hasOne(Productos::className(), ['id' => 'producto_id']);
+    }
+
+
+
+
+
 }
