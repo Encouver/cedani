@@ -57,7 +57,7 @@ class Productos extends \yii\db\ActiveRecord
             'descripcion' => 'Descripcion',
             'marca' => 'Marca',
             'formato' => 'Formato',
-            'formato2' => 'Formato2',
+            'formato2' => '.',
             'kilo' => 'Kilo',
             'precio_venta' => 'Precio Venta',
             'precio_costo' => 'Precio Costo',

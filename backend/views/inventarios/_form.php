@@ -49,15 +49,15 @@ use kartik\money\MaskMoney;
         ])
 
         ?>
-<?=
-$form->field($model, 'precio_costo')->widget(MaskMoney::classname(), [
-    'pluginOptions' => [
-        'prefix' => 'Bs. ',
-        'suffix' => '',
-        'allowNegative' => false
-    ]
-]);
-?>
+        <?=
+        $form->field($model, 'precio_costo')->widget(MaskMoney::classname(), [
+            'pluginOptions' => [
+                'prefix' => 'Bs. ',
+                'suffix' => '',
+                'allowNegative' => false
+            ]
+        ]);
+        ?>
 
         <?= $form->field($model, 'observaciones')->textInput(['maxlength' => true]) ?>
 

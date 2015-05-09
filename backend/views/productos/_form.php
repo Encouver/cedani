@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\money\MaskMoney;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Productos */
@@ -17,21 +18,47 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'descripcion')->textInput(['maxlength' => 255]) ?>
 
     <?= $form->field($model, 'marca')->textInput(['maxlength' => 255]) ?>
+    
+    <div class="row">
+        <div class="col-md-3">
+            <?= $form->field($model, 'formato')->textInput() ?>
+        </div>
+        <div class="col-md-1" style="vertical-align: middle;">       
+            <br><br> <p>x</p>
+        </div>
+        <div class="col-md-3">
+            <?= $form->field($model, 'formato2')->textInput() ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'formato')->textInput() ?>
 
-    <?= $form->field($model, 'formato2')->textInput() ?>
 
-    <?= $form->field($model, 'kilo')->textInput() ?>
+    <?= $form->field($model, 'kilo')->dropDownList(['1'=>'Sí', '0'=>'No']) ?>
 
-    <?= $form->field($model, 'precio_venta')->textInput(['maxlength' => 20]) ?>
+    <?=
+    $form->field($model, 'precio_venta')->widget(MaskMoney::classname(), [
+        'pluginOptions' => [
+            'prefix' => 'Bs. ',
+            'suffix' => '',
+            'allowNegative' => false
+        ]
+    ]);
+    ?>
+    <?=
+    $form->field($model, 'precio_costo')->widget(MaskMoney::classname(), [
+        'pluginOptions' => [
+            'prefix' => 'Bs. ',
+            'suffix' => '',
+            'allowNegative' => false
+        ]
+    ]);
+    ?>
 
-    <?= $form->field($model, 'precio_costo')->textInput(['maxlength' => 20]) ?>
+    <?= $form->field($model, 'excento_de_iva')->dropDownList(['0'=>'No', '1'=>'Sí']) ?>
 
-    <?= $form->field($model, 'excento_de_iva')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Agregar producto' : 'Modificar producto', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
