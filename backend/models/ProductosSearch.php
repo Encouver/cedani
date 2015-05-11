@@ -15,11 +15,13 @@ class ProductosSearch extends Productos
     /**
      * @inheritdoc
      */
+    public $formatoFull;
+
     public function rules()
     {
         return [
-            [['id', 'formato', 'formato2', 'kilo', 'excento_de_iva'], 'integer'],
-            [['nombre', 'descripcion', 'marca'], 'safe'],
+            [['id', 'formato', 'formato2'], 'integer'],
+            [['nombre', 'descripcion', 'marca', 'excento_de_iva', 'formatoFull'], 'safe'],
             [['precio_venta', 'precio_costo'], 'number'],
         ];
     }
@@ -58,8 +60,6 @@ class ProductosSearch extends Productos
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'formato' => $this->formato,
-            'formato2' => $this->formato2,
             'kilo' => $this->kilo,
             'precio_venta' => $this->precio_venta,
             'precio_costo' => $this->precio_costo,
@@ -69,7 +69,20 @@ class ProductosSearch extends Productos
         $query->andFilterWhere(['like', 'nombre', $this->nombre])
             ->andFilterWhere(['like', 'descripcion', $this->descripcion])
             ->andFilterWhere(['like', 'marca', $this->marca]);
+        $query->andWhere('concat_ws (" x ", formato, formato2) LIKE "%' . $this->formatoFull. '%"');
 
+        $dataProvider->setSort([
+        'attributes'=>[
+            'formatoFull'=>[
+                'asc'=>['formato'=>SORT_ASC, 'formato2'=>SORT_ASC],
+                'desc'=>['formato'=>SORT_DESC, 'formato2'=>SORT_DESC],
+                'label'=>'Formato',
+                'default'=>SORT_ASC
+            ],
+        ]
+        ]);
         return $dataProvider;
+
+
     }
 }

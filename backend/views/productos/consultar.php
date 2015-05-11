@@ -30,12 +30,24 @@ $this->params['breadcrumbs'][] = $this->title;
             'nombre',
             'descripcion',
             'marca',
-            'formato',
-            // 'formato2',
-            // 'kilo',
-            // 'precio_venta',
-            // 'precio_costo',
-            // 'excento_de_iva',
+            [
+              'attribute'=>'formatoFull',
+              'format' => 'html',
+              'value' => function ($model) {  
+                    return '<div>'.$model->FormatoFull.'</div>';
+              },
+            ],
+            [
+                'attribute' => 'kilo',
+                'format' => 'boolean',
+            ],
+            [
+                'attribute' => 'excento_de_iva',
+                'format' => 'boolean',
+            ],
+
+             'precio_venta',
+             'precio_costo',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
