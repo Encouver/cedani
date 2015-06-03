@@ -4,8 +4,8 @@ return [
         'db' => [
             'class' => 'yii\db\Connection',
             'dsn' => 'mysql:host=localhost;dbname=cedani',
-            'username' => 'root',
-            'password' => '20190906',
+            'username' => 'cedani',
+            'password' => 'cedani',
             'charset' => 'utf8',
         ],
         'mailer' => [

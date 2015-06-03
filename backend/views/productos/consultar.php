@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProductosSearch */
@@ -20,11 +21,21 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Productos', ['create'], ['class' => 'btn btn-success']) ?>
     </p> -->
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+        <?php Pjax::begin(); ?>
+        
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'responsive'=>true,
+                'hover'=>true,
+                'panel' => [
+                    'type' => GridView::TYPE_DEFAULT,
+                    'before' =>"Escribirle lo de las búsquedas "
+                ],
+                'columns' => [
+                    ['class' => 'kartik\grid\SerialColumn'],
+
+        
 
             //'id',
             'nombre',
@@ -52,5 +63,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+            <?php Pjax::end(); ?>
+
 
 </div>
+<p>
+
+            <?= Html::a('Crear producto', ['create'], ['style'=> 'font-weight:600']) ?>
+
+</p>

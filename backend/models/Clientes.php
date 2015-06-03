@@ -38,7 +38,6 @@ class Clientes extends \yii\db\ActiveRecord
     {
         return [
             [['nombre_razonsocial', 'domicilio_fiscal', 'rif'], 'required'],
-            [['clientes'],'email'],
             [['nombre_razonsocial', 'domicilio_fiscal', 'rif', 'telefono1', 'telefono2', 'telefono3', 'correo', 'nombre_encargado', 'telefono_encargado', 'otro'], 'string', 'max' => 255]
         ];
     }
@@ -50,15 +49,15 @@ class Clientes extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'nombre_razonsocial' => 'Nombre Razonsocial',
+            'nombre_razonsocial' => 'Nombre o razón social',
             'domicilio_fiscal' => 'Domicilio Fiscal',
-            'rif' => 'Rif',
-            'telefono1' => 'Telefono1',
-            'telefono2' => 'Telefono2',
-            'telefono3' => 'Telefono3',
-            'correo' => 'Correo',
-            'nombre_encargado' => 'Nombre Encargado',
-            'telefono_encargado' => 'Telefono Encargado',
+            'rif' => 'RIF',
+            'telefono1' => 'Teléfono 1',
+            'telefono2' => 'Teléfono 2',
+            'telefono3' => 'Teléfono 3',
+            'correo' => 'Correo electrónico',
+            'nombre_encargado' => 'Nombre del encargado',
+            'telefono_encargado' => 'Teléfono del encargado',
             'otro' => 'Otro',
         ];
     }

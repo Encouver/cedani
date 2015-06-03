@@ -16,24 +16,38 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'domicilio_fiscal')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'rif')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'rif')->widget(\yii\widgets\MaskedInput::classname(), [
+        'mask' => ' A99999999-9',
+    ]) ?>
 
-    <?= $form->field($model, 'telefono1')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'telefono1')->widget(\yii\widgets\MaskedInput::classname(), [
+        'mask' => '(9999) 999 9999',
+    ]) ?>
 
-    <?= $form->field($model, 'telefono2')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'telefono2')->widget(\yii\widgets\MaskedInput::classname(), [
+        'mask' => '(9999) 999 9999',
+    ]) ?>
 
-    <?= $form->field($model, 'telefono3')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'telefono3')->widget(\yii\widgets\MaskedInput::classname(), [
+        'mask' => '(9999) 999 9999',
+    ]) ?>
 
-    <?= $form->field($model, 'correo')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'correo')->widget(\yii\widgets\MaskedInput::classname(), [
+            'clientOptions' => [
+        'alias' =>  'email'
+    ],
+    ]) ?>
 
     <?= $form->field($model, 'nombre_encargado')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'telefono_encargado')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'telefono_encargado')->widget(\yii\widgets\MaskedInput::classname(), [
+        'mask' => '(9999) 999 9999',
+    ]) ?>
 
     <?= $form->field($model, 'otro')->textInput(['maxlength' => 255]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Crear cliente' : 'Modificar cliente', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

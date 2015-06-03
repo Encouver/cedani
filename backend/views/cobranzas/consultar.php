@@ -92,6 +92,7 @@ if ($status == 0){
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'responsive'=>true,
+                'showPageSummary' => true,
                 'hover'=>true,
                 'panel' => [
                     'type' => GridView::TYPE_DEFAULT,
@@ -101,7 +102,6 @@ if ($status == 0){
                         if($model->status_pago == 'Verificado'){
                             return['class'=>'success'];
                         }
-
                     },
                 'columns' => [
                     ['class' => 'kartik\grid\SerialColumn'],
@@ -135,12 +135,17 @@ if ($status == 0){
                     [ 
                         'label' =>'Sub-total',
                         'attribute'=>'subtotal',
-                        'value' =>'facturas.subtotal'
+                        'value' =>'facturas.subtotal',
+                        'format'=>['decimal', 2],
+                        'pageSummary' => true
 
                     ],
                     [ 
                         'attribute'=>'IVA',
                         'value' =>'facturas.IVA',
+                        'format'=>['decimal', 2],
+                        'pageSummary' => true
+
 
                     ],
                     [ 
@@ -148,10 +153,11 @@ if ($status == 0){
                         'value' => function ($model) {
                             return $model->facturas->subtotal + $model->facturas->IVA;
                         },
+                        'format'=>['decimal', 2],                        
+                        'pageSummary' => true
+
+
                     ],
-
-
-
 
                     'status_pago',
 
