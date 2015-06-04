@@ -47,12 +47,12 @@ class Empleados extends \yii\db\ActiveRecord
             'id' => 'ID',
             'nombre' => 'Nombre',
             'apellido' => 'Apellido',
-            'cedula' => 'Cedula',
-            'telefono1' => 'Telefono1',
-            'telefomo2' => 'Telefomo2',
-            'direccion' => 'Direccion',
+            'cedula' => 'Cédula',
+            'telefono1' => 'Teléfono 1',
+            'telefomo2' => 'Teléfono 2',
+            'direccion' => 'Dirección',
             'cargo' => 'Cargo',
-            'notas' => 'Notas',
+            'notas' => 'Observaciones',
         ];
     }
 }

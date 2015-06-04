@@ -18,9 +18,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'cedula')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'telefono1')->textInput(['maxlength' => 255]) ?>
-
-    <?= $form->field($model, 'telefomo2')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'telefono1')->widget(\yii\widgets\MaskedInput::classname(), [
+        'mask' => '(9999) 999 9999',
+    ]) ?>
+    <?= $form->field($model, 'telefomo2')->widget(\yii\widgets\MaskedInput::classname(), [
+        'mask' => '(9999) 999 9999',
+    ]) ?>
 
     <?= $form->field($model, 'direccion')->textInput(['maxlength' => 255]) ?>
 
@@ -29,7 +32,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'notas')->textInput(['maxlength' => 255]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Registrar empleado' : 'Modificar empleado', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

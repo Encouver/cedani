@@ -30,6 +30,17 @@ class EmpleadosController extends Controller
      * Lists all Empleados models.
      * @return mixed
      */
+    public function actionConsultar()
+    {
+        $searchModel = new EmpleadosSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('consultar', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     public function actionIndex()
     {
         $searchModel = new EmpleadosSearch();
