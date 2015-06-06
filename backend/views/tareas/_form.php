@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use kartik\date\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tareas */
 /* @var $form yii\widgets\ActiveForm */
@@ -12,18 +12,50 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'fecha')->textInput() ?>
+    <?php
 
-    <?= $form->field($model, 'tarea')->textInput(['maxlength' => 255]) ?>
+        echo '<label>Fecha</label>';
+            echo DatePicker::widget([
+                'model' => $model,
+                'attribute' => 'fecha',
+                'name' => 'fecha',
+                'options' => ['placeholder' => 'Selecciona fecha ...'],
+                'convertFormat' => true,
+                'pluginOptions' => [
+                    'format' => 'd-M-yyyy',
+                    'startDate' => date('d-m-Y'),//'01-Mar-2014 12:00 AM',
+                    'todayHighlight' => true
+                ]
+            ]);
+    ?>
 
-    <?= $form->field($model, 'completado')->textInput() ?>
+    <?= $form->field($model, 'tarea')->textArea(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'recordatorio')->textInput() ?>
+    
+
+    <?php
+
+        echo '<label>Recordatorio</label>';
+            echo DatePicker::widget([
+                'model' => $model,
+                'attribute' => 'recordatorio',
+                'name' => 'recordatorio',
+                'options' => ['placeholder' => 'Selecciona fecha ...'],
+                'convertFormat' => true,
+                'pluginOptions' => [
+                    'format' => 'd-M-yyyy',
+                    'startDate' => date('d-m-Y'),//'01-Mar-2014 12:00 AM',
+                    'todayHighlight' => true
+                ]
+            ]);
+    ?>
 
     <?= $form->field($model, 'prioridad')->textInput() ?>
 
+    <?= $form->field($model, 'completado')->checkbox() ?>
+
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

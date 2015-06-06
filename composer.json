@@ -25,7 +25,10 @@
         "kartik-v/yii2-widget-select2": "*",
         "kartik-v/yii2-grid": "*",
         "kartik-v/yii2-date-range": "*",
-        "kartik-v/yii2-money": "*"
+        "kartik-v/yii2-money": "*",
+		"miloschuman/yii2-highcharts-widget": "*",
+		"kartik-v/yii2-field-range": "*",
+		"kartik-v/yii2-widget-datepicker": "*"
 
     },
     "require-dev": {

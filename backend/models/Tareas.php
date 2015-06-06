@@ -43,12 +43,12 @@ class Tareas extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'fecha' => 'Fecha',
-            'tarea' => 'Tarea',
-            'completado' => 'Completado',
-            'recordatorio' => 'Recordatorio',
-            'prioridad' => 'Prioridad',
+            'id' => Yii::t('app', 'ID'),
+            'fecha' => Yii::t('app', 'Fecha'),
+            'tarea' => Yii::t('app', 'Tarea'),
+            'completado' => Yii::t('app', 'Completado'),
+            'recordatorio' => Yii::t('app', 'Recordatorio'),
+            'prioridad' => Yii::t('app', 'Prioridad'),
         ];
     }
 }

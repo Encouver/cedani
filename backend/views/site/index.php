@@ -23,7 +23,7 @@ $this->title = 'Administración CEDANI';
               <?= Html::a("&nbsp;&nbsp;Cobranza", Url::toRoute('cobranzas/index')); ?></h4>
               <h4><i class="ion ion-android-clipboard"></i>
               <?= Html::a("&nbsp;&nbsp;Inventario", Url::toRoute('inventarios/index')); ?></h4>
-              <h4><i class="ion ion-stats-bars"></i>&nbsp;&nbsp;Ventas</h4>
+              <h4><i class="ion ion-stats-bars"></i><?= Html::a("&nbsp;&nbsp;Ventas", Url::toRoute('ventas/index')); ?></h4>
 
           </div>
           <div class="col-xs-6 col-md-4">
@@ -33,7 +33,7 @@ $this->title = 'Administración CEDANI';
               <h4><i class="ion-person-stalker"></i><?= Html::a("&nbsp;&nbsp;Empleados", Url::toRoute('empleados/index')); ?></h4>
           </div>
           <div class="col-xs-6 col-md-4">
-              <h4><i class="ion ion-compose"></i>&nbsp;&nbsp;Agenda</h4>
+              <h4><i class="ion ion-compose"></i><?= Html::a("&nbsp;&nbsp;Agenda", Url::toRoute('tareas/index')); ?></h4>
               <h4><i class="ion ion-android-warning"></i>&nbsp;&nbsp;Configuración</h4>
 
           </div>
