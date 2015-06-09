@@ -41,15 +41,20 @@ use kartik\select2\Select2;
             echo DateTimePicker::widget([
                 'model' => $model,
                 'attribute' => 'fecha',
+                'convertFormat' => true,
+                'type' => DateTimePicker::TYPE_INPUT,
                 'name' => 'datetime_10',
                 'options' => ['placeholder' => 'Selecciona fecha ...'],
-                'convertFormat' => true,
+                'readonly' => true,
                 'pluginOptions' => [
                     'format' => 'd-M-yyyy h:i P',
-                    'startDate' => date('d-m-Y h:i A'),//'01-Mar-2014 12:00 AM',
-                    'todayHighlight' => true
+                    'startDate' => date('d-M-yyy h:i P'),//'01-Mar-2014 12:00 AM',
+                    'todayHighlight' => true,
+                    'autoclose' => true,
+                    'todayBtn' => true
                 ]
             ]);
+
    /*         echo DateTimePicker::widget([
                 'model' => $model,
                 'attribute' => 'fecha',
@@ -62,7 +67,7 @@ use kartik\select2\Select2;
                 ]
             ]);*/
         ?>
-
+    <br>
     <?= $form->field($model, 'status_pago')->dropDownList(['0'=>'No Pagado', '1'=>'Pagado'],['prompt'=>'Seleccionar']) ?>
 
     <?= $form->field($model, 'status_entrega')->dropDownList(['0'=>'No Entregado', '1'=>'Entregado'],['prompt'=>'Seleccionar']) ?>

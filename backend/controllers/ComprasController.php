@@ -64,10 +64,18 @@ class ComprasController extends Controller
     {
         $model = new Compras();
 
+        $searchModel = new ComprasSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        
+
+
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id, 'facturas_id' => $model->facturas_id, 'productos_id' => $model->productos_id]);
         } else {
             return $this->render('create', [
+                'dataProvider' => $dataProvider,
                 'model' => $model,
             ]);
         }

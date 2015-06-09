@@ -6,16 +6,19 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Facturas */
 
-$this->title = 'Create Facturas';
+$this->title = 'Nueva facturas';
 $this->params['breadcrumbs'][] = ['label' => 'Facturas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="facturas-create">
+<div class="row">
+  <div class="col-md-6">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
-
+  </div>
+</div>
 </div>

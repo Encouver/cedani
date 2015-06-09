@@ -57,15 +57,15 @@ class Facturas extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'cliente_id' => 'Cliente',
-            'numero_factura' => 'Numero Factura',
-            'numero_control' => 'Numero Control',
+            'numero_factura' => 'Número de Factura',
+            'numero_control' => 'Número de Control',
             'fecha' => 'Fecha',
             'status_pago' => 'Status Pago',
             'status_entrega' => 'Status Entrega',
             'condiciones_pago' => 'Condiciones Pago',
             'descuento_financiero' => 'Descuento Financiero',
-            'iva' => 'Iva',
-            'clienteNombre' => 'Razon Social',
+            'iva' => 'IVA',
+            'clienteNombre' => 'Razón Social',
         ];
     }
 

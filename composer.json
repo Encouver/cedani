@@ -28,7 +28,11 @@
         "kartik-v/yii2-money": "*",
 		"miloschuman/yii2-highcharts-widget": "*",
 		"kartik-v/yii2-field-range": "*",
-		"kartik-v/yii2-widget-datepicker": "*"
+		"kartik-v/yii2-widget-datepicker": "*",
+        "kartik-v/yii2-builder": "dev-master",
+        "kartik-v/yii2-widgets": "*",
+        "kartik-v/yii2-widget-activeform": "*"
+
 
     },
     "require-dev": {

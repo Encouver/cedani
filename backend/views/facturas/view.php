@@ -2,24 +2,25 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Facturas */
 
-$this->title = 'Factura: '.$model->numero_factura.'Cliente: '.$model->cliente->nombre_razonsocial;
+$this->title = 'Factura: '.$model->numero_factura.'. Cliente: '.$model->cliente->nombre_razonsocial;
 $this->params['breadcrumbs'][] = ['label' => 'Facturas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="facturas-view">
-  
+<!-- 
     <?= Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> Imprimir', '#', ['onClick'=>'printContent("printable_section")','class' => 'btn btn-primary', 
     'data-toggle'=>'tooltip', 
     'title'=>'Abrirá una ventana para imprimir la factura']) ?>
 
-    <?= Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> Descargar PDF', ['descargarss', 'id' => $model->id], ['class' => 'btn btn-primary','target'=>'_blank', 
+    <?= Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> Descargar PDF', ['descargar', 'id' => $model->id], ['class' => 'btn btn-primary','target'=>'_blank', 
     'data-toggle'=>'tooltip', 
     'title'=>'Descargar el archivo PDF de la factura.']) ?>
-
+-->
     <div id="printable_section"> 
         <h1><?= Html::encode($this->title) ?></h1>
 
@@ -63,6 +64,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </div>
+
+    <br>
+    <?= Html::a('Agregar detalles de la compra', Url::toRoute(['compras/create']), ['class' => 'h4', 'style'=> 'font-weight:600']) ?>
+    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+
 </div>
 <script type="text/javascript">
         <!--
