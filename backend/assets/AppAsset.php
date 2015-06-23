@@ -32,8 +32,16 @@ use yii\web\AssetBundle;
 class AppAsset extends AssetBundle
 {
     public $sourcePath = '@bower/';
-    public $css = ['admin-lte/dist/css/AdminLTE.css', 'admin-lte/dist/css/skins/_all-skins.min.css'];
-    public $js = ['admin-lte/dist/js/app.js'];
+    public $css = [
+        'admin-lte/dist/css/AdminLTE.css', 
+        'admin-lte/dist/css/skins/_all-skins.min.css',
+    ];
+
+    public $js = [
+        'admin-lte/dist/js/app.js',
+        'js/main.js',
+    ];
+   
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',

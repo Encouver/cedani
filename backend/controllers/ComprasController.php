@@ -60,12 +60,12 @@ class ComprasController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($facturas_id)
     {
         $model = new Compras();
 
         $searchModel = new ComprasSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $facturas_id);
 
         
 

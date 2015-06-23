@@ -39,9 +39,10 @@ class ComprasSearch extends Compras
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $facturas_id)
     {
-        $query = Compras::find();
+        $query = Compras::find()->where('compras.factura_id = :xx', [':xx'=>$facturas_id]);
+
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
