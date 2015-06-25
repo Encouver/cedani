@@ -81,6 +81,27 @@ class ComprasController extends Controller
         }
     }
 
+
+    public function actionAgregar($facturas_id)
+    {
+        $model = new Compras();
+        $facturas_id = 1;   
+        $searchModel = new ComprasSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $facturas_id);
+
+        
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id, 'facturas_id' => $model->facturas_id, 'productos_id' => $model->productos_id]);
+        } else {
+            return $this->renderAjax('agregar', [
+                'dataProvider' => $dataProvider,
+                'model' => $model,
+            ]);
+        }
+    }
+
+
     /**
      * Updates an existing Compras model.
      * If update is successful, the browser will be redirected to the 'view' page.

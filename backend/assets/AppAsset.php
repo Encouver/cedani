@@ -31,14 +31,16 @@ use yii\web\AssetBundle;
 */
 class AppAsset extends AssetBundle
 {
-    public $sourcePath = '@bower/';
+    public $basePath = '@webroot';
+    public $baseUrl = '@web';
+
     public $css = [
-        'admin-lte/dist/css/AdminLTE.css', 
-        'admin-lte/dist/css/skins/_all-skins.min.css',
+        '../../vendor/bower/admin-lte/dist/css/AdminLTE.css', 
+        '../../vendor/bower/admin-lte/dist/css/skins/_all-skins.min.css',
     ];
 
     public $js = [
-        'admin-lte/dist/js/app.js',
+        '../../vendor/bower/admin-lte/dist/js/app.js',
         'js/main.js',
     ];
    
