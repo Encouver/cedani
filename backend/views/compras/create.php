@@ -38,6 +38,13 @@ $this->title = 'Create Compras';
 
 
 
+<?php
+echo Yii::$app->session->getFlash('flashMessage');
+
+$x= Yii::$app->getRequest()->getQueryParam('facturas_id');
+echo Html::button('AGREGAR PRODUCTO',['value' => Url::toRoute(['compras/agregar', 'facturas_id' => $x]),'id' => 'modalButton','class' => 'btn btn-success']);
+
+?>
 
 <?=TabularForm::widget([
 
@@ -66,12 +73,6 @@ $this->title = 'Create Compras';
     <?php ActiveForm::end(); ?>
 
 
-<?php
-
-$x= Yii::$app->getRequest()->getQueryParam('facturas_id');
-echo Html::button('AGREGAR PRODUCTO',['value' => Url::toRoute(['compras/agregar', 'facturas_id' => $x]),'id' => 'modalButton','class' => 'btn btn-success']);
-
-?>
 
 
 

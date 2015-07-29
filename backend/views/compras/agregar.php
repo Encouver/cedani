@@ -6,8 +6,6 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Compras */
 
-$this->title = 'Agregar Compra';
-
 ?>
 <div class="compras-create">
 
@@ -16,6 +14,7 @@ $this->title = 'Agregar Compra';
     <?= $this->render('_form', [
         'model' => $model,
         'dataProvider'=>$dataProvider,
+        'idf'=>$idf,
     ]) ?>
 
 </div>

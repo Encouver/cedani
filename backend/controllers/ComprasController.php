@@ -85,19 +85,25 @@ class ComprasController extends Controller
     public function actionAgregar($facturas_id)
     {
         $model = new Compras();
-        $facturas_id = 1;   
         $searchModel = new ComprasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $facturas_id);
 
-        
+        $model->factura_id = $facturas_id;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'facturas_id' => $model->facturas_id, 'productos_id' => $model->productos_id]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) { //envia completo y guarda
+           return $this->redirect(['compras/create', 'facturas_id'=>$facturas_id]);
+
         } else {
-            return $this->renderAjax('agregar', [
-                'dataProvider' => $dataProvider,
-                'model' => $model,
-            ]);
+            if ($model->load(Yii::$app->request->post())) { //envia mal
+                Yii::$app->session->setFlash('error', 'This is the error message');
+               return $this->redirect(['compras/create', 'facturas_id'=>$facturas_id]);
+            }else{
+                return $this->renderAjax('agregar', [ //no ha enviado
+                    'dataProvider' => $dataProvider,
+                    'model' => $model,
+                    'idf' =>$facturas_id,
+                ]);
+            }
         }
     }
 

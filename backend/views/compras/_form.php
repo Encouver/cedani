@@ -16,15 +16,12 @@ use yii\helpers\Url;
 ?>
 
 <div class="compras-form">
-
     <?php $form = ActiveForm::begin(); 
         $productos = ArrayHelper::map(Productos::find()->all(), 'id', 'nombre');
-        $facturas = ArrayHelper::map(Facturas::find()->all(), 'id', 'numero_factura');
     ?>
 
 
-   <!--  <?= $form->field($model, 'factura_id')->textInput() ?> -->
-    <?= $form->field($model, 'factura_id')->dropDownList($facturas,['prompt'=>'Seleccionar factura']) ?>
+   <!--  <?= $form->field($model, 'factura_id')->textInput() ?>     -->
 
    <!--  <?= $form->field($model, 'producto_id')->textInput() ?> -->
      <?= $form->field($model, 'producto_id')->dropDownList($productos,['prompt'=>'Seleccionar producto']) ?>
