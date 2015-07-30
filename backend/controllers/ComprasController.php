@@ -48,10 +48,10 @@ class ComprasController extends Controller
      * @param integer $productos_id
      * @return mixed
      */
-    public function actionView($id, $facturas_id, $productos_id)
+    public function actionView($id, $factura_id, $producto_id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id, $facturas_id, $productos_id),
+            'model' => $this->findModel($id, $factura_id, $producto_id),
         ]);
     }
 
@@ -76,6 +76,7 @@ class ComprasController extends Controller
         } else {
             return $this->render('create', [
                 'dataProvider' => $dataProvider,
+                'searchModel'=> $searchModel,
                 'model' => $model,
             ]);
         }
@@ -91,11 +92,12 @@ class ComprasController extends Controller
         $model->factura_id = $facturas_id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) { //envia completo y guarda
-           return $this->redirect(['compras/create', 'facturas_id'=>$facturas_id]);
+               Yii::$app->getSession()->setFlash('success', 'Producto añadido a la factura');
+            return $this->redirect(['compras/create', 'facturas_id'=>$facturas_id]);
 
         } else {
             if ($model->load(Yii::$app->request->post())) { //envia mal
-                Yii::$app->session->setFlash('error', 'This is the error message');
+               Yii::$app->getSession()->setFlash('error', 'El producto no ha sido añadido a la factura, debe llenar todos los campos');
                return $this->redirect(['compras/create', 'facturas_id'=>$facturas_id]);
             }else{
                 return $this->renderAjax('agregar', [ //no ha enviado
@@ -116,12 +118,12 @@ class ComprasController extends Controller
      * @param integer $productos_id
      * @return mixed
      */
-    public function actionUpdate($id, $facturas_id, $productos_id)
+    public function actionUpdate($id, $factura_id, $producto_id)
     {
-        $model = $this->findModel($id, $facturas_id, $productos_id);
+        $model = $this->findModel($id, $factura_id, $producto_id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'facturas_id' => $model->facturas_id, 'productos_id' => $model->productos_id]);
+            return $this->redirect(['view', 'id' => $model->id, 'factura_id' => $model->factura_id, 'producto_id' => $model->producto_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -137,11 +139,11 @@ class ComprasController extends Controller
      * @param integer $productos_id
      * @return mixed
      */
-    public function actionDelete($id, $facturas_id, $productos_id)
+    public function actionDelete($id, $factura_id, $producto_id)
     {
-        $this->findModel($id, $facturas_id, $productos_id)->delete();
+        $this->findModel($id, $factura_id, $producto_id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['compras/create', 'facturas_id'=>$factura_id]);
     }
 
     /**
@@ -153,9 +155,9 @@ class ComprasController extends Controller
      * @return Compras the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id, $facturas_id, $productos_id)
+    protected function findModel($id, $factura_id, $producto_id)
     {
-        if (($model = Compras::findOne(['id' => $id, 'facturas_id' => $facturas_id, 'productos_id' => $productos_id])) !== null) {
+        if (($model = Compras::findOne(['id' => $id, 'factura_id' => $factura_id, 'producto_id' => $producto_id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

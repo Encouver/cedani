@@ -11,18 +11,16 @@ use yii\helpers\Url;
 
 
 
-$this->title = 'Create Compras';
-
+$this->title = 'Agregar compras a la factura';
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Compras */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-    <h1><?= Html::encode($this->title) ?></h1>
+<h1><?= Html::encode($this->title) ?></h1>
 
 <div class="compras-create">
 
-    <?php $form = ActiveForm::begin();?>
 
 <?php
     Modal::begin([
@@ -33,44 +31,61 @@ $this->title = 'Create Compras';
     echo "<div id='modalContent'></div>";
 
     Modal::end();
-
 ?>
 
+<?php if(Yii::$app->session->hasFlash('error')): ?>
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <?= Yii::$app->session->getFlash('error'); ?>
+    </div>
+<?php endif; ?>
+
+<?php if(Yii::$app->session->hasFlash('success')): ?>
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <?= Yii::$app->session->getFlash('success'); ?>
+    </div>
+<?php endif; ?>
 
 
 <?php
-echo Yii::$app->session->getFlash('flashMessage');
 
 $x= Yii::$app->getRequest()->getQueryParam('facturas_id');
 echo Html::button('AGREGAR PRODUCTO',['value' => Url::toRoute(['compras/agregar', 'facturas_id' => $x]),'id' => 'modalButton','class' => 'btn btn-success']);
 
 ?>
 
-<?=TabularForm::widget([
 
-    'dataProvider'=>$dataProvider,
-    'form' => $form,
-    'attributes' => [
-        'factura_id' => ['type' => TabularForm::INPUT_STATIC],
-        'producto_id' => ['type' => TabularForm::INPUT_TEXT],
-        'cantidad' => ['type' => TabularForm::INPUT_TEXT],
-    ],
-    'gridSettings'=>[
-        'floatHeader'=>true,
-        'panel'=>[
-            //'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-book"></i> Manage Books</h3>',
-            'type' => GridView::TYPE_PRIMARY,
-            'after'=>  
-                    Html::a('<i class="glyphicon glyphicon-remove"></i> Eliminar', '#', ['class'=>'btn btn-danger']) . ' ' .
-                    Html::submitButton('<i class="glyphicon glyphicon-floppy-disk"></i> Guardar', ['class'=>'btn btn-primary'])
-        ]
-    ],   
+<?php \yii\widgets\Pjax::begin(); ?>
 
-]);
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'responsive'=>true,
 
-?>
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
 
-    <?php ActiveForm::end(); ?>
+            //'id',
+            [
+              'attribute'=>'nombre',
+              'format' => 'html',
+              'value' => function ($model) {  
+                    return '<div>'.$model->producto->nombre.'</div>';
+              },
+            ],
+
+            'cantidad',
+            'fraccion',
+            'precio_unitario',
+            'descuento',
+             ['class' => 'yii\grid\ActionColumn'],
+       ],
+    ]); 
+    ?>
+
+
+<?php \yii\widgets\Pjax::end(); ?>
 
 
 

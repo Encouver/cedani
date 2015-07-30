@@ -48,10 +48,10 @@ class Compras extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'factura_id' => 'Facturas ID',
-            'producto_id' => 'Productos ID',
+            'factura_id' => 'Factura',
+            'producto_id' => 'Producto',
             'cantidad' => 'Cantidad',
-            'fraccion' => 'Fraccion',
+            'fraccion' => 'Fracción',
             'precio_unitario' => 'Precio Unitario',
             'descuento' => 'Descuento',
         ];

@@ -24,6 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             'numero_factura',
+            'numero_control',
+
             //'clienteNombre',
             //'clienteNombre.nombre_razonsocial',
             [
@@ -33,7 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     return '<div>'.$model->cliente->nombre_razonsocial.'</div>';
               },
             ],
-            'numero_control',
             ['attribute'=>'fecha', 'format'=>['date', 'php:d-m-Y']],
             //'status_pago',
             [
