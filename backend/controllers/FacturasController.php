@@ -139,7 +139,8 @@ class FacturasController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->fecha = date_format(date_create($model->fecha), 'Y-m-d H:i:s');
             if($model->save())
-            return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'id' => $model->id]);
+           return $this->render('index');
         } else {
             return $this->render('create', [
                 'model' => $model,

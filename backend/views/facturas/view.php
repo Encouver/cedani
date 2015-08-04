@@ -65,8 +65,14 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </div>
 
+    
+    
+    ¿Datos incorrectos?
+    <?= Html::a('Modificar datos de la factura', Url::toRoute(['update', 'id' => $model->id]), ['style'=> 'font-weight:600']) ?>
+
+ <br> 
     <br>
-    <?= Html::a('Agregar detalles de la compra', Url::toRoute(['compras/create', 'facturas_id' => $model->id]), ['class' => 'h4', 'style'=> 'font-weight:600']) ?>
+    <?= Html::a('Descripción de la factura', Url::toRoute(['compras/create', 'facturas_id' => $model->id]), ['class' => 'h4', 'style'=> 'font-weight:600']) ?>
     <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
 
 

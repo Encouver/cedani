@@ -59,6 +59,7 @@ class ProductosSearch extends Productos
         }
 
         $query->andFilterWhere([
+            'nombre' => $this->nombre,
             'id' => $this->id,
             'kilo' => $this->kilo,
             'precio_venta' => $this->precio_venta,

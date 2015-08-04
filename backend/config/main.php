@@ -40,10 +40,16 @@ return [
             'errorAction' => 'site/error',
         ],
         'urlManager' => [
-    'enablePrettyUrl' => true,
+            'enablePrettyUrl' => true,
+        ],
+    
+        'formatter' => [
+        'class' => 'yii\i18n\formatter',
+        'thousandSeparator' => '.',
+        'decimalSeparator' => ',',
+        'currencyCode' => 'Bs. '
+    ],
 
-
-],
     ],
     'params' => $params,
 ];

@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use app\models\Compras;
 use app\models\ComprasSearch;
+use app\models\Facturas;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -67,9 +68,6 @@ class ComprasController extends Controller
         $searchModel = new ComprasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $facturas_id);
 
-        
-
-
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id, 'facturas_id' => $model->facturas_id, 'productos_id' => $model->productos_id]);
@@ -92,12 +90,12 @@ class ComprasController extends Controller
         $model->factura_id = $facturas_id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) { //envia completo y guarda
-               Yii::$app->getSession()->setFlash('success', 'Producto añadido a la factura');
+               Yii::$app->getSession()->setFlash('success', 'Compra añadida a la factura');
             return $this->redirect(['compras/create', 'facturas_id'=>$facturas_id]);
 
         } else {
             if ($model->load(Yii::$app->request->post())) { //envia mal
-               Yii::$app->getSession()->setFlash('error', 'El producto no ha sido añadido a la factura, debe llenar todos los campos');
+               Yii::$app->getSession()->setFlash('error', 'La compra no ha sido añadido a la factura, debe llenar todos los campos');
                return $this->redirect(['compras/create', 'facturas_id'=>$facturas_id]);
             }else{
                 return $this->renderAjax('agregar', [ //no ha enviado
@@ -107,6 +105,7 @@ class ComprasController extends Controller
                 ]);
             }
         }
+
     }
 
 

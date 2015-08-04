@@ -79,7 +79,6 @@ class Facturas extends \yii\db\ActiveRecord
 
     public function getSubtotal()
     {
-        $x = $this->numero_factura;
         $command = Yii::$app->db->createCommand("SELECT sum(precio_unitario*cantidad) FROM compras WHERE factura_id = :x")
                    ->bindValue(':x', $this->id);
 
@@ -93,7 +92,6 @@ class Facturas extends \yii\db\ActiveRecord
     {
 
         $porciento=$this->iva;
-        $x = $this->numero_factura;
         $command = Yii::$app->db->createCommand("SELECT c.precio_unitario*c.cantidad as monto, p.excento_de_iva FROM compras c join productos p on c.producto_id = p.id WHERE factura_id = :x")
                    ->bindValue(':x', $this->id);
         $results = $command->queryAll();

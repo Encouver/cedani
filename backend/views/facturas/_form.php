@@ -29,7 +29,9 @@ use kartik\select2\Select2;
                 ],
             ])
         ?>
-
+        ¿Nuevo cliente?
+        <?= Html::a('Registrar cliente', ['/clientes/create'], ['style'=> 'font-weight:600']) ?>
+        <br><br>
     <?= $form->field($model, 'numero_factura')->textInput() ?>
 
     <?= $form->field($model, 'numero_control')->textInput() ?>
@@ -79,7 +81,7 @@ use kartik\select2\Select2;
     <?= $form->field($model, 'iva')->textInput(['maxlength' => 20]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Crear factura' : 'Modificar factura', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
