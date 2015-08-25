@@ -70,9 +70,9 @@ use kartik\select2\Select2;
             ]);*/
         ?>
     <br>
-    <?= $form->field($model, 'status_pago')->dropDownList(['0'=>'No Pagado', '1'=>'Pagado'],['prompt'=>'Seleccionar']) ?>
+    <?= $form->field($model, 'status_pago')->dropDownList(['0'=>'No verificado', '1'=>'Verificado'],['prompt'=>'Seleccionar']) ?>
 
-    <?= $form->field($model, 'status_entrega')->dropDownList(['0'=>'No Entregado', '1'=>'Entregado'],['prompt'=>'Seleccionar']) ?>
+    <?= $form->field($model, 'status_entrega')->dropDownList(['1'=>'Entregado', '0'=>'No entregado']) ?>
 
     <?= $form->field($model, 'condiciones_pago')->textInput(['maxlength' => 255]) ?>
 

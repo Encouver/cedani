@@ -24,7 +24,7 @@ use kartik\datetime\DateTimePicker;
 
  -->
     <?php
-    $clientes = ArrayHelper::map(Facturas::find()->where(['status_pago'=> '1'])->all(), 'id', 'FacturasNumeroFacturasNumeroControl');
+    $clientes = ArrayHelper::map(Facturas::find()->where(['status_pago'=> '0'])->all(), 'id', 'FacturasNumeroFacturasNumeroControl');
 
 
     echo $form->field($model, 'factura_id')->widget(Select2::classname(), [

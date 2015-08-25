@@ -38,19 +38,18 @@ $this->params['breadcrumbs'][] = $this->title;
             ['attribute'=>'fecha', 'format'=>['date', 'php:d-m-Y']],
             //'status_pago',
             [
-              'attribute'=>'status_pago',
-              'format' => 'html',
-              'value' => function ($model) {  
-                    return '<div>'.$model->status_pago?'Pagado':'No Pagado'.'</div>';
-              },
-            ],
-            [
-              'attribute'=>'status_entrega',
-              'format' => 'html',
-              'value' => function ($model) {  
-                    return '<div>'.$model->status_entrega?'Entregado':'No Entregado'.'</div>';
-              },
-            ],
+                'attribute' => 'status_pago',
+                'value' => function ($model) {
+                    return $model->status_pago ? 'Verificado' : 'No verificado';
+                },
+            ],            
+/*            [
+                'attribute' => 'status_entrega',
+                'value' => function ($model) {
+                    return $model->status_entrega ? 'Entregado' : 'No entregado';
+                },
+            ],            
+*/
             //'status_entrega',
             // 'condiciones_pago',
             // 'descuento_financiero',
@@ -66,5 +65,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
         ],
     ]); ?>
+<?php
+// arreglar echo "ST ".$model->Subtotal;
 
+?>
 </div>

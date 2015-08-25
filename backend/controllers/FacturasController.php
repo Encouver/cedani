@@ -62,6 +62,7 @@ class FacturasController extends Controller
     {
         $searchModel = new FacturasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination->pageSize=15;
 
         return $this->render('consultar', [
             'searchModel' => $searchModel,

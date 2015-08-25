@@ -66,7 +66,7 @@ echo Html::button('Agregar compra',['value' => Url::toRoute(['compras/agregar', 
         
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,
+               // 'filterModel' => $searchModel,
                 'responsive'=>true,
                 'showPageSummary' => true,
                 'hover'=>true,
@@ -75,8 +75,12 @@ echo Html::button('Agregar compra',['value' => Url::toRoute(['compras/agregar', 
                     'before' =>"Escribirle lo de las búsquedas "
                 ],
                 'columns' => [
-                    ['class' => 'kartik\grid\SerialColumn'],
-
+                    [
+                    'class'=>'kartik\grid\SerialColumn',
+                    //'width'=>'36px',
+                    //'header'=>'Sorszám',
+                    'pageSummary'=>'Totales'
+                    ],
                     [
                       'attribute'=>'Producto',
                       'format' => 'html',
@@ -101,7 +105,29 @@ echo Html::button('Agregar compra',['value' => Url::toRoute(['compras/agregar', 
                     [ 
                         'attribute'=>'Importe',
                         'value' => function ($model) {
-                            return $model->precio_unitario * $model->cantidad;
+                            return $model->precio_unitario * $model->cantidad - ($model->precio_unitario * $model->cantidad * $model->descuento / 100);
+                        },
+                        'format'=>['decimal', 2],                        
+                        'pageSummary' => true
+
+
+                    ],
+                    [ 
+                        'attribute'=>'IVA',
+                        'value' => function ($model) {
+                            return ($model->precio_unitario * $model->cantidad - ($model->precio_unitario * $model->cantidad * $model->descuento / 100)) * 0.12;
+                        },
+                        'format'=>['decimal', 2],                        
+                        'pageSummary' => true
+
+
+                    ],
+                    [ 
+                        'attribute'=>'Total',
+                        'value' => function ($model) {
+
+                            return ($model->precio_unitario * $model->cantidad - ($model->precio_unitario * $model->cantidad * $model->descuento / 100)) + (($model->precio_unitario * $model->cantidad - ($model->precio_unitario * $model->cantidad * $model->descuento / 100)) * 0.12);
+
                         },
                         'format'=>['decimal', 2],                        
                         'pageSummary' => true
@@ -119,10 +145,6 @@ echo Html::button('Agregar compra',['value' => Url::toRoute(['compras/agregar', 
         <?php Pjax::end(); ?>
     
 
-subtotal
-
-<br>
-iva <br>
 
     </div>
 

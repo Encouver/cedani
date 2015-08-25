@@ -5,6 +5,8 @@ namespace backend\controllers;
 use Yii;
 use app\models\Cobranzas;
 use app\models\CobranzasSearch;
+use app\models\Facturas;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -152,7 +154,19 @@ class CobranzasController extends Controller
     {
         $model = $this->findModel($id, $factura_id);
 
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        
+
+            if ($model->status_pago == "Verificado"){ 
+                $factura = Facturas::find()->where(['id' => $model->factura_id])->one();
+                $factura->status_pago = "1";
+//                print_r($factura->status_pago);
+                $factura->update();
+            }
+        
+
+
             return $this->redirect(['view', 'id' => $model->id, 'factura_id' => $model->factura_id]);
         } else {
             return $this->render('update', [

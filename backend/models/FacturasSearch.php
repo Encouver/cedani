@@ -48,9 +48,10 @@ class FacturasSearch extends Facturas
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+             'sort'=> ['defaultOrder' => ['fecha'=>SORT_DESC]]
+
         ]);
-
-
+ 
         $this->load($params);
 
         if (!$this->validate()) {

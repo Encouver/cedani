@@ -48,19 +48,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'numero_factura',
                 'numero_control',
                 'fecha',
-                 [
-                  'attribute'=>'status_pago',
-                  'format' => 'html',
-                  'value' => '<div>'.$model->status_pago?'Pagado':'No Pagado'.'</div>',
-                ],
-                [
-                  'attribute'=>'status_entrega',
-                  'format' => 'html',
-                  'value' => '<div>'.$model->status_entrega?'Entregado':'No Entregado'.'</div>',
-                ],
                 'condiciones_pago',
                 'descuento_financiero',
                 'iva',
+                [
+                  'attribute'=>'status_entrega',
+                   'value' => $model->status_entrega == 1 ? 'Entregado' : 'No entregado'
+
+                ],
+
             ],
         ]) ?>
     </div>
