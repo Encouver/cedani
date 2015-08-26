@@ -149,4 +149,7 @@ echo Html::button('Agregar compra',['value' => Url::toRoute(['compras/agregar', 
     </div>
 
 
+
 </div>
+
+<?= Html::a('Finalizar factura', ['/facturas/descargar','id' => $x], ['class' => 'h4', 'style'=> 'font-weight:600']) ?>

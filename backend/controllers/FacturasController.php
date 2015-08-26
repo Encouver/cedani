@@ -33,12 +33,8 @@ class FacturasController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new FacturasSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+
         ]);
     }
 
@@ -58,10 +54,13 @@ class FacturasController extends Controller
      * Displays a single Facturas model.
      * @return mixed
      */
-    public function actionConsultar()
+    public function actionConsultar($status)
     {
+
+        $xx = $status;
+
         $searchModel = new FacturasSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $xx);
         $dataProvider->pagination->pageSize=15;
 
         return $this->render('consultar', [

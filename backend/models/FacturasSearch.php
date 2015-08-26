@@ -42,9 +42,21 @@ class FacturasSearch extends Facturas
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $xx)
+//    public function search($params)
+
     {
-        $query = Facturas::find();
+            if ($xx == 1){
+                $query = Facturas::find();
+
+            }else{
+                $query = Facturas::find()
+            ->where('facturas.status_pago = 1')
+            ->andwhere('facturas.status_entrega = 1');
+            }
+
+
+
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
