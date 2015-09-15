@@ -78,13 +78,51 @@ class FacturasController extends Controller
     {
         $model = $this->findModel($id);
 
+
         // get your HTML raw content without any layouts or scripts
-        $contenido = $this->renderPartial('view',['model' => $model]);
+
+
+
+        $contenido = '
+
+        <table border="0" width="100%">
+            <tr>
+                <td style="width:300px">
+                    <img src="'.Yii::getAlias('@web').'/img/logo.png'.'" class="logo" width="120px"/>
+                    <hr>
+                    Calle Bellas Artes, entre Ciencias y Stadium<br>
+                    Quinta Pitalxa. Urb. Los Chaguaramos. <br>
+                    Caracas, Venezuela<br>
+                    Telf. 0414 302.58.13
+                </td>
+                <td style="text-align:right">
+                    RIF: J-30931571-4<br>
+                    Factura N° '.$model->numero_factura.'<br>
+                    N° Control '.$model->numero_control.'<br>
+                    Fecha '.$model->fecha.' <br>
+                </td>
+
+            </tr>
+
+            <tr>
+
+            </tr>
+
+
+        </table>
+
+        ';
+ 
+        $contenido .= $this->renderPartial('view',['model' => $model]);
+     
         
+
+
+
 
         // setup kartik\mpdf\Pdf component
         $pdf = new Pdf([
-            'filename'=>$model->cliente->nombre_razonsocial.' - '.$model->numero_factura.'.pdf',
+            'filename'=>$model->cliente->nombre_razonsocial.' - '.$model->numero_factura.' - '.$model->fecha.'.pdf',
             // set to use core fonts only
             'mode' => Pdf::MODE_CORE, 
             // A4 paper format
@@ -101,10 +139,10 @@ class FacturasController extends Controller
             // any css to be embedded if required
             'cssInline' => '.kv-heading-1{font-size:18px}', 
              // set mPDF properties on the fly
-            'options' => ['title' => 'Krajee Report Title'],
+            'options' => ['title' => $model->cliente->nombre_razonsocial.' - '.$model->numero_factura.' - '.$model->fecha],
              // call mPDF methods on the fly
             'methods' => [ 
-                'SetHeader'=>['Krajee Report Header'], 
+             //   'SetHeader'=>[$model->cliente->nombre_razonsocial.' - '.$model->numero_factura.' - '.$model->fecha], 
                 'SetFooter'=>['{PAGENO}'],
             ]
         ]);

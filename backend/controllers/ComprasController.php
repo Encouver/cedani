@@ -65,6 +65,10 @@ class ComprasController extends Controller
     {
         $model = new Compras();
 
+        $modelFactura = new Facturas();
+        $b = $modelFactura->findOne(array('id'=>$facturas_id));
+
+
         $searchModel = new ComprasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $facturas_id);
 
@@ -76,6 +80,7 @@ class ComprasController extends Controller
                 'dataProvider' => $dataProvider,
                 'searchModel'=> $searchModel,
                 'model' => $model,
+                'modelFactura'=>$b,
             ]);
         }
     }

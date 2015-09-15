@@ -43,13 +43,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->status_pago ? 'Verificado' : 'No verificado';
                 },
             ],            
-/*            [
+            [
                 'attribute' => 'status_entrega',
                 'value' => function ($model) {
                     return $model->status_entrega ? 'Entregado' : 'No entregado';
                 },
             ],            
-*/
+
             //'status_entrega',
             // 'condiciones_pago',
             // 'descuento_financiero',

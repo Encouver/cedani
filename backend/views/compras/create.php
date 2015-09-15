@@ -9,6 +9,8 @@ use kartik\builder\TabularForm;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
+use yii\widgets\DetailView;
+
 
 
 
@@ -18,9 +20,18 @@ $this->title = 'Descripción de la factura';
 /* @var $model app\models\Compras */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-<h1><?= Html::encode($this->title) ?></h1>
 
-<div class="compras-create">
+<?php
+$facturas_id = Yii::$app->getRequest()->getQueryParam('facturas_id');
+?>
+<h1><?= Html::encode($this->title) ?></h1>
+<h3><?= $modelFactura->facturasNumeroFacturasNumeroControl;?></h3>
+<h4><?= $modelFactura->fecha;?></h4>
+
+
+ 
+
+    <div class="compras-create">
 
 
 <?php
@@ -53,14 +64,15 @@ $this->title = 'Descripción de la factura';
     </div>
 <?php endif; ?>
 
+    <div class="col-md-12">
 
 <?php
 
 $x= Yii::$app->getRequest()->getQueryParam('facturas_id');
-echo Html::button('Agregar compra',['value' => Url::toRoute(['compras/agregar', 'facturas_id' => $x]),'id' => 'modalButton','class' => 'btn btn-link','style'=>'font-weight:600;font-size:14px']);
+echo Html::button('Agregar producto',['value' => Url::toRoute(['compras/agregar', 'facturas_id' => $x]),'id' => 'modalButton','class' => 'btn btn-link','style'=>'font-weight:600;font-size:14px']);
 
 ?>
-
+</div>
     <div class="col-md-12">
         <?php Pjax::begin(); ?>
         
@@ -150,6 +162,7 @@ echo Html::button('Agregar compra',['value' => Url::toRoute(['compras/agregar', 
 
 
 
-</div>
 
-<?= Html::a('Finalizar factura', ['/facturas/descargar','id' => $x], ['class' => 'h4', 'style'=> 'font-weight:600']) ?>
+
+<?= Html::a('Finalizar factura', ['/facturas/descargar','id' => $x], ['class' => 'btn btn-danger', 'data-confirm' => '¿Está seguro de que desea dar por finalizada la factura?']) ?>
+</div>
