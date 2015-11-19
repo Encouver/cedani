@@ -33,8 +33,8 @@ use kartik\money\MaskMoney;
 
 
 
-    <?= $form->field($model, 'kilo')->dropDownList(['1'=>'Sí', '0'=>'No']) ?>
-
+    <?= $form->field($model, 'kilo')->dropDownList(['0'=>'Sí', '1'=>'No']) ?>
+<!-- Al multiplicar por 0 va a dar 0 -->
     <?=
     $form->field($model, 'precio_venta')->widget(MaskMoney::classname(), [
         'pluginOptions' => [

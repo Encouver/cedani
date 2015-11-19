@@ -74,6 +74,14 @@ class FacturasController extends Controller
      * @param integer $id
      * @return mixed
      */
+
+    public function actionResumen($id)
+    {
+        return $this->render('resumen', [
+            'model' => $this->findModel($id),
+        ]);
+
+    }
     public function actionDescargar($id)
     {
         $model = $this->findModel($id);

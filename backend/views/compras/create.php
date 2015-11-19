@@ -127,7 +127,7 @@ echo Html::button('Agregar producto',['value' => Url::toRoute(['compras/agregar'
                     [ 
                         'attribute'=>'IVA',
                         'value' => function ($model) {
-                            return ($model->precio_unitario * $model->cantidad - ($model->precio_unitario * $model->cantidad * $model->descuento / 100)) * 0.12;
+                            return (($model->precio_unitario * $model->cantidad - ($model->precio_unitario * $model->cantidad * $model->descuento / 100)) * 0.12)*$model->producto->excento_de_iva;
                         },
                         'format'=>['decimal', 2],                        
                         'pageSummary' => true
@@ -138,7 +138,7 @@ echo Html::button('Agregar producto',['value' => Url::toRoute(['compras/agregar'
                         'attribute'=>'Total',
                         'value' => function ($model) {
 
-                            return ($model->precio_unitario * $model->cantidad - ($model->precio_unitario * $model->cantidad * $model->descuento / 100)) + (($model->precio_unitario * $model->cantidad - ($model->precio_unitario * $model->cantidad * $model->descuento / 100)) * 0.12);
+                            return ($model->precio_unitario * $model->cantidad - ($model->precio_unitario * $model->cantidad * $model->descuento / 100)) + (($model->precio_unitario * $model->cantidad - ($model->precio_unitario * $model->cantidad * $model->descuento / 100)) * 0.12 * $model->producto->excento_de_iva);
 
                         },
                         'format'=>['decimal', 2],                        
@@ -147,7 +147,14 @@ echo Html::button('Agregar producto',['value' => Url::toRoute(['compras/agregar'
 
                     ],
 
-                    ['class' => 'kartik\grid\ActionColumn'],
+            [
+           // class' => 'yii\grid\ActionColumn', 'template' => '{delete}'
+          'class' => 'kartik\grid\ActionColumn', 'template' => '{delete}',
+          'deleteOptions' => ['label' => '<i class="glyphicon glyphicon-remove"></i>',
+          'title'=>'Eliminar', 'data-toggle'=>'tooltip'],
+   
+
+            ],
 
                 ],
            
@@ -163,6 +170,7 @@ echo Html::button('Agregar producto',['value' => Url::toRoute(['compras/agregar'
 
 
 
+<?= Html::a('Finalizar factura', ['/facturas/resumen','id' => $x], ['class' => 'btn btn-danger', 'data-confirm' => '¿Está seguro de que desea dar por finalizada la factura?']) ?>
 
-<?= Html::a('Finalizar factura', ['/facturas/descargar','id' => $x], ['class' => 'btn btn-danger', 'data-confirm' => '¿Está seguro de que desea dar por finalizada la factura?']) ?>
+<?//= Html::a('Finalizar factura', ['/facturas/descargar','id' => $x], ['class' => 'btn btn-danger', 'data-confirm' => '¿Está seguro de que desea dar por finalizada la factura?']) ?>
 </div>

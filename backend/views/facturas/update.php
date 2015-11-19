@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Facturas */
 
-$this->title = 'Update Facturas: ' . ' ' . $model->id;
+$this->title = 'Modificar facturas ' . ' ' . $model->numero_factura.' - '.$model->numero_control;
 $this->params['breadcrumbs'][] = ['label' => 'Facturas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id, 'cliente_id' => $model->cliente_id]];
 $this->params['breadcrumbs'][] = 'Update';

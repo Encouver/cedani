@@ -127,7 +127,8 @@ class ComprasController extends Controller
         $model = $this->findModel($id, $factura_id, $producto_id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'factura_id' => $model->factura_id, 'producto_id' => $model->producto_id]);
+            return $this->redirect(['compras/create', 'facturas_id'=>$factura_id]);
+
         } else {
             return $this->render('update', [
                 'model' => $model,

@@ -20,7 +20,7 @@ use yii\helpers\Url;
 
     echo $form->field($model, 'producto_id')->widget(Select2::classname(), [
         'data' => $productos,
-        'options' => ['placeholder' => 'Seleccionar producto'],
+        'options' => ['placeholder' => 'Seleccionar producto', 'id'=>'producto'],
         'pluginOptions' => [
             'allowClear' => true
         ],
@@ -38,16 +38,33 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'cantidad')->textInput() ?>
 
-    <?= $form->field($model, 'fraccion')->textInput() ?>
+    <?= $form->field($model, 'fraccion')->textInput(array('value' => '0')) ?>
 
     <?= $form->field($model, 'precio_unitario')->textInput(['maxlength' => 20]) ?>
 
-    <?= $form->field($model, 'descuento')->textInput() ?>
+    <?= $form->field($model, 'descuento')->textInput(array('value' => '0')) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Agregar compra' : 'Modificar compra', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
+
+<?php
+$script = <<< JS
+
+$('#producto').change(function(){
+    var productoId = $(this).val();
+    
+    $.get('../productos/get-precio',{ productoId : productoId }, function(data){
+        var data = $.parseJSON(data);
+        $('#compras-precio_unitario').attr('value',data.precio_venta);
+    })  
+
+});
+
+JS;
+$this->registerJS($script)
+?>
 
 </div>

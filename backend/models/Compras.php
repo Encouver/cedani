@@ -35,7 +35,7 @@ class Compras extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['factura_id', 'producto_id', 'cantidad', 'precio_unitario'], 'required'],
+            [['factura_id', 'producto_id', 'cantidad'], 'required'],
             [['factura_id', 'producto_id', 'cantidad', 'fraccion', 'descuento'], 'integer'],
             [['precio_unitario'], 'number']
         ];

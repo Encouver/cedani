@@ -10,7 +10,7 @@ use app\models\ProductosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\helpers\Json;
 /**
  * ProductosController implements the CRUD actions for Productos model.
  */
@@ -129,6 +129,12 @@ class ProductosController extends Controller
         return $this->redirect(['index']);
     }
 
+
+
+    public function actionGetPrecio($productoId){
+        $precio = Productos::findOne($productoId);
+        echo Json::encode($precio);
+    }
     /**
      * Finds the Productos model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

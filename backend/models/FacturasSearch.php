@@ -47,7 +47,9 @@ class FacturasSearch extends Facturas
 
     {
             if ($xx == 1){
-                $query = Facturas::find();
+                $query = Facturas::find()
+            ->where('facturas.status_pago = 0')
+            ->orWhere('facturas.status_entrega = 0');
 
             }else{
                 $query = Facturas::find()
