@@ -86,6 +86,44 @@ class ComprasController extends Controller
     }
 
 
+
+    public function actionResumen($id)
+    {
+
+        $model = new Compras();
+
+        $modelFactura = new Facturas();
+        $b = $modelFactura->findOne(array('id'=>$id));
+
+
+        $searchModel = new ComprasSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $id);
+
+
+        return $this->render('resumen', [
+                'dataProvider' => $dataProvider,
+                'searchModel'=> $searchModel,
+                'model' => $model,
+                'modelFactura'=>$b,
+            ]);
+
+
+    }
+
+    public function actionFinalizar($id){
+        $factura = Facturas::find()->where(['id' => $id])->one();
+        $factura->cerrada = "1";
+        $factura->update();
+
+
+
+        //IMPRIMIR AQUI
+
+    }
+
+
+
+
     public function actionAgregar($facturas_id)
     {
         $model = new Compras();
@@ -135,6 +173,9 @@ class ComprasController extends Controller
             ]);
         }
     }
+
+
+
 
     /**
      * Deletes an existing Compras model.

@@ -33,6 +33,7 @@ class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
+    public $sourcePath = '@bower/jquery';
 
     public $css = [
         '../../vendor/bower/admin-lte/dist/css/AdminLTE.css', 
@@ -42,8 +43,8 @@ class AppAsset extends AssetBundle
     public $js = [
         '../../vendor/bower/admin-lte/dist/js/app.js',
         'js/main.js',
+
     ];
-   
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
