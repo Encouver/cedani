@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use app\models\Facturas;
+use app\models\Clientes;
 use app\models\FacturasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -77,6 +78,8 @@ class FacturasController extends Controller
 
     public function actionResumen($id)
     {
+
+
         return $this->render('resumen', [
             'model' => $this->findModel($id),
         ]);
@@ -118,14 +121,25 @@ class FacturasController extends Controller
 
 
         </table>
+        <hr>
+        ';
+
+        $contenido .= '
+
+            <b>Nombre o Razón social:</b> '.$model->cliente->nombre_razonsocial.'<br>
+            <b>Domicilio fiscal: </b>'.$model->cliente->domicilio_fiscal.'<br>
+            <b>Rif: </b>'.$model->cliente->rif.'<br>
+            <b>Teléfonos: </b> '.$model->cliente->telefono1.' - '.$model->cliente->telefono2.' - '.$model->cliente->telefono3.'<br>
+
+            <hr>
+
+            <b>Condiciones de pago: </b> '.$model->condiciones_pago.'<br>
+
+
 
         ';
- 
+
         $contenido .= $this->renderPartial('view',['model' => $model]);
-     
-        
-
-
 
 
         // setup kartik\mpdf\Pdf component

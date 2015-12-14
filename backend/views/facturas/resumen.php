@@ -12,15 +12,15 @@ $this->params['breadcrumbs'][] = ['label' => 'Facturas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="facturas-view">
-<!-- 
+<!--
     <?= Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> Imprimir', '#', ['onClick'=>'printContent("printable_section")','class' => 'btn btn-primary', 
     'data-toggle'=>'tooltip', 
     'title'=>'Abrirá una ventana para imprimir la factura']) ?>
-
+-->
     <?= Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> Descargar PDF', ['descargar', 'id' => $model->id], ['class' => 'btn btn-primary','target'=>'_blank', 
     'data-toggle'=>'tooltip', 
-    'title'=>'Descargar el archivo PDF de la factura.']) ?>
--->
+    'title'=>'Descargar factura.']) ?>
+
     <div id="printable_section"> 
         <h1><?= Html::encode($this->title) ?></h1>
 
@@ -62,14 +62,8 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     
-    
-    ¿Datos incorrectos?
-    <?= Html::a('Modificar datos de la factura', Url::toRoute(['update', 'id' => $model->id]), ['style'=> 'font-weight:600']) ?>
-
- <br> 
-    <br>
     <?= Html::a('Descripción de la factura', Url::toRoute(['compras/create', 'facturas_id' => $model->id]), ['class' => 'h4', 'style'=> 'font-weight:600']) ?>
-    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
 
 
 
