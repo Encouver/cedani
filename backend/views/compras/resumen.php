@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                // 'filterModel' => $searchModel,
                 'condensed'=>true,
-                //'showPageSummary' => true,
+                'showPageSummary' => true,
                 'hover'=>true,
                 'panel' => [
                     'type' => GridView::TYPE_DEFAULT,
@@ -124,10 +124,16 @@ $this->params['breadcrumbs'][] = $this->title;
             
             ?>
     
+<?php
+if ($modelFactura->cerrada == 1){
+echo Html::a('Imprimir factura', ['finalizar','id' => $modelFactura->id], ['class' => 'btn btn-danger', 'data-confirm' => '¿Está seguro de que desea dar por finalizada la factura?']);  
+}else{
+echo Html::a('Finalizar factura', ['finalizar','id' => $modelFactura->id], ['class' => 'btn btn-danger', 'data-confirm' => '¿Está seguro de que desea dar por finalizada la factura?']);  
+echo "&nbsp; &nbsp"; 
+echo Html::a( 'Volver', Yii::$app->request->referrer, ['class' => 'btn btn-info']);
 
-<?= Html::a('Finalizar factura', ['finalizar','id' => $modelFactura->id], ['class' => 'btn btn-danger', 'data-confirm' => '¿Está seguro de que desea dar por finalizada la factura?']) ?>
-&nbsp; &nbsp; 
-<?= Html::a( 'Volver', Yii::$app->request->referrer, ['class' => 'btn btn-info']);?>
+}
+?>
 
     </div>
 </div>

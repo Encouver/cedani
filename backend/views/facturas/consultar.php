@@ -7,13 +7,28 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\FacturasSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Consultar Facturas';
+if (isset($_GET['status'])){
+    $status = $_GET['status'];
+}else{
+    $status = '0';
+}
+
+if ($status == 0){
+
+    $this->title = 'Consultar histórico de facturas';
+}else{
+    $this->title = 'Consultar facturas pendientes';
+
+}
+
+
+
 $this->params['breadcrumbs'][] = ['label' => 'Facturas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="facturas-consultar">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2><?= Html::encode($this->title) ?></h2>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
@@ -56,13 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'iva',
 
             ['class' => 'yii\grid\ActionColumn', 'template' => '{view}',
-             'buttons' => [ 'imprimir' => function ($url, $model, $key) {
-                            return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url,[
-                                'title' => 'Imprimir',
-                                ]);
-                           },
-                           ]
-                    ],
+            ],
         ],
     ]); ?>
 <?php

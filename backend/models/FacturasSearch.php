@@ -48,13 +48,11 @@ class FacturasSearch extends Facturas
     {
             if ($xx == 1){
                 $query = Facturas::find()
-            ->where('facturas.status_pago = 0')
-            ->orWhere('facturas.status_entrega = 0');
+            ->where('facturas.cerrada = 0');
 
             }else{
                 $query = Facturas::find()
-            ->where('facturas.status_pago = 1')
-            ->andwhere('facturas.status_entrega = 1');
+            ->where('facturas.cerrada = 1');
             }
 
 

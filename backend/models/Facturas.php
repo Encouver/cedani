@@ -97,7 +97,7 @@ class Facturas extends \yii\db\ActiveRecord
         $results = $command->queryAll();
         $iva = 0;
         foreach ($results as $result) {
-            if ($result['excento_de_iva'] == '0') {
+            if ($result['excento_de_iva'] == '1') {
                $iva += ($result['monto']-($result['monto']*$result['descuento']/100))*$porciento/100;        
             }
         }
@@ -141,6 +141,12 @@ class Facturas extends \yii\db\ActiveRecord
     public function getFacturasNumeroFacturasNumeroControl()
     {
         return $this->numero_factura.' - '.$this->numero_control.' - '.$this->clienteNombre;
+
+    }
+    public function getDatosMonto()
+    {
+        $monto = $this->Subtotal + $this->IVA;
+        return $this->numero_factura.' - '.$this->numero_control.' - '.$this->clienteNombre.' - '.$monto;
 
     }
     

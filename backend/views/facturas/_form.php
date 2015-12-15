@@ -32,11 +32,11 @@ use kartik\select2\Select2;
         ¿Nuevo cliente?
         <?= Html::a('Registrar cliente', ['/clientes/create'], ['style'=> 'font-weight:600']) ?>
         <br><br>
-    <?= $form->field($model, 'numero_factura')->textInput() ?>
 
-    <?= $form->field($model, 'numero_control')->textInput() ?>
+        
 
-    <!-- <?= $form->field($model, 'fecha')->textInput() ?> -->
+        <label>Número de factura</label><br><?= ($model->isNewRecord ? $num_factura->numero_factura + 1 : $num_factura->numero_factura) ?><br><br>
+        <label>Número de control</label><br><?= ($model->isNewRecord ? $num_factura->numero_control + 1 : $num_factura->numero_control) ?><br><br>
 
     <?php   
             echo '<label>Fecha Factura</label>';
@@ -70,15 +70,15 @@ use kartik\select2\Select2;
             ]);*/
         ?>
     <br>
-    <?= $form->field($model, 'status_pago')->dropDownList(['0'=>'No verificado', '1'=>'Verificado'],['prompt'=>'Seleccionar']) ?>
+<!--    <?= $form->field($model, 'status_pago')->dropDownList(['0'=>'No verificado', '1'=>'Verificado'],['prompt'=>'Seleccionar']) ?>
 
     <?= $form->field($model, 'status_entrega')->dropDownList(['1'=>'Entregado', '0'=>'No entregado']) ?>
-
+-->
     <?= $form->field($model, 'condiciones_pago')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'descuento_financiero')->textInput() ?>
+    <?= $form->field($model, 'descuento_financiero')->textInput(['value' => '0']) ?>
 
-    <?= $form->field($model, 'iva')->textInput(['maxlength' => 20]) ?>
+    <?= $form->field($model, 'iva')->textInput(['maxlength' => 20, 'value' => '12']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Crear factura' : 'Modificar factura', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -103,8 +103,14 @@ class CobranzasController extends Controller
     {
         $model = new Cobranzas();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+
+        $model->fecha = date_format(date_create($model->fecha), 'Y-m-d H:i:s');
+
+        if ($model->save())
             return $this->redirect(['view', 'id' => $model->id, 'factura_id' => $model->factura_id]);
+        return $this->render('index');
+
         } else {
             return $this->render('create', [
                 'model' => $model,

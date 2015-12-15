@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+use yii\helpers\Url;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -468,25 +469,64 @@ AppAsset::register($this);
 */ ?>          
             <ul class="sidebar-menu">
             <li class="treeview">
-              <a href="">
-                <span>Clientes</span>
+              <?= Html::a("<span>Facturación</span>", Url::toRoute('facturas/index')); ?>
                 <!--<span class="label label-primary pull-right">3</span>-->
-              </a>
+            </li>
+
+            <li class="treeview">
+              <?= Html::a("<span>Cobranza</span>", Url::toRoute('cobranzas/index')); ?>
+           </li>
+
+            <li class="treeview">
+              <?= Html::a("<span>Inventario</span>", Url::toRoute('inventarios/index')); ?>
             </li>
             <li class="treeview">
-              <a href="#">
-                <span>Facturas</span>
-                <!--<span class="label label-primary pull-right">3</span>-->
-              </a>
+              <?= Html::a("<span>Ventas</span>", Url::toRoute('ventas/index')); ?>
             </li>
             <li class="treeview">
-              <a href="#">
-                <span>Layout Options</span>
-                <!--<span class="label label-primary pull-right">3</span>-->
-              </a>
+              <?= Html::a("<span>Clientes</span>", Url::toRoute('clientes/index')); ?>
             </li>
+            <li class="treeview">
+
+              <?= Html::a("<span>Productos</span>", Url::toRoute('productos/index')); ?>
+            </li>
+            <li class="treeview">
+              <?= Html::a("<span>Proveedores</span>", Url::toRoute('proveedores/index')); ?>
+            </li>
+            <li class="treeview">
+              <?= Html::a("<span>Empleados</span>", Url::toRoute('empleados/index')); ?>
+            </li>
+            <li class="treeview">
+              <?= Html::a("<span>Agenda</span>", Url::toRoute('agenda/index')); ?>
+            </li>
+            <li class="treeview">
+              <?= Html::a("<span>Configuración</span>", Url::toRoute('coniguraciones/index')); ?>
+            </li>
+
             </ul>
-            <?php
+
+
+ 
+
+   
+
+   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+              <?php
             /*
                     NavBar::begin(['brandLabel' => '']);
                     echo Nav::widget([

@@ -27,25 +27,29 @@ $this->params['breadcrumbs'][] = $this->title;
                 'detalle_forma_pago',
                 [
                 'attribute'=>'Subtotal',
-                'value'=>'Bs. '.$model->facturas->subtotal,
+                'format'=> ['decimal', 2],
+                'value'=>$model->facturas->subtotal,
      
                 ],
 
                 [
                 'attribute'=>'IVA',
-                'value'=>'Bs. '.$model->facturas->IVA,
+                'format'=> ['decimal', 2],
+                'value'=>$model->facturas->IVA,
      
                 ],
 
                 [                      
                     'label' => 'Neto cobrado',
-                    'value' =>'Bs. '.($model->facturas->subtotal + $model->facturas->IVA).'',
+                'format'=> ['decimal', 2],
+
+                    'value' =>($model->facturas->subtotal + $model->facturas->IVA).'',
                 ],
                 'status_pago',
         [
             'label'=>'Ver factura',
             'format'=>'raw',
-            'value'=>Html::a($model->facturas->FacturasNumeroFacturasNumeroControl, ['facturas/view', 'id' => $model->facturas->id]),
+            'value'=>Html::a($model->facturas->FacturasNumeroFacturasNumeroControl, ['compras/resumen', 'id' => $model->facturas->id]),
 
         ],
             ],

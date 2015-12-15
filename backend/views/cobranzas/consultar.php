@@ -111,7 +111,7 @@ if ($status == 0){
 
                     [
                         'attribute'=>'fecha', 
-                        'format'=>['date', 'php:d-m-Y']
+                   //     'format'=>['date', 'php:d-m-Y']
                     ],
 
                     [ 

@@ -24,7 +24,7 @@ use kartik\datetime\DateTimePicker;
 
  -->
     <?php
-    $clientes = ArrayHelper::map(Facturas::find()->where(['status_pago'=> '0'])->all(), 'id', 'FacturasNumeroFacturasNumeroControl');
+    $clientes = ArrayHelper::map(Facturas::find()->where(['status_pago'=> '0'])->andWhere(['cerrada' => '1'])->all(), 'id', 'DatosMonto');
 
 
     echo $form->field($model, 'factura_id')->widget(Select2::classname(), [
@@ -38,7 +38,7 @@ use kartik\datetime\DateTimePicker;
     ?>
 
     <?php   
-            echo '<label>Fecha Factura</label>';
+            echo '<label>Fecha Cobranza</label>';
             echo DateTimePicker::widget([
                 'model' => $model,
                 'attribute' => 'fecha',
@@ -67,7 +67,7 @@ use kartik\datetime\DateTimePicker;
                 ]
             ]);*/
         ?>
-
+        <br>
     <?= $form->field($model, 'forma_pago')->textInput(['maxlength' => 255]) ?>
 
     <?= $form->field($model, 'detalle_forma_pago')->textInput(['maxlength' => 255]) ?>
