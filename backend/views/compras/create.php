@@ -24,14 +24,16 @@ $this->title = 'Descripción de la factura';
 <?php
 $facturas_id = Yii::$app->getRequest()->getQueryParam('facturas_id');
 ?>
-<h1><?= Html::encode($this->title) ?></h1>
-<h3><?= $modelFactura->facturasNumeroFacturasNumeroControl;?></h3>
-<h4><?= $modelFactura->fecha;?></h4>
-
 
  
 
     <div class="compras-create">
+    <div class="col-md-12">
+
+<h2><?= Html::encode($this->title) ?></h2>
+<h3><?= $modelFactura->facturasNumeroFacturasNumeroControl;?></h3>
+<h4><?= $modelFactura->fecha;?></h4>
+
 
 
 <?php
@@ -64,7 +66,6 @@ $facturas_id = Yii::$app->getRequest()->getQueryParam('facturas_id');
     </div>
 <?php endif; ?>
 
-    <div class="col-md-12">
 
 <?php
 
@@ -165,12 +166,12 @@ echo Html::button('Agregar producto',['value' => Url::toRoute(['compras/agregar'
     
 
 
-    </div>
 
 
 
 
 <?= Html::a('Finalizar factura', ['/compras/resumen','id' => $x], ['class' => 'btn btn-danger']) ?>
+    </div>
 
 <?//= Html::a('Finalizar factura', ['/facturas/descargar','id' => $x], ['class' => 'btn btn-danger', 'data-confirm' => '¿Está seguro de que desea dar por finalizada la factura?']) ?>
 </div>

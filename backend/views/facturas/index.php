@@ -7,16 +7,15 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\FacturasSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Facturas';
+$this->title = 'Facturación';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="facturas-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <br>
     <div class="col-lg-6">
+    <h2><?= Html::encode($this->title) ?></h2>
+    <br>
             <?= Html::a('Nueva factura', ['create'], ['class' => 'h4', 'style'=> 'font-weight:600']) ?>
             <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
 

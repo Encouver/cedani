@@ -41,7 +41,7 @@ class Facturas extends \yii\db\ActiveRecord
     {
         return [
             [['cliente_id', 'numero_factura', 'numero_control', 'iva'], 'required'],
-            [['cliente_id', 'numero_factura', 'numero_control', 'descuento_financiero','cerrada','status_entrega','status_pago'], 'integer'],
+            [['cliente_id', 'numero_factura', 'numero_control', 'descuento_financiero','cerrada','status_entrega','status_pago', 'contribuyente'], 'integer'],
             [['fecha'], 'safe'],
             [['fecha'], 'date', 'format' => 'php: Y-m-d H:i:s'/*'php: Y-m-d H:i:s'*/, 'message' => 'Formato de fecha incorrecto.'],
             [['iva'], 'number'],
@@ -66,6 +66,7 @@ class Facturas extends \yii\db\ActiveRecord
             'descuento_financiero' => 'Descuento Financiero',
             'iva' => 'IVA',
             'clienteNombre' => 'Razón Social',
+            'contribuyente' => 'Contribuyente',
         ];
     }
 
@@ -82,6 +83,21 @@ class Facturas extends \yii\db\ActiveRecord
         $command = Yii::$app->db->createCommand("SELECT sum(precio_unitario*cantidad-precio_unitario*(cantidad*descuento/100)) FROM compras WHERE factura_id = :x")
                    ->bindValue(':x', $this->id);
 
+
+//el query que sigue esta malo, debo calcular el subtotal con el formato incluido, pero quizas sea mejor hacerlo en php en lugar de sql
+ /*                  
+        $command = Yii::$app->db->createCommand("        SELECT
+    case compras.fraccion
+        when 0 then sum(compras.precio_unitario*compras.cantidad-compras.precio_unitario*compras.cantidad*compras.descuento/100)
+        else sum(compras.precio_unitario/productos.formato*compras.fraccion - compras.precio_unitario/productos.formato*compras.fraccion*compras.cantidad*compras.descuento/100)
+    end as x
+FROM compras, productos WHERE factura_id =  :x")
+                   ->bindValue(':x', $this->id);
+
+
+
+*/
+
         $sum = $command->queryScalar();
         return $sum;
     }
@@ -91,17 +107,29 @@ class Facturas extends \yii\db\ActiveRecord
     public function getIVA()
     {
 
+
         $porciento=$this->iva;
         $command = Yii::$app->db->createCommand("SELECT c.precio_unitario*c.cantidad as monto, p.excento_de_iva, c.descuento FROM compras c join productos p on c.producto_id = p.id WHERE factura_id = :x")
                    ->bindValue(':x', $this->id);
         $results = $command->queryAll();
         $iva = 0;
         foreach ($results as $result) {
-            if ($result['excento_de_iva'] == '1') {
+            if ($result['excento_de_iva'] == '1') { //1 es no excento, 0 es excento (multiplicar por 0 da 0)
                $iva += ($result['monto']-($result['monto']*$result['descuento']/100))*$porciento/100;        
             }
         }
+
+        //CONTRIBUYENTE ESPECIAL (menos 25% del IVA)
+
+        if ($this->contribuyente == '1'){
+            $iva = $iva - ($iva*0.25);
+        }
+
+
         return $iva;
+
+
+
     }
     
 
@@ -145,8 +173,8 @@ class Facturas extends \yii\db\ActiveRecord
     }
     public function getDatosMonto()
     {
-        $monto = $this->Subtotal + $this->IVA;
-        return $this->numero_factura.' - '.$this->numero_control.' - '.$this->clienteNombre.' - '.$monto;
+        $monto = Yii::$app->formatter->asDecimal($this->Subtotal + $this->IVA);
+        return 'N° Factura: '.$this->numero_factura.' - N° Control: '.$this->numero_control.' - '.$this->clienteNombre.' - Bs. '.$monto;
 
     }
     

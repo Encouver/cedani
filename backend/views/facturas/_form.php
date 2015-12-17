@@ -34,9 +34,17 @@ use kartik\select2\Select2;
         <br><br>
 
         
-
+        <div class="row">
+            <div class="col-md-4">
         <label>Número de factura</label><br><?= ($model->isNewRecord ? $num_factura->numero_factura + 1 : $num_factura->numero_factura) ?><br><br>
+                
+            </div>
+            <div class="col-md-4">
         <label>Número de control</label><br><?= ($model->isNewRecord ? $num_factura->numero_control + 1 : $num_factura->numero_control) ?><br><br>
+                
+            </div>
+
+        </div>
 
     <?php   
             echo '<label>Fecha Factura</label>';

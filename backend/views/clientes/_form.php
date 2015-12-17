@@ -43,6 +43,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'telefono_encargado')->widget(\yii\widgets\MaskedInput::classname(), [
         'mask' => '(9999) 999 9999',
     ]) ?>
+    <?= $form->field($model, 'contribuyente')->dropDownList(['0'=>'No', '1'=>'Sí']) ?>
 
     <?= $form->field($model, 'otro')->textInput(['maxlength' => 255]) ?>
 

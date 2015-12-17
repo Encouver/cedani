@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+//            'id',
             'nombre_razonsocial',
             'domicilio_fiscal',
             'rif',
@@ -38,6 +38,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'correo',
             'nombre_encargado',
             'telefono_encargado',
+            
+            [
+                'attribute' => 'contribuyente',
+                'format' => 'boolean',    
+                // Other options
+            ],
             'otro',
         ],
     ]) ?>

@@ -70,6 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'descuento_financiero',
             // 'iva',
 
+
             ['class' => 'yii\grid\ActionColumn', 'template' => '{view}',
             ],
         ],

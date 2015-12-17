@@ -87,27 +87,24 @@ class FacturasController extends Controller
         $model = new Facturas();
 
 
-    $num_factura = Facturas::find()
-    ->orderBy(['numero_factura' => SORT_DESC])
-    ->one();
+        $num_factura = Facturas::find()
+        ->orderBy(['numero_factura' => SORT_DESC])
+        ->one();
 
 
-
-/*        $sql = "SELECT numero_factura from facturas ORDER BY numero_factura DESC LIMIT 1";
-        $sql2 = "SELECT numero_control from facturas ORDER BY numero_control DESC LIMIT 1";
-        
-        $query = Yii::$app->db->createCommand($sql)->execute();
-        $query2 = Yii::$app->db->createCommand($sql2)->execute();
-
-        $num_factura = $query;
-        $num_control = $query2;
-*/
         if ($model->load(Yii::$app->request->post())) {
 
             $model->numero_factura = $num_factura->numero_factura + 1;
             $model->numero_control = $num_factura->numero_control + 1;
 
             $model->fecha = date_format(date_create($model->fecha), 'Y-m-d H:i:s');
+            
+            
+            $cliente_contribuyente = Clientes::find()->where(['id' => $model->cliente_id])->one();
+
+
+            $model->contribuyente = $cliente_contribuyente->contribuyente;
+
             if($model->save())
                 return $this->redirect(['view', 'id' => $model->id]);
            return $this->render('index');

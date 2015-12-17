@@ -38,7 +38,8 @@ class Clientes extends \yii\db\ActiveRecord
     {
         return [
             [['nombre_razonsocial', 'domicilio_fiscal', 'rif'], 'required'],
-            [['nombre_razonsocial', 'domicilio_fiscal', 'rif', 'telefono1', 'telefono2', 'telefono3', 'correo', 'nombre_encargado', 'telefono_encargado', 'otro'], 'string', 'max' => 255]
+            [['nombre_razonsocial', 'domicilio_fiscal', 'rif', 'telefono1', 'telefono2', 'telefono3', 'correo', 'nombre_encargado', 'telefono_encargado', 'otro'], 'string', 'max' => 255],
+            [['contribuyente'], 'integer']
         ];
     }
 
@@ -59,6 +60,7 @@ class Clientes extends \yii\db\ActiveRecord
             'nombre_encargado' => 'Nombre del encargado',
             'telefono_encargado' => 'Teléfono del encargado',
             'otro' => 'Otro',
+            'contribuyente' => 'Contribuyente Especial',
         ];
     }
 

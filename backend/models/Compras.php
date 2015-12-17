@@ -50,10 +50,10 @@ class Compras extends \yii\db\ActiveRecord
             'id' => 'ID',
             'factura_id' => 'Factura',
             'producto_id' => 'Producto',
-            'cantidad' => 'Cantidad',
+            'cantidad' => 'Unidad',
             'fraccion' => 'Fracción',
             'precio_unitario' => 'Precio Unitario',
-            'descuento' => 'Descuento',
+            'descuento' => 'Dcto.%',
         ];
     }
 
