@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'condiciones_pago',
                 'descuento_financiero',
                 [
-                'attribute'=>'IVA',
+                'attribute'=>'IVA %',
                 'format'=> ['decimal', 0],
                 'value' => $model->iva,
      

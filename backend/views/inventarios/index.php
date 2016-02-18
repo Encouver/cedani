@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <br>
+<div class="row">
     <div class="col-lg-6">
             <?= Html::a('Agregar inventario', ['create'], ['class' => 'h4', 'style'=> 'font-weight:600']) ?>
             <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
@@ -28,5 +29,5 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= Html::a('Consultar inventario - histórico', ['consultar'], ['class' => 'h4', 'style'=> 'font-weight:600']) ?>
             <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
     </div>
-
+</div>
 </div>

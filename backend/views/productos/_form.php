@@ -20,15 +20,19 @@ use kartik\money\MaskMoney;
     <?= $form->field($model, 'marca')->textInput(['maxlength' => 255]) ?>
     
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
             <?= $form->field($model, 'formato')->textInput() ?>
         </div>
         <div class="col-md-1" style="vertical-align: middle;">       
             <br><br> <p>x</p>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <?= $form->field($model, 'formato2')->textInput() ?>
         </div>
+        <div class="col-md-2">
+    <?= $form->field($model, 'tipo_formato')->dropDownList(['0'=>'gr.', '1'=>'Kg.']) ?>
+        </div>
+
     </div>
 
 

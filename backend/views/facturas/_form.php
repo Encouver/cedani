@@ -44,10 +44,10 @@ use kartik\select2\Select2;
                 
             </div>
 
-        </div>
+            <div class="col-md-4">
 
     <?php   
-            echo '<label>Fecha Factura</label>';
+            echo '<label>Fecha</label>';
             echo DateTimePicker::widget([
                 'model' => $model,
                 'attribute' => 'fecha',
@@ -65,6 +65,10 @@ use kartik\select2\Select2;
                 ]
             ]);
 
+
+
+
+
    /*         echo DateTimePicker::widget([
                 'model' => $model,
                 'attribute' => 'fecha',
@@ -77,7 +81,13 @@ use kartik\select2\Select2;
                 ]
             ]);*/
         ?>
-    <br>
+
+        </div> 
+        </div>
+
+
+        <div class="row">
+        <div class="col-md-4">
 <!--    <?= $form->field($model, 'status_pago')->dropDownList(['0'=>'No verificado', '1'=>'Verificado'],['prompt'=>'Seleccionar']) ?>
 
     <?= $form->field($model, 'status_entrega')->dropDownList(['1'=>'Entregado', '0'=>'No entregado']) ?>
@@ -87,7 +97,8 @@ use kartik\select2\Select2;
     <?= $form->field($model, 'descuento_financiero')->textInput(['value' => '0']) ?>
 
     <?= $form->field($model, 'iva')->textInput(['maxlength' => 20, 'value' => '12']) ?>
-
+</div>
+</div>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Crear factura' : 'Modificar factura', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

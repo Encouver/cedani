@@ -39,8 +39,8 @@ class Productos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'marca', 'formato', 'formato2', 'kilo', 'precio_venta', 'precio_costo', 'excento_de_iva'], 'required'],
-            [['formato', 'kilo', 'excento_de_iva'], 'integer'],
+            [['nombre', 'marca', 'formato', 'formato2', 'kilo', 'precio_venta', 'precio_costo', 'excento_de_iva','tipo_formato'], 'required'],
+            [['formato', 'kilo', 'excento_de_iva', 'tipo_formato'], 'integer'],
             [['precio_venta', 'precio_costo', 'formato2'], 'number'],
             [['nombre', 'descripcion', 'marca'], 'string', 'max' => 255]
         ];
@@ -62,6 +62,7 @@ class Productos extends \yii\db\ActiveRecord
             'precio_venta' => 'Precio Venta',
             'precio_costo' => 'Precio Costo',
             'excento_de_iva' => 'Excento de IVA',
+            'tipo_formato'=> '',
         ];
     }
 
@@ -104,7 +105,10 @@ class Productos extends \yii\db\ActiveRecord
     }    
     public function getFormatoFull()
     {
-        return $this->formato.' x '.floatval($this->formato2);
-
+        if ($this->tipo_formato = '0'){
+            return $this->formato.' x '.floatval($this->formato2).' gr.';
+        }else{
+            return $this->formato.' x '.floatval($this->formato2).' Kg.';
+        }
     } 
 }

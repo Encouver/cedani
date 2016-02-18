@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'facturas.numero_factura',
                 'facturas.numero_control',
                 'facturas.cliente.nombre_razonsocial',
+                'facturas.contribuyente',
                 'forma_pago',
                 'detalle_forma_pago',
                 [

@@ -63,8 +63,8 @@ class Facturas extends \yii\db\ActiveRecord
             'status_pago' => 'Status Pago',
             'status_entrega' => 'Status Entrega',
             'condiciones_pago' => 'Condiciones Pago',
-            'descuento_financiero' => 'Descuento Financiero',
-            'iva' => 'IVA',
+            'descuento_financiero' => 'Descuento Financiero %',
+            'iva' => 'IVA %',
             'clienteNombre' => 'Razón Social',
             'contribuyente' => 'Contribuyente',
         ];
@@ -80,26 +80,35 @@ class Facturas extends \yii\db\ActiveRecord
 
     public function getSubtotal()
     {
-        $command = Yii::$app->db->createCommand("SELECT sum(precio_unitario*cantidad-precio_unitario*(cantidad*descuento/100)) FROM compras WHERE factura_id = :x")
+        $subtotal=0;
+
+        $command = Yii::$app->db->createCommand("SELECT c.precio_unitario, c.cantidad, c.fraccion, c.descuento, p.formato FROM compras c join productos p on c.producto_id = p.id WHERE factura_id = :x")
                    ->bindValue(':x', $this->id);
 
-
-//el query que sigue esta malo, debo calcular el subtotal con el formato incluido, pero quizas sea mejor hacerlo en php en lugar de sql
- /*                  
-        $command = Yii::$app->db->createCommand("        SELECT
-    case compras.fraccion
-        when 0 then sum(compras.precio_unitario*compras.cantidad-compras.precio_unitario*compras.cantidad*compras.descuento/100)
-        else sum(compras.precio_unitario/productos.formato*compras.fraccion - compras.precio_unitario/productos.formato*compras.fraccion*compras.cantidad*compras.descuento/100)
-    end as x
-FROM compras, productos WHERE factura_id =  :x")
-                   ->bindValue(':x', $this->id);
+        $results = $command->queryAll();
 
 
+        foreach ($results as $result) {
+            if ($result['fraccion'] != '0') {
+               $subtotal += (($result['precio_unitario']/$result['formato']*$result['fraccion']*$result['cantidad'])-($result['precio_unitario']/$result['formato']*$result['fraccion']*$result['cantidad']*$result['descuento']/100));
+           }else{
+               $subtotal += ($result['precio_unitario']*$result['cantidad']-$result['precio_unitario']*$result['cantidad']*$result['descuento']/100);
+           }
+        }
 
-*/
+
+        return $subtotal;
+    
+
+
+
+/*
 
         $sum = $command->queryScalar();
+
         return $sum;
+
+*/
     }
 
 
@@ -109,15 +118,20 @@ FROM compras, productos WHERE factura_id =  :x")
 
 
         $porciento=$this->iva;
-        $command = Yii::$app->db->createCommand("SELECT c.precio_unitario*c.cantidad as monto, p.excento_de_iva, c.descuento FROM compras c join productos p on c.producto_id = p.id WHERE factura_id = :x")
+       $command = Yii::$app->db->createCommand("SELECT c.precio_unitario, c.cantidad, c.fraccion, c.descuento, p.formato, p.excento_de_iva FROM compras c join productos p on c.producto_id = p.id WHERE factura_id = :x")
                    ->bindValue(':x', $this->id);
+
+
+
         $results = $command->queryAll();
         $iva = 0;
         foreach ($results as $result) {
             if ($result['excento_de_iva'] == '1') { //1 es no excento, 0 es excento (multiplicar por 0 da 0)
-               $iva += ($result['monto']-($result['monto']*$result['descuento']/100))*$porciento/100;        
+               $iva += (((($result['precio_unitario']/$result['formato']*$result['fraccion']*$result['cantidad'])-($result['precio_unitario']/$result['formato']*$result['fraccion']*$result['cantidad']*$result['descuento']/100)))*$porciento/100)*$result['excento_de_iva'];
             }
         }
+
+
 
         //CONTRIBUYENTE ESPECIAL (menos 25% del IVA)
 
@@ -173,7 +187,14 @@ FROM compras, productos WHERE factura_id =  :x")
     }
     public function getDatosMonto()
     {
-        $monto = Yii::$app->formatter->asDecimal($this->Subtotal + $this->IVA);
+
+        if ($this->contribuyente == '0'){
+            $monto = Yii::$app->formatter->asDecimal($this->Subtotal + $this->IVA);
+        }else{
+            $monto = Yii::$app->formatter->asDecimal($this->Subtotal + ($this->IVA*0.75));
+
+        }
+
         return 'N° Factura: '.$this->numero_factura.' - N° Control: '.$this->numero_control.' - '.$this->clienteNombre.' - Bs. '.$monto;
 
     }

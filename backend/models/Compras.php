@@ -37,6 +37,7 @@ class Compras extends \yii\db\ActiveRecord
         return [
             [['factura_id', 'producto_id', 'cantidad'], 'required'],
             [['factura_id', 'producto_id', 'cantidad', 'fraccion', 'descuento'], 'integer'],
+             ['fraccion', 'default', 'value' => 0],
             [['precio_unitario'], 'number']
         ];
     }
@@ -80,4 +81,66 @@ class Compras extends \yii\db\ActiveRecord
     {
         return $this->hasMany(NotasDeCredito::className(), ['compra_id' => 'id']);
     }
+
+    public function getSubtotal()
+    {
+        $subtotal=0;
+
+
+            if ($this->fraccion != '0') {
+               $subtotal += (($this->precio_unitario/$this->producto->formato*$this->fraccion*$this->cantidad)-($this->precio_unitario/$this->producto->formato*$this->fraccion*$this->cantidad*$this->descuento/100));
+           }else{
+               $subtotal += ($this->precio_unitario*$this->cantidad-$this->precio_unitario*$this->cantidad*$this->descuento/100);
+           }
+
+
+        return $subtotal;
+    
+
+
+
+/*
+
+        $sum = $command->queryScalar();
+
+        return $sum;
+
+*/
+    }
+
+
+
+    public function getIVA() //ARREGLARRRR
+    {
+
+
+        $porciento=$this->factura->iva;
+$iva=0;
+            if ($this->fraccion != '0') { 
+               $iva += (((($this->precio_unitario/$this->producto->formato*$this->fraccion*$this->cantidad)-($this->precio_unitario/$this->producto->formato*$this->fraccion*$this->cantidad*$this->descuento/100)))*$porciento/100)*$this->producto->excento_de_iva;
+                    //1 es no excento, 0 es excento (multiplicar por 0 da 0)
+
+            }else{
+
+               $iva = (($this->precio_unitario*$this->cantidad-$this->precio_unitario*$this->cantidad*$this->descuento/100)*$porciento/100)*$this->producto->excento_de_iva;
+
+            }
+        
+
+
+
+        //CONTRIBUYENTE ESPECIAL (menos 25% del IVA)
+
+        if ($this->factura->contribuyente == '1'){
+            $iva = $iva - ($iva*0.25);
+        }
+
+
+        return $iva;
+
+
+
+    }
+
+
 }

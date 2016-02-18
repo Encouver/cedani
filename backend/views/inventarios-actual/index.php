@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Inventarios Actual', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 -->
+  <div class="row">
     <div class="col-lg-10">
     <?php \yii\widgets\Pjax::begin(); ?>
 
@@ -78,5 +79,5 @@ $this->params['breadcrumbs'][] = $this->title;
 <p>
 <?= Html::a('Consultar inventario - Histórico', Url::toRoute(['inventarios/consultar']), ['style'=> 'font-weight:600']) ?>
 </p>
-</div>
+</div>7</div>
 </div>

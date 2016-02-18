@@ -38,7 +38,7 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'cantidad')->textInput() ?>
 
-    <?= $form->field($model, 'fraccion')->textInput(array('value' => '0')) ?>
+    <?= $form->field($model, 'fraccion')->textInput() ?>
 
     <?= $form->field($model, 'precio_unitario')->textInput(['maxlength' => 20]) ?>
 

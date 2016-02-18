@@ -32,8 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'nombre',
             'descripcion',
             'marca',
-            'formato',
-            'formato2',
+            [
+            'attribute'=>'Formato',
+            'label' => "Formato",
+            'value' =>$model->formatofull,
+ 
+            ],
+
             'kilo',
             'precio_venta',
             'precio_costo',
