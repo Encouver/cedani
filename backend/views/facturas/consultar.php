@@ -1,7 +1,7 @@
 <?php
-
+use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\FacturasSearch */
@@ -15,10 +15,14 @@ if (isset($_GET['status'])){
 
 if ($status == 0){
 
-    $this->title = 'Consultar histórico de facturas';
+    $this->title = 'Histórico de facturas';
 }else{
-    $this->title = 'Consultar facturas pendientes';
+    if ($status == 1){
+        $this->title = 'Facturas pendientes';
+    }else{
+        $this->title = 'Facturas anuladas';
 
+}
 }
 
 
@@ -71,10 +75,25 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'iva',
 
 
-            ['class' => 'yii\grid\ActionColumn', 'template' => '{view}',
-            ],
+         //   ['class' => 'yii\grid\ActionColumn', 'template' => '{view}',],
+
+        [
+        'class' => 'kartik\grid\ActionColumn',
+        'template' => '{view}',
+        'buttons' => [
+            'view' => function ($url, $model) {
+                return $model->cerrada == '0' ? Html::a('<span class="glyphicon glyphicon-eye-open"></span>',  $url, ['title' => 'Ver']) : Html::a('<span class="glyphicon glyphicon-eye-open"></span>', Url::to(['compras/resumen','id'=>$model->id]), ['title' => Yii::t('app', 'Ver'),]);
+            },
+        ]
+
+        ],
+
+
+
+
         ],
     ]); ?>
+
 <?php
 // arreglar echo "ST ".$model->Subtotal;
 

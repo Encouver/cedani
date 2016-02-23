@@ -7,6 +7,7 @@ use app\models\Productos;
 use app\models\Inventarios;
 use app\models\InventariosActual;
 use app\models\ProductosSearch;
+use app\models\HistoricoPrecios;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -107,8 +108,22 @@ class ProductosController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $precio_viejo = $model->precio_venta;
+
+        if ($model->load(Yii::$app->request->post())){
+            if ($precio_viejo != $model->precio_venta){
+                //inserto en historico precios
+                $modelHistoricoPrecios = new HistoricoPrecios;
+                $modelHistoricoPrecios->producto_id = $id;
+                $modelHistoricoPrecios->precio = $precio_viejo;
+                $modelHistoricoPrecios->fecha = date("Y-m-d H:i");
+                $modelHistoricoPrecios->save();
+            }
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
+
+        
+
         } else {
             return $this->render('update', [
                 'model' => $model,

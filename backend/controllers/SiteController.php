@@ -7,11 +7,13 @@ use yii\web\Controller;
 use common\models\LoginForm;
 use yii\filters\VerbFilter;
 
+
 /**
  * Site controller
  */
 class SiteController extends Controller
 {
+
     /**
      * @inheritdoc
      */
@@ -60,6 +62,8 @@ class SiteController extends Controller
 
     public function actionLogin()
     {
+        $this->layout = "layout1";
+
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }

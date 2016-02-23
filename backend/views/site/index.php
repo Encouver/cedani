@@ -15,6 +15,8 @@ $this->title = 'Administración CEDANI';
             <img src="<?= Yii::getAlias('@web').'/img/logo.png'?>" class="logo" width="200px"/>
             </p>
             <hr>
+
+
         <div class="row">
           <div class="col-xs-6 col-md-4">
               <h4><i class="ion ion-document-text"></i>

@@ -87,7 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [ 
                         'attribute'=>'Importe',
                         'value' => function ($model) {
-                            return $model->precio_unitario * $model->cantidad - ($model->precio_unitario * $model->cantidad * $model->descuento / 100);
+                            return $model->subtotal;
                         },
                         'format'=>['decimal', 2],                        
                         'pageSummary' => true
@@ -97,7 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [ 
                         'attribute'=>'IVA',
                         'value' => function ($model) {
-                            return (($model->precio_unitario * $model->cantidad - ($model->precio_unitario * $model->cantidad * $model->descuento / 100)) * 0.12)*$model->producto->excento_de_iva;
+                            return $model->IVA;
                         },
                         'format'=>['decimal', 2],                        
                         'pageSummary' => true
@@ -108,7 +108,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute'=>'Total',
                         'value' => function ($model) {
 
-                            return ($model->precio_unitario * $model->cantidad - ($model->precio_unitario * $model->cantidad * $model->descuento / 100)) + (($model->precio_unitario * $model->cantidad - ($model->precio_unitario * $model->cantidad * $model->descuento / 100)) * 0.12 * $model->producto->excento_de_iva);
+                            return $model->subtotal + $model->IVA;
 
                         },
                         'format'=>['decimal', 2],                        
@@ -125,14 +125,27 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>
     
 <?php
-if ($modelFactura->cerrada == 1){
-echo Html::a('Imprimir factura', ['finalizar','id' => $modelFactura->id], ['class' => 'btn btn-danger', 'data-confirm' => '¿Está seguro de que desea dar por finalizada la factura?']);  
-}else{
-echo Html::a('Finalizar factura', ['finalizar','id' => $modelFactura->id], ['class' => 'btn btn-danger', 'data-confirm' => '¿Está seguro de que desea dar por finalizada la factura?']);  
+if ($modelFactura->cerrada >= 1){ //cerrada o anulada
+
+echo Html::a('Imprimir factura', ['finalizar','id' => $modelFactura->id], ['class' => 'btn btn-danger']);  
+echo "&nbsp; &nbsp"; 
+
+}
+if ($modelFactura->cerrada == 0){
+echo Html::a('Cerrar factura', ['finalizar','id' => $modelFactura->id], ['class' => 'btn btn-danger', 'data-confirm' => '¿Está seguro que desea dar por finalizada la factura?']);  
 echo "&nbsp; &nbsp"; 
 echo Html::a( 'Volver', Yii::$app->request->referrer, ['class' => 'btn btn-info']);
 
 }
+
+if ($modelFactura->cerrada == 3){ //anulada
+echo Html::a('Reanudar factura', ['facturas/reanudar','facturas_id' => $modelFactura->id], ['class' => 'btn btn-danger', 'data-confirm' => '¿Está seguro que desea reanudar la factura?']);  
+echo "&nbsp; &nbsp"; 
+echo Html::a( 'Volver', Yii::$app->request->referrer, ['class' => 'btn btn-info']);
+
+}
+
+
 ?>
 
     </div>

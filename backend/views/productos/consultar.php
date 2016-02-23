@@ -54,11 +54,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'excento_de_iva',
-                'format' => 'boolean',
+                'value'=> 'excentoLabel',
             ],
 
              'precio_venta',
-             'precio_costo',
+         //    'precio_costo',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

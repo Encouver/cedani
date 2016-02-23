@@ -6,6 +6,7 @@ use Yii;
 use app\models\Compras;
 use app\models\ComprasSearch;
 use app\models\Facturas;
+use app\models\Productos;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -113,6 +114,13 @@ class ComprasController extends Controller
 
     public function actionResumen($id)
     {
+        $count_compras = Compras::find()->where(['factura_id' => $id])->count();
+        if ($count_compras == 0){
+            Yii::$app->getSession()->setFlash('error', 'No puede finalizar la factura si no ha añadido ningún producto');
+            return $this->redirect(Yii::$app->request->referrer);
+        }else{
+
+
 
         $model = new Compras();
 
@@ -130,11 +138,12 @@ class ComprasController extends Controller
                 'model' => $model,
                 'modelFactura'=>$b,
             ]);
-
+        }
 
     }
 
     public function actionFinalizar($id){
+
         $factura = Facturas::find()->where(['id' => $id])->one();
         $factura->cerrada = "1";
         $factura->update();
@@ -214,7 +223,8 @@ class ComprasController extends Controller
             // portrait orientation
             'orientation' => Pdf::ORIENT_PORTRAIT, 
             // stream to browser inline
-            'destination' => Pdf::DEST_DOWNLOAD, 
+            'destination' => Pdf::DEST_DOWNLOAD,
+            //     'destination'=> Pdf::DEST_BROWSER, 
             // your html content input
             'content' => $contenido,  
             // format content from your own css file if needed or use the
@@ -247,6 +257,8 @@ class ComprasController extends Controller
         */
         // return the pdf output as per the destination setting
         return $pdf->render(); 
+        return $this->render('index', []);
+
     }
 
 
@@ -260,10 +272,18 @@ class ComprasController extends Controller
 
         $model->factura_id = $facturas_id;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) { //envia completo y guarda
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            $producto_excento = Productos::find()->where(['id' => $model->producto_id])->one();
+
+
+            $model->excento_de_iva = $producto_excento->excento_de_iva;
+
+            if($model->save()){ //envia completo y guarda
                Yii::$app->getSession()->setFlash('success', 'Compra añadida a la factura');
             return $this->redirect(['compras/create', 'facturas_id'=>$facturas_id]);
-
+            }
         } else {
             if ($model->load(Yii::$app->request->post())) { //envia mal
                Yii::$app->getSession()->setFlash('error', 'La compra no ha sido añadido a la factura, debe llenar todos los campos');

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\helpers\Url;
 
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Facturas */
 
@@ -11,6 +12,8 @@ $this->title = 'Factura: '.$model->numero_factura.'. Cliente: '.$model->cliente-
 $this->params['breadcrumbs'][] = ['label' => 'Facturas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="row">
+<div class="col-md-12">
 <div class="facturas-view">
 <!-- 
     <?= Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> Imprimir', '#', ['onClick'=>'printContent("printable_section")','class' => 'btn btn-primary', 
@@ -74,8 +77,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <br>
     <?= Html::a('Descripción de la factura', Url::toRoute(['compras/create', 'facturas_id' => $model->id]), ['class' => 'h4', 'style'=> 'font-weight:600']) ?>
     <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+    <br><br>
+    <?= Html::a('Anular factura', Url::toRoute(['facturas/anular', 'facturas_id' => $model->id]), ['class' => 'label label-default', 'style'=> 'font-weight:600' ,'data-confirm'=>'¿Está seguro que desea anular esta factura?']) ?>
+
 
     </div>
-
-
+</div>
+</div>
 </div>

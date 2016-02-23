@@ -26,6 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <br>
             <?= Html::a('Consultar histórico de facturas', ['consultar','status' => '0'], ['class' => 'h4', 'style'=> 'font-weight:600']) ?>
             <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+            <br>
+            <?= Html::a('Facturas anuladas', ['consultar','status' => '3'], ['class' => 'h4', 'style'=> 'font-weight:600']) ?>
+            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
 
     </div>
 

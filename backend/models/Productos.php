@@ -39,7 +39,7 @@ class Productos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'marca', 'formato', 'formato2', 'kilo', 'precio_venta', 'precio_costo', 'excento_de_iva','tipo_formato'], 'required'],
+            [['nombre', 'marca', 'formato', 'formato2', 'kilo', 'precio_venta', 'excento_de_iva','tipo_formato'], 'required'],
             [['formato', 'kilo', 'excento_de_iva', 'tipo_formato'], 'integer'],
             [['precio_venta', 'precio_costo', 'formato2'], 'number'],
             [['nombre', 'descripcion', 'marca'], 'string', 'max' => 255]
@@ -111,4 +111,11 @@ class Productos extends \yii\db\ActiveRecord
             return $this->formato.' x '.floatval($this->formato2).' Kg.';
         }
     } 
+
+public function getExcentoLabel()
+{
+    return $this->excento_de_iva ? 'No' : 'Sí';
 }
+
+}
+

@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'kilo',
             'precio_venta',
-            'precio_costo',
+          //  'precio_costo',
             'excento_de_iva',
         ],
     ]) ?>

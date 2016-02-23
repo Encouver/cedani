@@ -49,10 +49,15 @@ class FacturasSearch extends Facturas
             if ($xx == 1){
                 $query = Facturas::find()
             ->where('facturas.cerrada = 0');
-
-            }else{
+            }
+            if ($xx == 0){
                 $query = Facturas::find()
             ->where('facturas.cerrada = 1');
+            }
+
+            if ($xx == 3){ //anuladas
+                $query = Facturas::find()
+            ->where('facturas.cerrada = 3');
             }
 
 

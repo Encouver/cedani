@@ -503,6 +503,11 @@ AppAsset::register($this);
               <?= Html::a("<span>Configuración</span>", Url::toRoute('coniguraciones/index')); ?>
             </li>
 
+            <li class="treeview">
+              <?= Html::a("<span>Salir</span>", Url::toRoute('site/logout'), ['data-method'=>'post']); ?>
+            </li>
+
+
             </ul>
 
 

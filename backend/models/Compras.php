@@ -36,7 +36,7 @@ class Compras extends \yii\db\ActiveRecord
     {
         return [
             [['factura_id', 'producto_id', 'cantidad'], 'required'],
-            [['factura_id', 'producto_id', 'cantidad', 'fraccion', 'descuento'], 'integer'],
+            [['factura_id', 'producto_id', 'cantidad', 'fraccion', 'descuento','excento_de_iva'], 'integer'],
              ['fraccion', 'default', 'value' => 0],
             [['precio_unitario'], 'number']
         ];
@@ -115,14 +115,14 @@ class Compras extends \yii\db\ActiveRecord
 
 
         $porciento=$this->factura->iva;
-$iva=0;
+        $iva=0;
             if ($this->fraccion != '0') { 
-               $iva += (((($this->precio_unitario/$this->producto->formato*$this->fraccion*$this->cantidad)-($this->precio_unitario/$this->producto->formato*$this->fraccion*$this->cantidad*$this->descuento/100)))*$porciento/100)*$this->producto->excento_de_iva;
+               $iva += (((($this->precio_unitario/$this->producto->formato*$this->fraccion*$this->cantidad)-($this->precio_unitario/$this->producto->formato*$this->fraccion*$this->cantidad*$this->descuento/100)))*$porciento/100)*$this->excento_de_iva;
                     //1 es no excento, 0 es excento (multiplicar por 0 da 0)
 
             }else{
 
-               $iva = (($this->precio_unitario*$this->cantidad-$this->precio_unitario*$this->cantidad*$this->descuento/100)*$porciento/100)*$this->producto->excento_de_iva;
+               $iva = (($this->precio_unitario*$this->cantidad-$this->precio_unitario*$this->cantidad*$this->descuento/100)*$porciento/100)*$this->excento_de_iva;
 
             }
         

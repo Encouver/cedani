@@ -48,7 +48,7 @@ use kartik\money\MaskMoney;
         ]
     ]);
     ?>
-    <?=
+<!--    <?=
     $form->field($model, 'precio_costo')->widget(MaskMoney::classname(), [
         'pluginOptions' => [
             'prefix' => 'Bs. ',
@@ -57,7 +57,7 @@ use kartik\money\MaskMoney;
         ]
     ]);
     ?>
-
+-->
     <?= $form->field($model, 'excento_de_iva')->dropDownList(['0'=>'No', '1'=>'Sí']) ?>
 
 

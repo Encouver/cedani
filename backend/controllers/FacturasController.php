@@ -69,6 +69,27 @@ class FacturasController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+
+    public function actionAnular($facturas_id){
+
+        $model = $this->findModel($facturas_id);
+
+        $model->cerrada = '3';
+
+        $model->save();
+           return $this->render('index');
+
+    }
+    public function actionReanudar($facturas_id){
+
+        $model = $this->findModel($facturas_id);
+
+        $model->cerrada = '0';
+
+        $model->save();
+           return $this->render('index');
+
+    }
     
     /**
      * Displays a single Facturas model.

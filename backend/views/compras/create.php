@@ -23,6 +23,7 @@ $this->title = 'Descripción de la factura';
 ?>
 
 <div class="compras-create">
+<div class="row">
     <div class="col-md-12">
 
         <h2><?= Html::encode($this->title) ?></h2>
@@ -177,8 +178,9 @@ $this->title = 'Descripción de la factura';
         <?php Pjax::end(); ?>
     
         <?= Html::a('Finalizar factura', ['/compras/resumen','id' => $x], ['class' => 'btn btn-danger']) ?>
+
     </div>
 
     <?//= Html::a('Finalizar factura', ['/facturas/descargar','id' => $x], ['class' => 'btn btn-danger', 'data-confirm' => '¿Está seguro de que desea dar por finalizada la factura?']) ?>
-
+</div>
 </div>
